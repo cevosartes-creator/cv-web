@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cv | Calzados, Accesorios e Indumentaria</title>
+  <meta name="description" content="Tienda oficial Cv. Calzados, accesorios e indumentaria de diseño. Moda contemporánea con intención.">
+  
+  <!-- Favicon para PC (Pestaña del navegador) -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Icono para iPhone/iPad (Al guardar en pantalla de inicio) -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <style>
+    /* ================= PALETA DE COLORES CV ================= */
+    :root {
+      --primary: #0a192f; 
+      --accent: #0056b3; 
+      --accent-hover: #003d80;
+      --bg: #f8fafc; 
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(10, 25, 47, 0.08);
+      --transition: .3s cubic-bezier(.4, 0, .2, 1);
+      --font: system-ui, -apple-system, sans-serif;
+      --wa: #25D366;
+    }
+
+    /* ================= RESET & BASE ================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; } 
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    
+    .skip-link { position: absolute; top: -100%; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 12px 24px; border-radius: 8px; z-index: 9999; }
+    .skip-link:focus { top: 12px; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+    .section-title { font-size: clamp(1.75rem, 4vw, 2.2rem); font-weight: 800; text-align: center; margin-bottom: .5rem; color: var(--primary); }
+    .section-sub { text-align: center; color: var(--text-light); margin-bottom: 2.5rem; max-width: 600px; margin-inline: auto; }
+
+    /* ================= HEADER ================= */
+    header { position: sticky; top: 0; background: rgba(255,255,255,.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 100; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .logo { display: inline-flex; align-items: center; padding: 4px 0; }
+    .logo img { height: 48px; width: auto; max-width: 160px; display: block; transition: var(--transition); }
+    .logo:hover img { transform: scale(1.03); opacity: 0.9; }
+    @media (max-width: 768px) { .logo img { height: 38px; } }
+    .nav-links { display: flex; gap: 1.5rem; } .nav-links a { font-weight: 500; transition: color var(--transition); color: var(--primary); }
+    .nav-links a:hover { color: var(--accent); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); }
+    .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 90; }
+
+    /* ================= HERO ================= */
+    .hero { background: linear-gradient(135deg, var(--primary), #16213e); color: #fff; padding: 80px 20px 60px; text-align: center; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: clamp(1rem, 2vw, 1.25rem); opacity: .9; max-width: 700px; margin: 0 auto 2rem; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: var(--transition); font-size: 1.1rem; }
+    .btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,86,179,.3); }
+
+    /* ================= TABS ================= */
+    .tabs { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 2rem 0 1.5rem; }
+    .tab-btn { padding: 10px 20px; border: 2px solid var(--border); border-radius: 50px; font-weight: 600; transition: var(--transition); color: var(--text); }
+    .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .tab-panel { display: none; animation: fade .4s ease; }
+    .tab-panel:not([hidden]) { display: block; }
+    @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ================= PRODUCT CARDS ================= */
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform var(--transition); }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.1); }
+    .card-img { position: relative; background: #f1f5f9; }
+    .main-img { width: 100%; height: 300px; object-fit: cover; display: block; }
+    .img-thumbs { display: flex; gap: 8px; padding: 10px; background: #fff; justify-content: center; border-top: 1px solid var(--border); }
+    .thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 2px solid transparent; cursor: pointer; opacity: 0.6; transition: .2s; }
+    .thumb:hover, .thumb.active { opacity: 1; border-color: var(--accent); }
+    .badge { position: absolute; top: 12px; left: 12px; background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: .75rem; font-weight: 700; z-index: 2; text-transform: uppercase; letter-spacing: 1px; }
+    .card-body { padding: 1.5rem; }
+    .card-title { font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; color: var(--primary); }
+    .price { font-size: 1.4rem; font-weight: 800; color: var(--accent); margin-bottom: 1rem; }
+    .benefits li { display: flex; gap: 8px; padding: 4px 0; font-size: .9rem; color: var(--text-light); }
+    .benefits li::before { content: '✓'; color: #00b894; font-weight: 700; flex-shrink: 0; }
+    .sizes { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0; }
+    .size-btn { min-width: 40px; height: 36px; border: 2px solid var(--border); border-radius: 6px; font-weight: 600; transition: var(--transition); color: var(--text); }
+    .size-btn[aria-pressed="true"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .size-btn:disabled { opacity: .3; cursor: not-allowed; text-decoration: line-through; }
+    .shipping { background: #f0f9f4; border: 1px solid #c6f6d5; border-radius: 8px; padding: 10px 12px; margin: 1rem 0; font-size: .85rem; color: #276749; display: flex; gap: 8px; }
+    .add-cart { width: 100%; padding: 14px; background: var(--accent); color: #fff; border-radius: 8px; font-weight: 700; margin-top: 1rem; transition: var(--transition); font-size: 1rem; letter-spacing: 0.5px; }
+    .add-cart:hover { background: var(--accent-hover); transform: translateY(-2px); }
+    .add-cart:disabled { background: #94a3b8; cursor: not-allowed; transform: none; }
+
+    /* ================= REELS ================= */
+    .reels-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .reels-section h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); text-align: center; }
+    .reels-category { display: flex; gap: 16px; overflow-x: auto; padding: 10px 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .reels-category::-webkit-scrollbar { display: none; }
+    .reel-card { flex: 0 0 160px; height: 280px; border-radius: 16px; background: #000; position: relative; overflow: hidden; scroll-snap-align: start; cursor: pointer; box-shadow: var(--shadow); }
+    .reel-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .reel-card::after { content: '▶'; position: absolute; bottom: 16px; right: 16px; background: rgba(255,255,255,.9); color: var(--primary); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: .9rem; transition: .2s; }
+    .reel-card.playing::after { content: ''; }
+    .reel-card:hover { transform: scale(1.02); }
+    .reel-title { position: absolute; bottom: 16px; left: 16px; right: 60px; color: #fff; font-size: .85rem; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,.8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* ================= MODULES (SOBRE CV) ================= */
+    .modules { padding: 80px 0; background: #fff; }
+    .module-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem; }
+    .module-block.reverse { direction: rtl; } .module-block.reverse > * { direction: ltr; }
+    .module-img { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; background: #f1f5f9; display: grid; place-items: center; font-size: 4rem; color: #cbd5e1; }
+    .module-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .module-text h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: .75rem; color: var(--primary); }
+    .module-text p { color: var(--text-light); margin-bottom: 1.5rem; font-size: 1.05rem; }
+
+    /* ================= FAQ ================= */
+    .faq { padding: 80px 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; background: #fff; }
+    .faq-btn { width: 100%; padding: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; text-align: left; font-size: 1.05rem; color: var(--primary); }
+    .faq-btn:hover { background: #f8fafc; }
+    .faq-icon { width: 20px; height: 20px; position: relative; flex-shrink: 0; }
+    .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: var(--accent); border-radius: 2px; transition: transform var(--transition); }
+    .faq-icon::before { width: 14px; height: 2px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .faq-icon::after { width: 2px; height: 14px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .faq-btn[aria-expanded="true"] .faq-icon::after { transform: translate(-50%,-50%) rotate(90deg); }
+    .faq-content { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+    .faq-content-inner { padding: 0 20px 20px; color: var(--text-light); }
+
+    /* ================= FOOTER ================= */
+    footer { background: var(--primary); color: rgba(255,255,255,.7); padding: 60px 20px 30px; text-align: center; }
+    .footer-logo { height: 40px; margin-bottom: 20px; opacity: 0.8; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 30px; }
+    .footer-links a { color: #fff; font-weight: 500; transition: .2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ================= WHATSAPP FLOAT ================= */
+    .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 900; }
+    .wa-btn { width: 64px; height: 64px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 4px 24px rgba(37,211,102,.4); position: relative; cursor: pointer; transition: var(--transition); }
+    .wa-btn:hover { transform: scale(1.1); }
+    .wa-btn svg { width: 36px; height: 36px; fill: #fff; }
+    .pulse { position: absolute; inset: 0; border-radius: 50%; background: var(--wa); animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.6); opacity: 0; } }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: #fff; flex-direction: column; padding: 80px 30px; gap: 1.5rem; box-shadow: -4px 0 20px rgba(0,0,0,.1); transition: right var(--transition); z-index: 100; }
+      .nav-links.open { right: 0; } .nav-overlay.show { display: block; }
+      .module-block { grid-template-columns: 1fr; gap: 1.5rem; } .module-block.reverse { direction: ltr; }
+      .reel-card { flex: 0 0 130px; height: 230px; }
+    }
+    @media (max-width: 400px) { .products-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+  <header>
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Inicio - Cv Calzados y Accesorios">
+        <img src="imagenes/logo-cv.png" alt="Logo Cv Calzados y Accesorios" width="120" height="48" loading="lazy">
+      </a>
+      <nav class="nav-links" id="nav" role="navigation">
+        <a href="#productos">Productos</a><a href="#nosotros">Nosotros</a><a href="#faq">Preguntas</a>
+      </nav>
+      <button class="hamburger" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="overlay"></div>
+
+  <main id="main">
+    <section class="hero">
+      <h1>Moda contemporánea con <span>intención</span></h1>
+      <p>Calzados, accesorios e indumentaria diseñados para quienes buscan expresar su identidad a través de la calidad y su estilo personal, la comodidad y los detalles que comunican.</p>
+      <a href="#productos" class="btn">Explorar colección →</a>
+    </section>
+
+    <section class="container" id="productos">
+      <h2 class="section-title">Nuestra Colección</h2>
+      <p class="section-sub">Diseño, calidad y personalidad en cada paso</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-calzados" id="tab-calzados">👟 Calzados</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-accesorios" id="tab-accesorios">👜 Accesorios</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-indumentaria" id="tab-indumentaria">👕 Indumentaria</button>
+      </div>
+
+      <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados" hidden="false">
+        <div class="products-grid">
+          <!-- PRODUCTO 1: NEGRO -->
+          <article class="card">
+            <div class="card-img">
+              <img src="imagenes/zapatilla-negra-1.jpg" alt="Botitas Resilience Negras vista principal" class="main-img" id="res-black-main" width="600" height="400" loading="lazy">
+              <div class="img-thumbs">
+                <img src="imagenes/zapatilla-negra-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('res-black-main', this)" width="50" height="50" loading="lazy">
+                <img src="imagenes/zapatilla-negra-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('res-black-main', this)" width="50" height="50" loading="lazy">
+                <img src="imagenes/zapatilla-negra-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('res-black-main', this)" width="50" height="50" loading="lazy">
+              </div>
+              <span class="badge">Nuevo</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Botitas Resilience Negras</h3>
+              <div class="price">$120.000</div>
+              <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
+              <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
+              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              <button id="btn-buy-res-negra" class="add-cart" data-product="res-negra" data-price="120000">💳 Comprar ahora</button>
+            </div>
+          </article>
+
+          <!-- PRODUCTO 2: BLANCO -->
+          <article class="card">
+            <div class="card-img">
+              <img src="imagenes/zapatilla-blanca-1.jpg" alt="Botitas Resilience Blancas vista principal" class="main-img" id="res-white-main" width="600" height="400" loading="lazy">
+              <div class="img-thumbs">
+                <img src="imagenes/zapatilla-blanca-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('res-white-main', this)" width="50" height="50" loading="lazy">
+                <img src="imagenes/zapatilla-blanca-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('res-white-main', this)" width="50" height="50" loading="lazy">
+                <img src="imagenes/zapatilla-blanca-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('res-white-main', this)" width="50" height="50" loading="lazy">
+              </div>
+              <span class="badge">Color Nuevo</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Botitas Resilience Blancas</h3>
+              <div class="price">$120.000</div>
+              <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
+              <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
+              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              <button id="btn-buy-res-blanca" class="add-cart" data-product="res-blanca" data-price="120000"> Comprar ahora</button>
+            </div>
+          </article>
+
+          <!-- PRODUCTO 3: CHOCOLATE -->
+          <article class="card">
+            <div class="card-img">
+              <img src="imagenes/zapatilla-chocolate-1.jpg" alt="Botitas Resilience Chocolate vista principal" class="main-img" id="res-choco-main" width="600" height="400" loading="lazy">
+              <div class="img-thumbs">
+                <img src="imagenes/zapatilla-chocolate-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('res-choco-main', this)" width="50" height="50" loading="lazy">
+                <img src="imagenes/zapatilla-chocolate-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('res-choco-main', this)" width="50" height="50" loading="lazy">
+                <img src="imagenes/zapatilla-chocolate-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('res-choco-main', this)" width="50" height="50" loading="lazy">
+              </div>
+              <span class="badge">Edición Limitada</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Botitas Resilience Chocolate</h3>
+              <div class="price">$120.000</div>
+              <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
+              <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
+              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              <button id="btn-buy-res-chocolate" class="add-cart" data-product="res-chocolate" data-price="120000">💳 Comprar ahora</button>
+            </div>
+          </article>
+        </div>
+
+        <!-- REELS -->
+        <div class="reels-section">
+          <h4>🎬 Reels de Calzados</h4>
+          <div class="reels-category">
+            <div class="reel-card"><video preload="metadata" poster="imagenes/zapatilla-negra-1.jpg" loading="lazy"><source src="videos/reel-calzados-1.mp4"></video><span class="reel-title">En acción</span></div>
+            <div class="reel-card"><video preload="metadata" poster="imagenes/zapatilla-negra-2.jpg" loading="lazy"><source src="videos/reel-calzados-2.mp4"></video><span class="reel-title">Detalles</span></div>
+            <div class="reel-card"><video preload="metadata" poster="imagenes/zapatilla-negra-3.jpg" loading="lazy"><source src="videos/reel-calzados-3.mp4"></video><span class="reel-title">Comodidad</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCESORIOS -->
+      <div class="tab-panel" id="panel-accesorios" role="tabpanel" aria-labelledby="tab-accesorios" hidden="true">
+        <div class="products-grid"><p style="grid-column:1/-1;text-align:center;color:#888; padding:40px;">Próximamente nuevos accesorios.</p></div>
+      </div>
+
+      <!-- INDUMENTARIA -->
+      <div class="tab-panel" id="panel-indumentaria" role="tabpanel" aria-labelledby="tab-indumentaria" hidden="true">
+        <div class="products-grid"><p style="grid-column:1/-1;text-align:center;color:#888; padding:40px;">Próximamente nueva indumentaria.</p></div>
+      </div>
+    </section>
+
+    <!-- SOBRE CV CON FOTOS OPTIMIZADAS -->
+    <section class="modules" id="nosotros">
+      <div class="container">
+        <h2 class="section-title">Sobre Cv</h2>
+        <p class="section-sub">Más que una marca, una filosofía de vida y estilo</p>
+        
+        <div class="module-block">
+          <div class="module-img">
+            <img src="imagenes/sobre-cv-1.jpg" alt="Taller artesanal Cv: proceso de confección en cuero con herramientas profesionales" loading="lazy" width="800" height="600">
+          </div>
+          <div class="module-text">
+            <h3>Calidad en Clásicos y Personalización a medida</h3>
+            <p>Creamos Calzados, Accesorios e Indumentaria de diseño, femeninos, masculinos e inclusivos, realizados en cuero, cuero ecológico y telas, donde la moda se une con el diseño y el estilo personal.</p>
+          </div>
+        </div>
+        
+        <div class="module-block reverse">
+          <div class="module-img">
+            <img src="imagenes/sobre-cv-2.jpg" alt="Servicio de branding Cv: aplicación de logos personalizados en calzado y accesorios" loading="lazy" width="800" height="600">
+          </div>
+          <div class="module-text">
+            <h3>Branding e Identidad Visual aplicada</h3>
+            <p>Además, brindamos un Servicio aplicado imprimiendo logos, imágenes y simbología en Bijouterie, Calzados, Accesorios e Indumentaria, combinando branding e identidad visual.</p>
+          </div>
+        </div>
+        
+        <div style="text-align:center; margin-top:2rem; padding-top:2rem; border-top:1px solid var(--border);">
+          <p style="font-size:1.2rem; font-weight:700; color:var(--primary); letter-spacing:1px;">Moda contemporánea con intención.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <div style="max-width:800px;margin:0 auto;">
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq1">¿Métodos de pago? <span class="faq-icon"></span></button><div id="faq1" class="faq-content" role="region"><div class="faq-content-inner">Tarjetas, transferencia, Mercado Pago y Ualá. Hasta 12 cuotas sin interés.</div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq2">¿Tiempo de envío? <span class="faq-icon"></span></button><div id="faq2" class="faq-content" role="region"><div class="faq-content-inner">3-5 días hábiles en CABA/GBA, 5-7 en el interior. Express disponible.</div></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <img src="imagenes/logo-cv.png" alt="Logo Cv Footer" class="footer-logo" loading="lazy" width="160" height="40">
+      <div class="footer-links">
+        <a href="#productos">Productos</a><a href="#faq">Preguntas</a>
+      </div>
+      <p>© 2026 Cv. Moda contemporánea con intención.<br>Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOTANTE -->
+  <div class="wa-float">
+    <button class="wa-btn" id="waBtn" aria-label="Chat WhatsApp">
+      <span class="pulse"></span>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.004 0C7.164 0 0 7.163 0 16.004c0 2.823.737 5.58 2.137 8.012L.073 32l8.172-2.044A15.95 15.95 0 0016.004 32C24.836 32 32 24.836 32 16.004 32 7.163 24.836 0 16.004 0zm0 29.18a13.15 13.15 0 01-6.72-1.844l-.48-.285-4.99 1.25 1.334-4.87-.312-.496A13.12 13.12 0 012.82 16.004c0-7.27 5.914-13.18 13.184-13.18 7.27 0 13.176 5.91 13.176 13.18 0 7.27-5.906 13.176-13.176 13.176zm7.22-9.878c-.398-.2-2.344-1.156-2.71-1.29-.367-.133-.634-.2-.9.2-.267.398-1.033 1.29-1.267 1.556-.233.267-.467.3-.867.1-.398-.2-1.678-.618-3.196-1.966-1.18-1.053-1.978-2.354-2.21-2.752-.233-.4-.025-.615.174-.813.18-.18.4-.467.6-.7.2-.233.267-.4.4-.667.133-.267.067-.5-.033-.7-.1-.2-.9-2.167-1.234-2.967-.324-.78-.656-.674-.9-.686-.233-.012-.5-.012-.767-.012-.267 0-.7.1-1.067.5-.367.4-1.4 1.367-1.4 3.334 0 1.967 1.434 3.867 1.634 4.134.2.267 2.82 4.312 6.846 6.045.957.413 1.704.66 2.287.845.96.306 1.834.263 2.524.16.772-.115 2.344-.956 2.678-1.878.333-.922.333-1.71.233-1.878-.1-.167-.367-.267-.767-.467z"/></svg>
+    </button>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Menú
+      const menuBtn = document.getElementById('menuBtn'), nav = document.getElementById('nav'), overlay = document.getElementById('overlay');
+      const toggleMenu = () => { const o = nav.classList.toggle('open'); menuBtn.classList.toggle('active'); overlay.classList.toggle('show'); menuBtn.setAttribute('aria-expanded', o); };
+      menuBtn?.addEventListener('click', toggleMenu); overlay?.addEventListener('click', toggleMenu);
+      nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.contains('open') && toggleMenu()));
+
+      // 2. Tabs
+      const tabs = document.querySelectorAll('.tab-btn'), panels = document.querySelectorAll('.tab-panel');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+          tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
+          panels.forEach(p => p.hidden = p.id !== tab.getAttribute('aria-controls'));
+        });
+      });
+
+      // 3. Talles
+      document.querySelectorAll('.sizes').forEach(g => {
+        g.addEventListener('click', e => {
+          if (!e.target.classList.contains('size-btn') || e.target.disabled) return;
+          g.querySelectorAll('.size-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
+          e.target.setAttribute('aria-pressed', 'true');
+        });
+      });
+
+      // 4. Reels
+      document.querySelectorAll('.reel-card').forEach(card => {
+        const video = card.querySelector('video'); if (!video) return;
+        card.addEventListener('click', () => {
+          if (video.paused) { video.play(); card.classList.add('playing'); } 
+          else { video.pause(); card.classList.remove('playing'); }
+        });
+        video.addEventListener('loadedmetadata', () => video.pause());
+      });
+
+      // 5. FAQ
+      document.querySelectorAll('.faq-btn').forEach(btn => {
+        btn.addEventListener('click', () => btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'));
+      });
+
+      // 6. WhatsApp
+      // En la sección de WhatsApp (~línea 420), actualizá el mensaje:
+const waUrl = 'https://wa.me/5491176235960?text=' + encodeURIComponent('Hola! Vi las Botitas Resilience en la web y quiero consultar precio y talles. Ya realicé mi pago, necesito confirmar color y envío.');
+      document.getElementById('waBtn')?.addEventListener('click', () => window.open(waUrl, '_blank'));
+
+      // 7. Galería de imágenes
+      window.cambiarImg = (mainId, thumb) => { const main = document.getElementById(mainId); if(!main) return; main.src = thumb.src; thumb.parentElement.querySelectorAll('.thumb').forEach(t => t.classList.remove('active')); thumb.classList.add('active'); };
+
+      // 8. UALÁ BIS - LINKS DE PAGO DIRECTOS (Mismo link para los 3 colores)
+      const linkPagoResilience = 'https://pagar.ualabis.com.ar/order/62d9c4728d2ab9d7b0c593492990e7ba2bce4c9265350f60';
+
+      document.querySelectorAll('.add-cart[data-product]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const producto = btn.dataset.product;
+          
+          // Validar que sea un producto Resilience
+          if (producto.startsWith('res-') && linkPagoResilience.startsWith('http')) {
+            btn.disabled = true;
+            btn.textContent = '🔗 Redirigiendo a pago seguro...';
+            
+            setTimeout(() => {
+              // Abrir checkout en nueva pestaña
+              window.open(linkPagoResilience, '_blank', 'noopener,noreferrer');
+              btn.disabled = false;
+              btn.textContent = '💳 Comprar ahora';
+            }, 300);
+          } else {
+            alert('⚠️ Link de pago no configurado. Contactanos por WhatsApp para finalizar tu compra.');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
