@@ -118,6 +118,24 @@
     .wa-btn svg { width: 36px; height: 36px; fill: #fff; }
     .pulse { position: absolute; inset: 0; border-radius: 50%; background: var(--wa); animation: pulse 2s infinite; }
     @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.6); opacity: 0; } }
+    
+    /* ================= GUÍA DE TALLAS INTELIGENTE ================= */
+    .size-guide-btn { background: none; border: 2px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 8px; font-size: 0.9rem; width: 100%; }
+    .size-guide-btn:hover { background: var(--accent); color: #fff; }
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
+    .modal.active { display: flex; }
+    .modal-content { background: #fff; border-radius: var(--radius); max-width: 450px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+    .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-light); line-height: 1; }
+    .modal-close:hover { color: var(--primary); }
+    .size-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+    .size-form label { display: flex; flex-direction: column; gap: 0.5rem; font-weight: 600; color: var(--primary); font-size: 0.95rem; }
+    .size-form input, .size-form select { padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; transition: var(--transition); }
+    .size-form input:focus, .size-form select:focus { outline: none; border-color: var(--accent); }
+    .size-result { margin-top: 1.5rem; padding: 1.5rem; background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; text-align: center; animation: fade .4s ease; }
+    .size-result h4 { color: #065f46; font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .size-result p { color: var(--text-light); margin: 0.5rem 0; font-size: 0.95rem; }
+    .size-recommendation { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
+
     @media (max-width: 768px) {
       .hamburger { display: flex; }
       .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: #fff; flex-direction: column; padding: 80px 30px; gap: 1.5rem; box-shadow: -4px 0 20px rgba(0,0,0,.1); transition: right var(--transition); z-index: 100; }
@@ -165,6 +183,7 @@
 
       <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados">
         <div class="products-grid">
+          <!-- PRODUCTO 1: NEGRO -->
           <article class="card">
             <div class="card-img">
               <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience Negras" class="main-img" id="res-black-main" width="600" height="400" loading="lazy">
@@ -180,11 +199,13 @@
               <div class="price">$120.000</div>
               <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
               <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
+              <button class="size-guide-btn">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="res-negra" data-price="120000">💳 Comprar ahora</button>
             </div>
           </article>
 
+          <!-- PRODUCTO 2: BLANCO -->
           <article class="card">
             <div class="card-img">
               <img src="zapatilla-blanca-1.jpg" alt="Botitas Resilience Blancas" class="main-img" id="res-white-main" width="600" height="400" loading="lazy">
@@ -200,11 +221,13 @@
               <div class="price">$120.000</div>
               <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
               <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
+              <button class="size-guide-btn">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="res-blanca" data-price="120000">💳 Comprar ahora</button>
             </div>
           </article>
 
+          <!-- PRODUCTO 3: CHOCOLATE -->
           <article class="card">
             <div class="card-img">
               <img src="zapatilla-chocolate-1.jpg" alt="Botitas Resilience Chocolate" class="main-img" id="res-choco-main" width="600" height="400" loading="lazy">
@@ -220,6 +243,7 @@
               <div class="price">$120.000</div>
               <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
               <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
+              <button class="size-guide-btn">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="res-chocolate" data-price="120000">💳 Comprar ahora</button>
             </div>
@@ -304,13 +328,54 @@
     </button>
   </div>
 
+  <!-- MODAL GUÍA DE TALLAS INTELIGENTE -->
+  <div class="modal" id="sizeGuideModal">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+      <h3 style="color: var(--primary); margin-bottom: 0.5rem;">📏 Guía de Tallas Inteligente</h3>
+      <p style="color: var(--text-light); font-size: 0.95rem;">Completá tus datos y te recomendaremos el talle ideal para vos.</p>
+      
+      <form class="size-form" id="sizeForm">
+        <label>
+          Altura (cm)
+          <input type="number" id="altura" min="140" max="210" placeholder="Ej: 170" required>
+        </label>
+        
+        <label>
+          Peso (kg)
+          <input type="number" id="peso" min="40" max="150" placeholder="Ej: 65" required>
+        </label>
+        
+        <label>
+          Talle que usás normalmente
+          <select id="talleUsual" required>
+            <option value="">Seleccioná tu talle</option>
+            <option value="36">36</option>
+            <option value="37">37</option>
+            <option value="38">38</option>
+            <option value="39">39</option>
+            <option value="40">40</option>
+            <option value="41">41</option>
+            <option value="42">42</option>
+          </select>
+        </label>
+        
+        <button type="submit" class="btn" style="width: 100%; justify-content: center;">Calcular mi talle ideal</button>
+      </form>
+      
+      <div class="size-result" id="sizeResult" style="display: none;"></div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. Menú
       const menuBtn = document.getElementById('menuBtn'), nav = document.getElementById('nav'), overlay = document.getElementById('overlay');
       const toggleMenu = () => { const o = nav.classList.toggle('open'); overlay.classList.toggle('show'); menuBtn.setAttribute('aria-expanded', o); };
       menuBtn?.addEventListener('click', toggleMenu); overlay?.addEventListener('click', toggleMenu);
       nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.contains('open') && toggleMenu()));
 
+      // 2. Tabs
       const tabs = document.querySelectorAll('.tab-btn'), panels = document.querySelectorAll('.tab-panel');
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -320,6 +385,7 @@
         });
       });
 
+      // 3. Talles (botones de la ficha)
       document.querySelectorAll('.sizes').forEach(g => {
         g.addEventListener('click', e => {
           if (!e.target.classList.contains('size-btn')) return;
@@ -328,6 +394,7 @@
         });
       });
 
+      // 4. Reels
       document.querySelectorAll('.reel-card').forEach(card => {
         const video = card.querySelector('video'); if (!video) return;
         card.addEventListener('click', () => {
@@ -336,15 +403,19 @@
         });
       });
 
+      // 5. FAQ
       document.querySelectorAll('.faq-btn').forEach(btn => {
         btn.addEventListener('click', () => btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'));
       });
 
+      // 6. WhatsApp
       const waUrl = 'https://wa.me/5491176235960?text=' + encodeURIComponent('Hola! Vi Cv Calzados y Accesorios en la web y quiero consultar.');
       document.getElementById('waBtn')?.addEventListener('click', () => window.open(waUrl, '_blank'));
 
+      // 7. Galería de imágenes
       window.cambiarImg = (mainId, thumb) => { const main = document.getElementById(mainId); if(!main) return; main.src = thumb.src; thumb.parentElement.querySelectorAll('.thumb').forEach(t => t.classList.remove('active')); thumb.classList.add('active'); };
 
+      // 8. UALÁ BIS - LINK DE PAGO
       const linkPago = 'https://pagar.ualabis.com.ar/order/62d9c4728d2ab9d7b0c593492990e7ba2bce4c9265350f60';
       document.querySelectorAll('.add-cart[data-product]').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -357,6 +428,73 @@
             btn.textContent = '💳 Comprar ahora';
           }, 300);
         });
+      });
+
+      // 9. GUÍA DE TALLAS INTELIGENTE
+      const sizeGuideBtns = document.querySelectorAll('.size-guide-btn');
+      const sizeGuideModal = document.getElementById('sizeGuideModal');
+      const closeModalBtn = document.querySelector('.modal-close');
+
+      sizeGuideBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sizeGuideModal.classList.add('active');
+          // Resetear resultado al abrir
+          document.getElementById('sizeResult').style.display = 'none';
+          document.getElementById('sizeForm').reset();
+        });
+      });
+
+      closeModalBtn?.addEventListener('click', () => {
+        sizeGuideModal.classList.remove('active');
+      });
+
+      sizeGuideModal?.addEventListener('click', (e) => {
+        if (e.target === sizeGuideModal) {
+          sizeGuideModal.classList.remove('active');
+        }
+      });
+
+      document.getElementById('sizeForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const altura = parseInt(document.getElementById('altura').value);
+        const peso = parseInt(document.getElementById('peso').value);
+        const talleUsual = parseInt(document.getElementById('talleUsual').value);
+        
+        if (!altura || !peso || !talleUsual) {
+          alert('Por favor completá todos los campos');
+          return;
+        }
+        
+        // Lógica de cálculo inteligente
+        let talleRecomendado = talleUsual;
+        
+        // Ajuste por altura
+        if (altura < 160) {
+          talleRecomendado = Math.max(36, talleUsual - 1);
+        } else if (altura > 175) {
+          talleRecomendado = Math.min(42, talleUsual + 1);
+        }
+        
+        // Ajuste por peso (IMC aproximado)
+        const alturaM = altura / 100;
+        const imc = peso / (alturaM * alturaM);
+        
+        if (imc < 18.5) {
+          talleRecomendado = Math.max(36, talleRecomendado - 1);
+        } else if (imc > 25) {
+          talleRecomendado = Math.min(42, talleRecomendado + 1);
+        }
+        
+        // Mostrar resultado
+        const resultDiv = document.getElementById('sizeResult');
+        resultDiv.innerHTML = `
+          <h4>✨ Tu talle ideal</h4>
+          <div class="size-recommendation">${talleRecomendado}</div>
+          <p>Basado en tu altura (${altura} cm), peso (${peso} kg) y talle usual (${talleUsual}).</p>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #065f46;">💡 Si estás entre dos talles, te recomendamos el más grande para mayor comodidad.</p>
+        `;
+        resultDiv.style.display = 'block';
       });
     });
   </script>
