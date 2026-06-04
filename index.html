@@ -5,24 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cv | Calzados, Accesorios e Indumentaria</title>
   <meta name="description" content="Tienda oficial Cv. Calzados, accesorios e indumentaria de diseño. Moda contemporánea con intención.">
-  
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <style>
     :root {
-      --primary: #0a192f; 
-      --accent: #0056b3; 
-      --accent-hover: #003d80;
-      --bg: #f8fafc; 
-      --text: #1e293b;
-      --text-light: #64748b;
-      --border: #e2e8f0;
-      --radius: 12px;
+      --primary: #0a192f; --accent: #0056b3; --accent-hover: #003d80;
+      --bg: #f8fafc; --text: #1e293b; --text-light: #64748b;
+      --border: #e2e8f0; --radius: 12px;
       --shadow: 0 4px 12px rgba(10, 25, 47, 0.08);
       --transition: .3s cubic-bezier(.4, 0, .2, 1);
-      --font: system-ui, -apple-system, sans-serif;
-      --wa: #25D366;
+      --font: system-ui, -apple-system, sans-serif; --wa: #25D366;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -39,8 +32,6 @@
     .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
     .logo { display: inline-flex; align-items: center; padding: 4px 0; }
     .logo img { height: 48px; width: auto; max-width: 160px; display: block; transition: var(--transition); }
-    .logo:hover img { transform: scale(1.03); opacity: 0.9; }
-    @media (max-width: 768px) { .logo img { height: 38px; } }
     .nav-links { display: flex; gap: 1.5rem; } .nav-links a { font-weight: 500; transition: color var(--transition); color: var(--primary); }
     .nav-links a:hover { color: var(--accent); }
     .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
@@ -58,15 +49,43 @@
     .tab-panel { display: none; animation: fade .4s ease; }
     .tab-panel:not([hidden]) { display: block; }
     @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    
+    /* CONFIGURADOR ESTILOS */
+    .configurator { background: #fff; border-radius: var(--radius); padding: 2rem; border: 1px solid var(--border); box-shadow: var(--shadow); max-width: 800px; margin: 0 auto; }
+    .config-step { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .config-step:last-of-type { border-bottom: none; }
+    .config-step h4 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+    .config-step h4 span { background: var(--accent); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 0.9rem; flex-shrink: 0; }
+    .config-select { width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; background: #fff; cursor: pointer; }
+    .config-select:focus { outline: none; border-color: var(--accent); }
+    .config-select optgroup { font-weight: 700; color: var(--primary); font-style: normal; }
+    
+    .visual-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 12px; }
+    .visual-item { position: relative; border: 3px solid transparent; border-radius: 8px; overflow: hidden; cursor: pointer; transition: var(--transition); aspect-ratio: 1; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--text-light); font-size: 0.8rem; text-align: center; padding: 4px; }
+    .visual-item img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .visual-item.active { border-color: var(--accent); transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,86,179,.2); z-index: 2; }
+    .visual-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(10, 25, 47, 0.85); color: #fff; font-size: 0.7rem; font-weight: 600; text-align: center; padding: 4px 2px; z-index: 3; }
+
+    .order-summary { background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; display: none; animation: fade .4s ease; }
+    .order-summary h4 { color: #065f46; margin-bottom: 1rem; font-size: 1.2rem; }
+    .summary-line { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; border-bottom: 1px dashed #bbf7d0; padding-bottom: 4px; }
+    .summary-line strong { color: var(--primary); text-align: right; max-width: 60%; }
+    
+    .upload-notice { background: #fffbeb; border: 2px solid #f59e0b; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: flex; gap: 12px; align-items: flex-start; }
+    .upload-notice svg { width: 24px; height: 24px; fill: #f59e0b; flex-shrink: 0; margin-top: 2px; }
+    .upload-notice p { font-size: 0.9rem; color: #92400e; margin: 0; line-height: 1.5; }
+
+    .btn-whatsapp { width: 100%; background: var(--wa); color: #fff; padding: 16px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); border: none; cursor: pointer; }
+    .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,211,102,.3); }
+    
+    /* Estilos generales heredados */
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform var(--transition); }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.1); }
+    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
     .card-img { position: relative; background: #f1f5f9; }
     .main-img { width: 100%; height: 300px; object-fit: cover; display: block; }
     .img-thumbs { display: flex; gap: 8px; padding: 10px; background: #fff; justify-content: center; border-top: 1px solid var(--border); }
     .thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 2px solid transparent; cursor: pointer; opacity: 0.6; transition: .2s; }
     .thumb:hover, .thumb.active { opacity: 1; border-color: var(--accent); }
-    .badge { position: absolute; top: 12px; left: 12px; background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: .75rem; font-weight: 700; z-index: 2; text-transform: uppercase; letter-spacing: 1px; }
     .card-body { padding: 1.5rem; }
     .card-title { font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; color: var(--primary); }
     .price { font-size: 1.4rem; font-weight: 800; color: var(--accent); margin-bottom: 1rem; }
@@ -78,17 +97,9 @@
     .shipping { background: #f0f9f4; border: 1px solid #c6f6d5; border-radius: 8px; padding: 10px 12px; margin: 1rem 0; font-size: .85rem; color: #276749; display: flex; gap: 8px; }
     .add-cart { width: 100%; padding: 14px; background: var(--accent); color: #fff; border-radius: 8px; font-weight: 700; margin-top: 1rem; transition: var(--transition); font-size: 1rem; }
     .add-cart:hover { background: var(--accent-hover); transform: translateY(-2px); }
-    .add-cart:disabled { background: #94a3b8; cursor: not-allowed; transform: none; }
-    .reels-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-    .reels-section h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); text-align: center; }
-    .reels-category { display: flex; gap: 16px; overflow-x: auto; padding: 10px 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
-    .reels-category::-webkit-scrollbar { display: none; }
-    .reel-card { flex: 0 0 160px; height: 280px; border-radius: 16px; background: #000; position: relative; overflow: hidden; scroll-snap-align: start; cursor: pointer; box-shadow: var(--shadow); }
-    .reel-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .reel-card::after { content: '▶'; position: absolute; bottom: 16px; right: 16px; background: rgba(255,255,255,.9); color: var(--primary); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: .9rem; }
-    .reel-card.playing::after { content: ''; }
-    .reel-card:hover { transform: scale(1.02); }
-    .reel-title { position: absolute; bottom: 16px; left: 16px; right: 60px; color: #fff; font-size: .85rem; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,.8); }
+    .size-guide-btn { background: none; border: 2px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 8px; font-size: 0.9rem; width: 100%; }
+    .size-guide-btn:hover { background: var(--accent); color: #fff; }
+    
     .modules { padding: 80px 0; background: #fff; }
     .module-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem; }
     .module-block.reverse { direction: rtl; } .module-block.reverse > * { direction: ltr; }
@@ -96,10 +107,10 @@
     .module-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .module-text h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: .75rem; color: var(--primary); }
     .module-text p { color: var(--text-light); font-size: 1.05rem; }
+    
     .faq { padding: 80px 0; }
     .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; background: #fff; }
     .faq-btn { width: 100%; padding: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; text-align: left; font-size: 1.05rem; color: var(--primary); }
-    .faq-btn:hover { background: #f8fafc; }
     .faq-icon { width: 20px; height: 20px; position: relative; flex-shrink: 0; }
     .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: var(--accent); border-radius: 2px; transition: transform var(--transition); }
     .faq-icon::before { width: 14px; height: 2px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
@@ -107,45 +118,22 @@
     .faq-btn[aria-expanded="true"] .faq-icon::after { transform: translate(-50%,-50%) rotate(90deg); }
     .faq-content { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
     .faq-content-inner { padding: 0 20px 20px; color: var(--text-light); }
+    
     footer { background: var(--primary); color: rgba(255,255,255,.7); padding: 60px 20px 30px; text-align: center; }
     .footer-logo { height: 40px; margin-bottom: 20px; opacity: 0.8; }
     .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 30px; }
     .footer-links a { color: #fff; font-weight: 500; }
-    .footer-links a:hover { color: var(--accent); }
     .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 900; }
     .wa-btn { width: 64px; height: 64px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 4px 24px rgba(37,211,102,.4); position: relative; cursor: pointer; }
-    .wa-btn:hover { transform: scale(1.1); }
     .wa-btn svg { width: 36px; height: 36px; fill: #fff; }
     .pulse { position: absolute; inset: 0; border-radius: 50%; background: var(--wa); animation: pulse 2s infinite; }
     @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.6); opacity: 0; } }
-    
-    /* ================= GUÍA DE TALLAS INTELIGENTE ================= */
-    .size-guide-btn { background: none; border: 2px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 8px; font-size: 0.9rem; width: 100%; }
-    .size-guide-btn:hover { background: var(--accent); color: #fff; }
-    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
-    .modal.active { display: flex; }
-    .modal-content { background: #fff; border-radius: var(--radius); max-width: 450px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
-    .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-light); line-height: 1; }
-    .modal-close:hover { color: var(--primary); }
-    .size-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
-    .size-form label { display: flex; flex-direction: column; gap: 0.5rem; font-weight: 600; color: var(--primary); font-size: 0.95rem; }
-    .size-form input, .size-form select { padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; transition: var(--transition); }
-    .size-form input:focus, .size-form select:focus { outline: none; border-color: var(--accent); }
-    .size-result { margin-top: 1.5rem; padding: 1.5rem; background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; text-align: center; animation: fade .4s ease; }
-    .size-result h4 { color: #065f46; font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .size-result p { color: var(--text-light); margin: 0.5rem 0; font-size: 0.95rem; }
-    .size-recommendation { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
-    .size-table { width: 100%; margin-top: 1rem; border-collapse: collapse; font-size: 0.85rem; }
-    .size-table th, .size-table td { padding: 8px; border: 1px solid var(--border); text-align: center; }
-    .size-table th { background: var(--bg); font-weight: 600; color: var(--primary); }
-    .size-table tr:nth-child(even) { background: #f8fafc; }
 
     @media (max-width: 768px) {
       .hamburger { display: flex; }
       .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: #fff; flex-direction: column; padding: 80px 30px; gap: 1.5rem; box-shadow: -4px 0 20px rgba(0,0,0,.1); transition: right var(--transition); z-index: 100; }
       .nav-links.open { right: 0; } .nav-overlay.show { display: block; }
       .module-block { grid-template-columns: 1fr; gap: 1.5rem; } .module-block.reverse { direction: ltr; }
-      .reel-card { flex: 0 0 130px; height: 230px; }
       .products-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -155,11 +143,11 @@
 
   <header>
     <div class="container header-inner">
-      <a href="index.html" class="logo" aria-label="Inicio - Cv Calzados y Accesorios">
-        <img src="logo-cv.png" alt="Logo Cv Calzados y Accesorios" width="120" height="48" loading="lazy">
+      <a href="index.html" class="logo" aria-label="Inicio - Cv">
+        <img src="logo-cv.png" alt="Logo Cv" width="120" height="48" loading="lazy">
       </a>
       <nav class="nav-links" id="nav" role="navigation">
-        <a href="#productos">Productos</a><a href="#nosotros">Nosotros</a><a href="#faq">Preguntas</a>
+        <a href="#productos">Productos</a><a href="#personalizar">Personalizar</a><a href="#nosotros">Nosotros</a><a href="#faq">Preguntas</a>
       </nav>
       <button class="hamburger" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
         <span></span><span></span><span></span>
@@ -171,7 +159,7 @@
   <main id="main">
     <section class="hero">
       <h1>Moda contemporánea con <span>intención</span></h1>
-      <p>Calzados, accesorios e indumentaria diseñados para quienes buscan expresar su identidad a través de la calidad y su estilo personal, la comodidad y los detalles que comunican.</p>
+      <p>Calzados, accesorios e indumentaria diseñados para expresar identidad a través de la calidad, el estilo personal y los detalles que comunican.</p>
       <a href="#productos" class="btn">Explorar colección →</a>
     </section>
 
@@ -183,210 +171,234 @@
         <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-calzados" id="tab-calzados">👟 Calzados</button>
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-accesorios" id="tab-accesorios">👜 Accesorios</button>
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-indumentaria" id="tab-indumentaria">👕 Indumentaria</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-personalizar" id="tab-personalizar">🎨 Personalizar</button>
       </div>
 
+      <!-- PANEL CALZADOS (Ejemplo) -->
       <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados">
         <div class="products-grid">
-          <!-- PRODUCTO 1: NEGRO -->
-          <article class="card" data-category="calzados">
+          <article class="card">
             <div class="card-img">
-              <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience Negras" class="main-img" id="res-black-main" width="600" height="400" loading="lazy">
+              <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience Negras" class="main-img" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
-                <img src="zapatilla-negra-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('res-black-main', this)" width="50" height="50" loading="lazy">
-                <img src="zapatilla-negra-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('res-black-main', this)" width="50" height="50" loading="lazy">
-                <img src="zapatilla-negra-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('res-black-main', this)" width="50" height="50" loading="lazy">
+                <img src="zapatilla-negra-1.jpg" class="thumb active" width="50" height="50" loading="lazy">
+                <img src="zapatilla-negra-2.jpg" class="thumb" width="50" height="50" loading="lazy">
               </div>
               <span class="badge">Nuevo</span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Botitas Resilience Negras</h3>
               <div class="price">$120.000</div>
-              <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
-              <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
-              <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
+              <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li></ul>
+              <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button></div>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="res-negra" data-price="120000">💳 Comprar ahora</button>
             </div>
           </article>
-
-          <!-- PRODUCTO 2: BLANCO -->
-          <article class="card" data-category="calzados">
-            <div class="card-img">
-              <img src="zapatilla-blanca-1.jpg" alt="Botitas Resilience Blancas" class="main-img" id="res-white-main" width="600" height="400" loading="lazy">
-              <div class="img-thumbs">
-                <img src="zapatilla-blanca-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('res-white-main', this)" width="50" height="50" loading="lazy">
-                <img src="zapatilla-blanca-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('res-white-main', this)" width="50" height="50" loading="lazy">
-                <img src="zapatilla-blanca-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('res-white-main', this)" width="50" height="50" loading="lazy">
-              </div>
-              <span class="badge">Color Nuevo</span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Botitas Resilience Blancas</h3>
-              <div class="price">$120.000</div>
-              <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
-              <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
-              <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
-              <button class="add-cart" data-product="res-blanca" data-price="120000">💳 Comprar ahora</button>
-            </div>
-          </article>
-
-          <!-- PRODUCTO 3: CHOCOLATE -->
-          <article class="card" data-category="calzados">
-            <div class="card-img">
-              <img src="zapatilla-chocolate-1.jpg" alt="Botitas Resilience Chocolate" class="main-img" id="res-choco-main" width="600" height="400" loading="lazy">
-              <div class="img-thumbs">
-                <img src="zapatilla-chocolate-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('res-choco-main', this)" width="50" height="50" loading="lazy">
-                <img src="zapatilla-chocolate-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('res-choco-main', this)" width="50" height="50" loading="lazy">
-                <img src="zapatilla-chocolate-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('res-choco-main', this)" width="50" height="50" loading="lazy">
-              </div>
-              <span class="badge">Edición Limitada</span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Botitas Resilience Chocolate</h3>
-              <div class="price">$120.000</div>
-              <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
-              <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
-              <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
-              <button class="add-cart" data-product="res-chocolate" data-price="120000">💳 Comprar ahora</button>
-            </div>
-          </article>
-        </div>
-
-        <div class="reels-section">
-          <h4>🎬 Reels de Calzados</h4>
-          <div class="reels-category">
-            <div class="reel-card"><video preload="metadata" poster="zapatilla-negra-1.jpg"><source src="reel-calzados-1.mp4" type="video/mp4"></video><span class="reel-title">En acción</span></div>
-            <div class="reel-card"><video preload="metadata" poster="zapatilla-negra-2.jpg"><source src="reel-calzados-2.mp4" type="video/mp4"></video><span class="reel-title">Detalles</span></div>
-            <div class="reel-card"><video preload="metadata" poster="zapatilla-negra-3.jpg"><source src="reel-calzados-3.mp4" type="video/mp4"></video><span class="reel-title">Comodidad</span></div>
-          </div>
         </div>
       </div>
 
+      <!-- PANEL ACCESORIOS -->
       <div class="tab-panel" id="panel-accesorios" role="tabpanel" aria-labelledby="tab-accesorios" hidden>
-        <div class="products-grid"><p style="grid-column:1/-1;text-align:center;color:#888; padding:40px;">Próximamente nuevos accesorios.</p></div>
+        <div class="products-grid"><p style="grid-column:1/-1;text-align:center;color:#888; padding:40px;">Próximamente nuevos accesorios. Mientras tanto, ¡personalizá el tuyo en la pestaña "Personalizar"!</p></div>
       </div>
 
-      <div class="tab-panel" id="panel-indumentaria" role="tabpanel" aria-labelledby="tab-indumentaria">
+      <!-- PANEL INDUMENTARIA -->
+      <div class="tab-panel" id="panel-indumentaria" role="tabpanel" aria-labelledby="tab-indumentaria" hidden>
         <div class="products-grid">
-          <!-- PRODUCTO INDUMENTARIA 1: REMERA -->
-          <article class="card" data-category="indumentaria">
+          <article class="card">
             <div class="card-img">
-              <img src="indumentaria/remera-blanca-1.jpg" alt="Remera Básica Blanca" class="main-img" id="remera-white-main" width="600" height="400" loading="lazy">
-              <div class="img-thumbs">
-                <img src="indumentaria/remera-blanca-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('remera-white-main', this)" width="50" height="50" loading="lazy">
-                <img src="indumentaria/remera-blanca-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('remera-white-main', this)" width="50" height="50" loading="lazy">
-                <img src="indumentaria/remera-blanca-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('remera-white-main', this)" width="50" height="50" loading="lazy">
-              </div>
-              <span class="badge">Nuevo</span>
+              <img src="indumentaria/remera-blanca-1.jpg" alt="Remera Básica Blanca" class="main-img" width="600" height="400" loading="lazy">
             </div>
             <div class="card-body">
               <h3 class="card-title">Remera Básica Blanca</h3>
               <div class="price">$45.000</div>
-              <ul class="benefits"><li>Algodón 100% premium</li><li>Corte clásico unisex</li><li>Costuras reforzadas</li></ul>
+              <ul class="benefits"><li>Algodón 100% premium</li><li>Corte clásico unisex</li></ul>
               <div class="sizes" role="group">
-                <button class="size-btn" aria-pressed="false">XS</button>
-                <button class="size-btn" aria-pressed="false">S</button>
-                <button class="size-btn" aria-pressed="false">M</button>
-                <button class="size-btn" aria-pressed="false">L</button>
-                <button class="size-btn" aria-pressed="false">XL</button>
-                <button class="size-btn" aria-pressed="false">XXL</button>
+                <button class="size-btn" aria-pressed="false">XS</button><button class="size-btn" aria-pressed="false">S</button><button class="size-btn" aria-pressed="false">M</button><button class="size-btn" aria-pressed="false">L</button>
               </div>
-              <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="remera-blanca" data-price="45000">💳 Comprar ahora</button>
             </div>
           </article>
-
-          <!-- PRODUCTO INDUMENTARIA 2: JEANS -->
-          <article class="card" data-category="indumentaria">
-            <div class="card-img">
-              <img src="indumentaria/jeans-azul-1.jpg" alt="Jeans Clásicos Azul" class="main-img" id="jeans-blue-main" width="600" height="400" loading="lazy">
-              <div class="img-thumbs">
-                <img src="indumentaria/jeans-azul-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('jeans-blue-main', this)" width="50" height="50" loading="lazy">
-                <img src="indumentaria/jeans-azul-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('jeans-blue-main', this)" width="50" height="50" loading="lazy">
-                <img src="indumentaria/jeans-azul-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('jeans-blue-main', this)" width="50" height="50" loading="lazy">
-              </div>
-              <span class="badge">Más Vendido</span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Jeans Clásicos Azul</h3>
-              <div class="price">$95.000</div>
-              <ul class="benefits"><li>Denim stretch cómodo</li><li>Corte recto moderno</li><li>Bolsillos funcionales</li></ul>
-              <div class="sizes" role="group">
-                <button class="size-btn" aria-pressed="false">XS</button>
-                <button class="size-btn" aria-pressed="false">S</button>
-                <button class="size-btn" aria-pressed="false">M</button>
-                <button class="size-btn" aria-pressed="false">L</button>
-                <button class="size-btn" aria-pressed="false">XL</button>
-                <button class="size-btn" aria-pressed="false">XXL</button>
-              </div>
-              <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
-              <button class="add-cart" data-product="jeans-azul" data-price="95000">💳 Comprar ahora</button>
-            </div>
-          </article>
-
-          <!-- PRODUCTO INDUMENTARIA 3: BUZO -->
-          <article class="card" data-category="indumentaria">
-            <div class="card-img">
-              <img src="indumentaria/buzo-negro-1.jpg" alt="Buzo Negro con Capucha" class="main-img" id="buzo-black-main" width="600" height="400" loading="lazy">
-              <div class="img-thumbs">
-                <img src="indumentaria/buzo-negro-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('buzo-black-main', this)" width="50" height="50" loading="lazy">
-                <img src="indumentaria/buzo-negro-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('buzo-black-main', this)" width="50" height="50" loading="lazy">
-                <img src="indumentaria/buzo-negro-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('buzo-black-main', this)" width="50" height="50" loading="lazy">
-              </div>
-              <span class="badge">Temporada</span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Buzo Negro con Capucha</h3>
-              <div class="price">$85.000</div>
-              <ul class="benefits"><li>Franja interior suave</li><li>Capucha ajustable</li><li>Bolsillo canguro</li></ul>
-              <div class="sizes" role="group">
-                <button class="size-btn" aria-pressed="false">XS</button>
-                <button class="size-btn" aria-pressed="false">S</button>
-                <button class="size-btn" aria-pressed="false">M</button>
-                <button class="size-btn" aria-pressed="false">L</button>
-                <button class="size-btn" aria-pressed="false">XL</button>
-                <button class="size-btn" aria-pressed="false">XXL</button>
-              </div>
-              <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
-              <button class="add-cart" data-product="buzo-negro" data-price="85000">💳 Comprar ahora</button>
-            </div>
-          </article>
         </div>
       </div>
+
+      <!-- ========================================== -->
+      <!-- PANEL PERSONALIZAR (COMPLETO Y DETALLADO)  -->
+      <!-- ========================================== -->
+      <div class="tab-panel" id="panel-personalizar" role="tabpanel" aria-labelledby="tab-personalizar" hidden>
+        <div class="configurator">
+          <h3 style="text-align: center; color: var(--primary); margin-bottom: 0.5rem;">🎨 Armá tu Producto Personalizado</h3>
+          <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Seguí los pasos para crear tu artículo único con diseño impreso.</p>
+          
+          <div class="config-step">
+            <h4><span>1</span> Elegí el Artículo Base</h4>
+            <select class="config-select" id="conf-articulo" onchange="actualizarTalles()">
+              <option value="">Seleccioná una opción...</option>
+              <optgroup label="👟 Calzados">
+                <option value="Artículo 001">Artículo 001</option>
+                <option value="Artículo 002">Artículo 002</option>
+                <option value="Artículo 003">Artículo 003</option>
+              </optgroup>
+              <optgroup label="👕 Indumentaria Infantil">
+                <option value="Remera Infantil Unisex Blanca">Remera Infantil Unisex Blanca</option>
+                <option value="Remera Infantil Unisex Gris">Remera Infantil Unisex Gris</option>
+                <option value="Remera Infantil Unisex Amarilla">Remera Infantil Unisex Amarilla</option>
+                <option value="Remera Infantil Unisex Rosa">Remera Infantil Unisex Rosa</option>
+                <option value="Remera Infantil Unisex Negra">Remera Infantil Unisex Negra</option>
+                <option value="Remera Infantil Unisex Celeste">Remera Infantil Unisex Celeste</option>
+              </optgroup>
+              <optgroup label="👕 Indumentaria Adultos">
+                <option value="Remera Clásica Man Blanca (Fit regular, cuello redondo)">Remera Clásica Man Blanca</option>
+                <option value="Remera Clásica Man Negra (Fit regular, cuello redondo)">Remera Clásica Man Negra</option>
+                <option value="Remera Clásica Woman Blanca (Fit femenino, cuello redondo)">Remera Clásica Woman Blanca</option>
+                <option value="Remera Clásica Woman Negra (Fit femenino, cuello redondo)">Remera Clásica Woman Negra</option>
+                <option value="Remera Oversize Blanca (Caída relajada, unisex)">Remera Oversize Blanca</option>
+                <option value="Remera Oversize Negra (Caída relajada, unisex)">Remera Oversize Negra</option>
+                <option value="Remera Oversize Stone Wash (Caída relajada, efecto vintage)">Remera Oversize Stone Wash</option>
+                <option value="Buzo Hoodie Negro (Con capucha, cómodo y abrigado)">Buzo Hoodie Negro</option>
+                <option value="Buzo Hoodie Blanco (Con capucha, cómodo y abrigado)">Buzo Hoodie Blanco</option>
+                <option value="Buzo Hoodie Stone Wash (Con capucha, efecto desgastado)">Buzo Hoodie Stone Wash</option>
+                <option value="Buzo Cuello Redondo Negro (Sin capucha, cómodo)">Buzo Cuello Redondo Negro</option>
+                <option value="Buzo Cuello Redondo Blanco (Sin capucha, cómodo)">Buzo Cuello Redondo Blanco</option>
+                <option value="Buzo Cuello Redondo Stone Wash (Sin capucha, efecto desgastado)">Buzo Cuello Redondo Stone Wash</option>
+              </optgroup>
+              <optgroup label="👜 Accesorios">
+                <option value="Dije Aro Circular">Dije Aro Circular</option>
+                <option value="Dije Aro Cuadrado">Dije Aro Cuadrado</option>
+                <option value="Dije Aro Rectangular">Dije Aro Rectangular</option>
+                <option value="Dije Aro Triangular">Dije Aro Triangular</option>
+                <option value="Dije Aro Triangular invertido">Dije Aro Triangular invertido</option>
+                <option value="Dije Aro Forma de gota">Dije Aro Forma de gota</option>
+                <option value="Dije Aro Rombo">Dije Aro Rombo</option>
+                <option value="Dije Aro Hexágono">Dije Aro Hexágono</option>
+                <option value="Dije Aro Estrella">Dije Aro Estrella</option>
+                <option value="Dije Aro Corazón">Dije Aro Corazón</option>
+                <option value="Dije Aro Púa (musical)">Dije Aro Púa (musical)</option>
+                <option value="Dije Colgante Púa (musical)">Dije Colgante Púa (musical)</option>
+                <option value="Dije Colgante Circular">Dije Colgante Circular</option>
+                <option value="Dije Colgante Cuadrado">Dije Colgante Cuadrado</option>
+                <option value="Dije Colgante Rectangular">Dije Colgante Rectangular</option>
+                <option value="Dije Colgante Triangular">Dije Colgante Triangular</option>
+                <option value="Dije Colgante Triangular invertido">Dije Colgante Triangular invertido</option>
+                <option value="Dije Colgante Forma de gota">Dije Colgante Forma de gota</option>
+                <option value="Dije Colgante Rombo">Dije Colgante Rombo</option>
+                <option value="Dije Colgante Hexágono">Dije Colgante Hexágono</option>
+                <option value="Dije Colgante Estrella">Dije Colgante Estrella</option>
+                <option value="Dije Colgante Corazón">Dije Colgante Corazón</option>
+                <option value="Dije Pulsera Circular">Dije Pulsera Circular</option>
+                <option value="Dije Pulsera Cuadrado">Dije Pulsera Cuadrado</option>
+                <option value="Hebilla de Cinto Circular">Hebilla de Cinto Circular</option>
+                <option value="Hebilla de Cinto Cuadrado">Hebilla de Cinto Cuadrado</option>
+                <option value="Hebilla de Cinto Rectangular">Hebilla de Cinto Rectangular</option>
+                <option value="Hebilla de Cinto Rombo">Hebilla de Cinto Rombo</option>
+                <option value="Hebilla de Cinto Hexágono">Hebilla de Cinto Hexágono</option>
+                <option value="Hebilla de Cinto Estrella">Hebilla de Cinto Estrella</option>
+                <option value="Hebilla de Cinto Corazón">Hebilla de Cinto Corazón</option>
+                <option value="Prendedor Pin 3.8 cm (Ideal para ilustraciones y eventos)">Prendedor Pin 3.8 cm</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="config-step">
+            <h4><span>2</span> Elegí el Talle / Medida</h4>
+            <select class="config-select" id="conf-talle" onchange="updateSummary()">
+              <option value="">Seleccioná primero un artículo base</option>
+            </select>
+          </div>
+
+          <div class="config-step">
+            <h4><span>3</span> Elegí el Color</h4>
+            <select class="config-select" id="conf-color" onchange="updateSummary()">
+              <option value="">Seleccioná una opción...</option>
+              <optgroup label="Neutros y Clásicos">
+                <option value="Negro">Negro</option><option value="Blanco">Blanco</option><option value="Blanco Roto">Blanco Roto</option>
+                <option value="Crema">Crema</option><option value="Off-white (Hueso)">Off-white (Hueso)</option><option value="Crudo">Crudo</option>
+              </optgroup>
+              <optgroup label="Grises y Tierra">
+                <option value="Gris claro">Gris claro</option><option value="Gris oscuro (Grafito)">Gris oscuro (Grafito)</option>
+                <option value="Beige">Beige</option><option value="Arena">Arena</option><option value="Suela">Suela</option>
+                <option value="Habano">Habano</option><option value="Caramelo">Caramelo</option><option value="Chocolate">Chocolate</option>
+                <option value="Camel">Camel</option><option value="Moca">Moca</option><option value="Terracota">Terracota</option>
+              </optgroup>
+              <optgroup label="Amarillos y Mostazas">
+                <option value="Amarillo Mantequilla">Amarillo Mantequilla</option><option value="Maíz">Maíz</option><option value="Mostaza">Mostaza</option>
+              </optgroup>
+              <optgroup label="Azules y Verdes">
+                <option value="Azul marino">Azul marino</option><option value="Azul índigo">Azul índigo</option><option value="Azul Francia">Azul Francia</option>
+                <option value="Turquesa">Turquesa</option><option value="Verde oliva">Verde oliva</option><option value="Verde azulado">Verde azulado</option>
+                <option value="Verde esmeralda">Verde esmeralda</option><option value="Verde musgo">Verde musgo</option>
+              </optgroup>
+              <optgroup label="Rojos">
+                <option value="Rojo">Rojo</option><option value="Rojo profundo">Rojo profundo</option><option value="Bordo (Vino)">Bordo (Vino)</option>
+              </optgroup>
+              <optgroup label="Metálicos">
+                <option value="Plateado">Plateado</option><option value="Dorado">Dorado</option><option value="Cobre">Cobre</option><option value="Visón metalizado">Visón metalizado</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="config-step">
+            <h4><span>4</span> Elegí el Diseño a Imprimir</h4>
+            <div class="visual-grid" id="designGrid">
+              <div class="visual-item" data-name="Diseño #001" onclick="selectVisual('design', this)"><img src="imagenes/diseno-001.jpg" alt="Diseño 001" loading="lazy"><div class="visual-label">#001</div></div>
+              <div class="visual-item" data-name="Diseño #002" onclick="selectVisual('design', this)"><img src="imagenes/diseno-002.jpg" alt="Diseño 002" loading="lazy"><div class="visual-label">#002</div></div>
+              <div class="visual-item" data-name="Diseño #003" onclick="selectVisual('design', this)"><img src="imagenes/diseno-003.jpg" alt="Diseño 003" loading="lazy"><div class="visual-label">#003</div></div>
+              <div class="visual-item" data-name="Diseño #004" onclick="selectVisual('design', this)"><img src="imagenes/diseno-004.jpg" alt="Diseño 004" loading="lazy"><div class="visual-label">#004</div></div>
+            </div>
+          </div>
+
+          <div class="config-step">
+            <h4><span>5</span> Elegí el Sello a Imprimir</h4>
+            <div class="visual-grid" id="stampGrid">
+              <div class="visual-item" data-name="Sello #001" onclick="selectVisual('stamp', this)"><img src="imagenes/sello-001.jpg" alt="Sello 001" loading="lazy"><div class="visual-label">#001</div></div>
+              <div class="visual-item" data-name="Sello #002" onclick="selectVisual('stamp', this)"><img src="imagenes/sello-002.jpg" alt="Sello 002" loading="lazy"><div class="visual-label">#002</div></div>
+              <div class="visual-item" data-name="Sello #003" onclick="selectVisual('stamp', this)"><img src="imagenes/sello-003.jpg" alt="Sello 003" loading="lazy"><div class="visual-label">#003</div></div>
+              <div class="visual-item" data-name="Sello #004" onclick="selectVisual('stamp', this)"><img src="imagenes/sello-004.jpg" alt="Sello 004" loading="lazy"><div class="visual-label">#004</div></div>
+            </div>
+          </div>
+
+          <div class="order-summary" id="orderSummary">
+            <h4>📋 Resumen de tu Pedido Personalizado</h4>
+            <div class="summary-line"><span>Artículo:</span> <strong id="sum-articulo">-</strong></div>
+            <div class="summary-line"><span>Talle / Medida:</span> <strong id="sum-talle" style="color: var(--accent);">-</strong></div>
+            <div class="summary-line"><span>Color:</span> <strong id="sum-color">-</strong></div>
+            <div class="summary-line"><span>Diseño:</span> <strong id="sum-design">-</strong></div>
+            <div class="summary-line"><span>Sello:</span> <strong id="sum-stamp">-</strong></div>
+            
+            <div class="upload-notice">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              <p><strong>⚠️ Paso final importante:</strong> Al hacer clic en el botón de abajo, se abrirá WhatsApp con todos estos detalles pre-escritos. <strong>No olvides adjuntar tu archivo de imagen personalizado</strong> directamente en ese chat para que podamos imprimirlo.</p>
+            </div>
+
+            <button class="btn-whatsapp" onclick="sendWhatsAppOrder()">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="currentColor"><path d="M16.004 0C7.164 0 0 7.163 0 16.004c0 2.823.737 5.58 2.137 8.012L.073 32l8.172-2.044A15.95 15.95 0 0016.004 32C24.836 32 32 24.836 32 16.004 32 7.163 24.836 0 16.004 0zm0 29.18a13.15 13.15 0 01-6.72-1.844l-.48-.285-4.99 1.25 1.334-4.87-.312-.496A13.12 13.12 0 012.82 16.004c0-7.27 5.914-13.18 13.184-13.18 7.27 0 13.176 5.91 13.176 13.18 0 7.27-5.906 13.176-13.176 13.176z"/></svg>
+              Enviar Pedido y Adjuntar Imagen por WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <section class="modules" id="nosotros">
       <div class="container">
         <h2 class="section-title">Sobre Cv</h2>
         <p class="section-sub">Más que una marca, una filosofía de vida y estilo</p>
-        
         <div class="module-block">
-          <div class="module-img">
-            <img src="sobre-cv-1.jpg" alt="Taller artesanal Cv" loading="lazy" width="800" height="600">
-          </div>
+          <div class="module-img"><img src="sobre-cv-1.jpg" alt="Taller artesanal Cv" loading="lazy" width="800" height="600"></div>
           <div class="module-text">
             <h3>Calidad en Clásicos y Personalización a medida</h3>
             <p>Creamos Calzados, Accesorios e Indumentaria de diseño, femeninos, masculinos e inclusivos, realizados en cuero, cuero ecológico y telas, donde la moda se une con el diseño y el estilo personal.</p>
           </div>
         </div>
-        
         <div class="module-block reverse">
-          <div class="module-img">
-            <img src="sobre-cv-2.jpg" alt="Servicio de branding Cv" loading="lazy" width="800" height="600">
-          </div>
+          <div class="module-img"><img src="sobre-cv-2.jpg" alt="Servicio de branding Cv" loading="lazy" width="800" height="600"></div>
           <div class="module-text">
             <h3>Branding e Identidad Visual aplicada</h3>
             <p>Además, brindamos un Servicio aplicado imprimiendo logos, imágenes y simbología en Bijouterie, Calzados, Accesorios e Indumentaria, combinando branding e identidad visual.</p>
           </div>
-        </div>
-        
-        <div style="text-align:center; margin-top:2rem; padding-top:2rem; border-top:1px solid var(--border);">
-          <p style="font-size:1.2rem; font-weight:700; color:var(--primary); letter-spacing:1px;">Moda contemporánea con intención.</p>
         </div>
       </div>
     </section>
@@ -395,8 +407,8 @@
       <div class="container">
         <h2 class="section-title">Preguntas Frecuentes</h2>
         <div style="max-width:800px;margin:0 auto;">
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq1">¿Métodos de pago? <span class="faq-icon"></span></button><div id="faq1" class="faq-content" role="region"><div class="faq-content-inner">Tarjetas, transferencia, Mercado Pago y Ualá. Hasta 12 cuotas sin interés.</div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq2">¿Tiempo de envío? <span class="faq-icon"></span></button><div id="faq2" class="faq-content" role="region"><div class="faq-content-inner">3-5 días hábiles en CABA/GBA, 5-7 en el interior. Express disponible.</div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq1">¿Cómo funciona la personalización? <span class="faq-icon"></span></button><div id="faq1" class="faq-content" role="region"><div class="faq-content-inner">Elegí tu artículo, talle, color, diseño y sello en la pestaña "Personalizar". Enviá el pedido por WhatsApp y <strong>adjuntá tu imagen ahí mismo</strong>. Te pasamos el precio final y el link de pago.</div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq2">¿Tiempo de producción? <span class="faq-icon"></span></button><div id="faq2" class="faq-content" role="region"><div class="faq-content-inner">Al ser hechos a medida con impresión personalizada, el plazo de producción es de 3 a 5 días hábiles, más el tiempo de envío estándar.</div></div></div>
         </div>
       </div>
     </section>
@@ -406,7 +418,7 @@
     <div class="container">
       <img src="logo-cv.png" alt="Logo Cv Footer" class="footer-logo" loading="lazy" width="160" height="40">
       <div class="footer-links">
-        <a href="#productos">Productos</a><a href="#faq">Preguntas</a>
+        <a href="#productos">Productos</a><a href="#personalizar">Personalizar</a><a href="#faq">Preguntas</a>
       </div>
       <p>© 2026 Cv. Moda contemporánea con intención.<br>Todos los derechos reservados.</p>
     </div>
@@ -417,89 +429,6 @@
       <span class="pulse"></span>
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.004 0C7.164 0 0 7.163 0 16.004c0 2.823.737 5.58 2.137 8.012L.073 32l8.172-2.044A15.95 15.95 0 0016.004 32C24.836 32 32 24.836 32 16.004 32 7.163 24.836 0 16.004 0zm0 29.18a13.15 13.15 0 01-6.72-1.844l-.48-.285-4.99 1.25 1.334-4.87-.312-.496A13.12 13.12 0 012.82 16.004c0-7.27 5.914-13.18 13.184-13.18 7.27 0 13.176 5.91 13.176 13.18 0 7.27-5.906 13.176-13.176 13.176zm7.22-9.878c-.398-.2-2.344-1.156-2.71-1.29-.367-.133-.634-.2-.9.2-.267.398-1.033 1.29-1.267 1.556-.233.267-.467.3-.867.1-.398-.2-1.678-.618-3.196-1.966-1.18-1.053-1.978-2.354-2.21-2.752-.233-.4-.025-.615.174-.813.18-.18.4-.467.6-.7.2-.233.267-.4.4-.667.133-.267.067-.5-.033-.7-.1-.2-.9-2.167-1.234-2.967-.324-.78-.656-.674-.9-.686-.233-.012-.5-.012-.767-.012-.267 0-.7.1-1.067.5-.367.4-1.4 1.367-1.4 3.334 0 1.967 1.434 3.867 1.634 4.134.2.267 2.82 4.312 6.846 6.045.957.413 1.704.66 2.287.845.96.306 1.834.263 2.524.16.772-.115 2.344-.956 2.678-1.878.333-.922.333-1.71.233-1.878-.1-.167-.367-.267-.767-.467z"/></svg>
     </button>
-  </div>
-
-  <!-- MODAL GUÍA DE TALLAS - CALZADOS -->
-  <div class="modal" id="sizeGuideModalCalzados">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Cerrar modal">&times;</button>
-      <h3 style="color: var(--primary); margin-bottom: 0.5rem;">👟 Guía de Talles de Calzados</h3>
-      <p style="color: var(--text-light); font-size: 0.95rem;">Medí tu pie y encontrá tu talle perfecto.</p>
-      
-      <form class="size-form" id="sizeFormCalzados">
-        <label>
-          ¿Cuánto mide tu pie en centímetros?
-          <input type="number" id="largoPie" min="20" max="32" step="0.5" placeholder="Ej: 25.5" required>
-          <small style="color: var(--text-light); font-weight: normal; margin-top: 4px;">💡 Colocá una hoja de papel en el piso, apoyá tu pie y marcá la punta del dedo más largo y el talón. Medí la distancia en cm.</small>
-        </label>
-        
-        <button type="submit" class="btn" style="width: 100%; justify-content: center;">Calcular mi talle</button>
-      </form>
-      
-      <div class="size-result" id="sizeResultCalzados" style="display: none;"></div>
-      
-      <div style="margin-top: 2rem;">
-        <h4 style="color: var(--primary); margin-bottom: 1rem;">📊 Tabla de conversión</h4>
-        <table class="size-table">
-          <thead>
-            <tr>
-              <th>Largo del pie (cm)</th>
-              <th>Talle Argentina</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>22.5</td><td>35</td></tr>
-            <tr><td>23.0</td><td>36</td></tr>
-            <tr><td>23.5</td><td>37</td></tr>
-            <tr><td>24.0</td><td>38</td></tr>
-            <tr><td>24.5</td><td>39</td></tr>
-            <tr><td>25.0</td><td>40</td></tr>
-            <tr><td>25.5</td><td>41</td></tr>
-            <tr><td>26.0</td><td>42</td></tr>
-            <tr><td>26.5</td><td>43</td></tr>
-            <tr><td>27.0</td><td>44</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL GUÍA DE TALLAS - INDUMENTARIA -->
-  <div class="modal" id="sizeGuideModalIndumentaria">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Cerrar modal">&times;</button>
-      <h3 style="color: var(--primary); margin-bottom: 0.5rem;">👕 Guía de Tallas Inteligente</h3>
-      <p style="color: var(--text-light); font-size: 0.95rem;">Completá tus datos y te recomendaremos el talle ideal para vos.</p>
-      
-      <form class="size-form" id="sizeFormIndumentaria">
-        <label>
-          Altura (cm)
-          <input type="number" id="altura" min="140" max="210" placeholder="Ej: 170" required>
-        </label>
-        
-        <label>
-          Peso (kg)
-          <input type="number" id="peso" min="40" max="150" placeholder="Ej: 65" required>
-        </label>
-        
-        <label>
-          Talle que usás normalmente
-          <select id="talleUsual" required>
-            <option value="">Seleccioná tu talle</option>
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
-          </select>
-        </label>
-        
-        <button type="submit" class="btn" style="width: 100%; justify-content: center;">Calcular mi talle ideal</button>
-      </form>
-      
-      <div class="size-result" id="sizeResultIndumentaria" style="display: none;"></div>
-    </div>
   </div>
 
   <script>
@@ -520,178 +449,149 @@
         });
       });
 
-      // 3. Talles (botones de la ficha)
-      document.querySelectorAll('.sizes').forEach(g => {
-        g.addEventListener('click', e => {
-          if (!e.target.classList.contains('size-btn')) return;
-          g.querySelectorAll('.size-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
-          e.target.setAttribute('aria-pressed', 'true');
-        });
-      });
-
-      // 4. Reels
-      document.querySelectorAll('.reel-card').forEach(card => {
-        const video = card.querySelector('video'); if (!video) return;
-        card.addEventListener('click', () => {
-          if (video.paused) { video.play(); card.classList.add('playing'); } 
-          else { video.pause(); card.classList.remove('playing'); }
-        });
-      });
-
-      // 5. FAQ
-      document.querySelectorAll('.faq-btn').forEach(btn => {
-        btn.addEventListener('click', () => btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'));
-      });
-
-      // 6. WhatsApp
-      const waUrl = 'https://wa.me/5491176235960?text=' + encodeURIComponent('Hola! Vi Cv Calzados y Accesorios en la web y quiero consultar.');
-      document.getElementById('waBtn')?.addEventListener('click', () => window.open(waUrl, '_blank'));
-
-      // 7. Galería de imágenes
-      window.cambiarImg = (mainId, thumb) => { const main = document.getElementById(mainId); if(!main) return; main.src = thumb.src; thumb.parentElement.querySelectorAll('.thumb').forEach(t => t.classList.remove('active')); thumb.classList.add('active'); };
-
-      // 8. UALÁ BIS - LINK DE PAGO
+      // 3. UALÁ BIS
       const linkPago = 'https://pagar.ualabis.com.ar/order/62d9c4728d2ab9d7b0c593492990e7ba2bce4c9265350f60';
       document.querySelectorAll('.add-cart[data-product]').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
-          btn.disabled = true;
-          btn.textContent = '🔗 Redirigiendo...';
-          setTimeout(() => {
-            window.open(linkPago, '_blank', 'noopener,noreferrer');
-            btn.disabled = false;
-            btn.textContent = '💳 Comprar ahora';
-          }, 300);
+          btn.disabled = true; btn.textContent = '🔗 Redirigiendo...';
+          setTimeout(() => { window.open(linkPago, '_blank', 'noopener,noreferrer'); btn.disabled = false; btn.textContent = '💳 Comprar ahora'; }, 300);
         });
       });
 
-      // 9. GUÍA DE TALLAS INTELIGENTE - SISTEMA DUAL
-      const sizeGuideBtns = document.querySelectorAll('.size-guide-btn');
-      const modalCalzados = document.getElementById('sizeGuideModalCalzados');
-      const modalIndumentaria = document.getElementById('sizeGuideModalIndumentaria');
+      // 4. WhatsApp flotante
+      document.getElementById('waBtn')?.addEventListener('click', () => {
+        window.open('https://wa.me/5491176235960?text=' + encodeURIComponent('Hola! Vi Cv en la web y quiero consultar.'), '_blank');
+      });
 
-      sizeGuideBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const type = btn.getAttribute('data-type');
-          if (type === 'calzados') {
-            modalCalzados.classList.add('active');
-            document.getElementById('sizeResultCalzados').style.display = 'none';
-            document.getElementById('sizeFormCalzados').reset();
-          } else {
-            modalIndumentaria.classList.add('active');
-            document.getElementById('sizeResultIndumentaria').style.display = 'none';
-            document.getElementById('sizeFormIndumentaria').reset();
-          }
+      // ==========================================
+      // LÓGICA DEL CONFIGURADOR DE PERSONALIZACIÓN
+      // ==========================================
+      let selectedDesign = null;
+      let selectedStamp = null;
+
+      // Base de datos de talles según el artículo
+      const talleDB = {
+        calzados: ["33", "34", "35", "36", "37", "38", "39", "40"],
+        infantil: ["4", "6", "8", "10", "12", "14", "16"],
+        remera_adulto: ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"],
+        buzo_adulto: ["XS", "S", "M", "L", "XL"],
+        pulsera: [
+          "Fino (5-10mm) - Mujer S/M (Muñeca 15-17cm / Largo 17-22cm)",
+          "Fino (5-10mm) - Mujer L/XL (Muñeca 18-19cm / Largo 20-24cm)",
+          "Fino (5-10mm) - Hombre S/M (Muñeca 17-19cm / Largo 20-23cm)",
+          "Fino (5-10mm) - Hombre L/XL (Muñeca 20-22cm / Largo 23-26cm)",
+          "Medio (10-20mm) - Mujer S/M (Muñeca 15-17cm / Largo 17-22cm)",
+          "Medio (10-20mm) - Mujer L/XL (Muñeca 18-19cm / Largo 20-24cm)",
+          "Medio (10-20mm) - Hombre S/M (Muñeca 17-19cm / Largo 20-23cm)",
+          "Medio (10-20mm) - Hombre L/XL (Muñeca 20-22cm / Largo 23-26cm)",
+          "Ancho (20-50mm) - Mujer S/M (Muñeca 15-17cm / Largo 17-22cm)",
+          "Ancho (20-50mm) - Mujer L/XL (Muñeca 18-19cm / Largo 20-24cm)",
+          "Ancho (20-50mm) - Hombre S/M (Muñeca 17-19cm / Largo 20-23cm)",
+          "Ancho (20-50mm) - Hombre L/XL (Muñeca 20-22cm / Largo 23-26cm)"
+        ],
+        cinto: [
+          "Mujer Clásico/Jeans (2.0-3.5cm) - Talle XS (90-95cm / Pantalón 34-36)",
+          "Mujer Clásico/Jeans (2.0-3.5cm) - Talle S (100cm / Pantalón 38-40)",
+          "Mujer Clásico/Jeans (2.0-3.5cm) - Talle M (105cm / Pantalón 42-44)",
+          "Mujer Clásico/Jeans (2.0-3.5cm) - Talle L (110cm / Pantalón 46-48)",
+          "Mujer Clásico/Jeans (2.0-3.5cm) - Talle XL (115-120cm / Pantalón 50+)",
+          "Mujer Fino/Fiesta (1.0-2.0cm) - Talle XS (90-95cm / Pantalón 34-36)",
+          "Mujer Fino/Fiesta (1.0-2.0cm) - Talle S (100cm / Pantalón 38-40)",
+          "Mujer Fino/Fiesta (1.0-2.0cm) - Talle M (105cm / Pantalón 42-44)",
+          "Mujer Fino/Fiesta (1.0-2.0cm) - Talle L (110cm / Pantalón 46-48)",
+          "Mujer Fino/Fiesta (1.0-2.0cm) - Talle XL (115-120cm / Pantalón 50+)",
+          "Hombre Formal (2.5-3.5cm) - Talle 85-90cm (Cintura 80-86cm / Pantalón 38-40)",
+          "Hombre Formal (2.5-3.5cm) - Talle 95-100cm (Cintura 89-98cm / Pantalón 42-44)",
+          "Hombre Formal (2.5-3.5cm) - Talle 105-110cm (Cintura 102-107cm / Pantalón 46-48)",
+          "Hombre Formal (2.5-3.5cm) - Talle 115-120cm (Cintura 112-120cm / Pantalón 50-52)",
+          "Hombre Casual (3.5-4.0cm) - Talle 85-90cm (Cintura 80-86cm / Pantalón 38-40)",
+          "Hombre Casual (3.5-4.0cm) - Talle 95-100cm (Cintura 89-98cm / Pantalón 42-44)",
+          "Hombre Casual (3.5-4.0cm) - Talle 105-110cm (Cintura 102-107cm / Pantalón 46-48)",
+          "Hombre Casual (3.5-4.0cm) - Talle 115-120cm (Cintura 112-120cm / Pantalón 50-52)"
+        ],
+        accesorios_pequenos: ["Único / Estándar"]
+      };
+
+      window.actualizarTalles = function() {
+        const articulo = document.getElementById('conf-articulo').value;
+        const talleSelect = document.getElementById('conf-talle');
+        talleSelect.innerHTML = ''; // Limpiar opciones anteriores
+        
+        let opciones = talleDB.accesorios_pequenos; // Default
+
+        if (articulo.includes('Artículo 00')) opciones = talleDB.calzados;
+        else if (articulo.includes('Infantil')) opciones = talleDB.infantil;
+        else if (articulo.includes('Remera') && !articulo.includes('Infantil')) opciones = talleDB.remera_adulto;
+        else if (articulo.includes('Buzo')) opciones = talleDB.buzo_adulto;
+        else if (articulo.includes('Pulsera')) opciones = talleDB.pulsera;
+        else if (articulo.includes('Cinto') || articulo.includes('Hebilla')) opciones = talleDB.cinto;
+
+        // Agregar opción por defecto
+        const defaultOpt = document.createElement('option');
+        defaultOpt.value = "";
+        defaultOpt.textContent = "Seleccioná el talle / medida...";
+        talleSelect.appendChild(defaultOpt);
+
+        // Llenar con las opciones correctas
+        opciones.forEach(op => {
+          const opt = document.createElement('option');
+          opt.value = op;
+          opt.textContent = op;
+          talleSelect.appendChild(opt);
         });
-      });
 
-      // Cerrar modales
-      document.querySelectorAll('.modal-close').forEach(btn => {
-        btn.addEventListener('click', () => {
-          btn.closest('.modal').classList.remove('active');
-        });
-      });
+        // Resetear selección visual
+        selectedDesign = null;
+        selectedStamp = null;
+        document.querySelectorAll('.visual-item').forEach(item => item.classList.remove('active'));
+        updateSummary();
+      };
 
-      document.querySelectorAll('.modal').forEach(modal => {
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-            modal.classList.remove('active');
-          }
-        });
-      });
+      window.selectVisual = function(type, element) {
+        const gridId = type === 'design' ? 'designGrid' : 'stampGrid';
+        document.querySelectorAll(`#${gridId} .visual-item`).forEach(item => item.classList.remove('active'));
+        element.classList.add('active');
+        
+        if (type === 'design') selectedDesign = element.getAttribute('data-name');
+        if (type === 'stamp') selectedStamp = element.getAttribute('data-name');
+        
+        updateSummary();
+      };
 
-      // Calcular talle CALZADOS
-      document.getElementById('sizeFormCalzados')?.addEventListener('submit', (e) => {
-        e.preventDefault();
+      window.updateSummary = function() {
+        const articulo = document.getElementById('conf-articulo').value;
+        const talle = document.getElementById('conf-talle').value;
+        const color = document.getElementById('conf-color').value;
         
-        const largoPie = parseFloat(document.getElementById('largoPie').value);
-        
-        if (!largoPie) {
-          alert('Por favor ingresá el largo de tu pie');
-          return;
+        if (articulo && talle && color && selectedDesign && selectedStamp) {
+          document.getElementById('sum-articulo').textContent = articulo;
+          document.getElementById('sum-talle').textContent = talle;
+          document.getElementById('sum-color').textContent = color;
+          document.getElementById('sum-design').textContent = selectedDesign;
+          document.getElementById('sum-stamp').textContent = selectedStamp;
+          document.getElementById('orderSummary').style.display = 'block';
+        } else {
+          document.getElementById('orderSummary').style.display = 'none';
         }
-        
-        // Tabla de conversión (largo en cm -> talle argentino)
-        const tablaTalles = [
-          { min: 22.0, max: 22.9, talle: 35 },
-          { min: 23.0, max: 23.4, talle: 36 },
-          { min: 23.5, max: 23.9, talle: 37 },
-          { min: 24.0, max: 24.4, talle: 38 },
-          { min: 24.5, max: 24.9, talle: 39 },
-          { min: 25.0, max: 25.4, talle: 40 },
-          { min: 25.5, max: 25.9, talle: 41 },
-          { min: 26.0, max: 26.4, talle: 42 },
-          { min: 26.5, max: 26.9, talle: 43 },
-          { min: 27.0, max: 32.0, talle: 44 }
-        ];
-        
-        let talleRecomendado = null;
-        for (let rango of tablaTalles) {
-          if (largoPie >= rango.min && largoPie <= rango.max) {
-            talleRecomendado = rango.talle;
-            break;
-          }
-        }
-        
-        if (!talleRecomendado) {
-          talleRecomendado = largoPie < 22 ? 35 : 44;
-        }
-        
-        const resultDiv = document.getElementById('sizeResultCalzados');
-        resultDiv.innerHTML = `
-          <h4>✨ Tu talle ideal</h4>
-          <div class="size-recommendation">${talleRecomendado}</div>
-          <p>Basado en el largo de tu pie: ${largoPie} cm</p>
-          <p style="margin-top: 1rem; font-size: 0.9rem; color: #065f46;">💡 Si estás entre dos talles, te recomendamos el más grande para mayor comodidad.</p>
-        `;
-        resultDiv.style.display = 'block';
-      });
+      };
 
-      // Calcular talle INDUMENTARIA
-      document.getElementById('sizeFormIndumentaria')?.addEventListener('submit', (e) => {
-        e.preventDefault();
+      window.sendWhatsAppOrder = function() {
+        const articulo = document.getElementById('conf-articulo').value;
+        const talle = document.getElementById('conf-talle').value;
+        const color = document.getElementById('conf-color').value;
         
-        const altura = parseInt(document.getElementById('altura').value);
-        const peso = parseInt(document.getElementById('peso').value);
-        const talleUsual = document.getElementById('talleUsual').value;
+        const mensaje = `¡Hola Cv! 👋 Quiero hacer un pedido personalizado:%0A%0A` +
+                        `👕 *Artículo:* ${articulo}%0A` +
+                        `📏 *Talle / Medida:* ${talle}%0A` +
+                        `🎨 *Color:* ${color}%0A` +
+                        `🖼️ *Diseño a imprimir:* ${selectedDesign}%0A` +
+                        `🔖 *Sello a imprimir:* ${selectedStamp}%0A%0A` +
+                        `📎 *ADJUNTO MI IMAGEN PERSONALIZADA EN ESTE MENSAJE.*%0A%0A` +
+                        `¿Me podrían confirmar el precio final y el link de pago de Ualá Bis? ¡Gracias!`;
         
-        if (!altura || !peso || !talleUsual) {
-          alert('Por favor completá todos los campos');
-          return;
-        }
-        
-        // Convertir talle usual a índice numérico
-        const tallesIndumentaria = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-        let indiceTalle = tallesIndumentaria.indexOf(talleUsual);
-        
-        // Ajuste por altura
-        if (altura < 160) {
-          indiceTalle = Math.max(0, indiceTalle - 1);
-        } else if (altura > 175) {
-          indiceTalle = Math.min(tallesIndumentaria.length - 1, indiceTalle + 1);
-        }
-        
-        // Ajuste por peso (IMC aproximado)
-        const alturaM = altura / 100;
-        const imc = peso / (alturaM * alturaM);
-        
-        if (imc < 18.5) {
-          indiceTalle = Math.max(0, indiceTalle - 1);
-        } else if (imc > 25) {
-          indiceTalle = Math.min(tallesIndumentaria.length - 1, indiceTalle + 1);
-        }
-        
-        const talleRecomendado = tallesIndumentaria[indiceTalle];
-        
-        const resultDiv = document.getElementById('sizeResultIndumentaria');
-        resultDiv.innerHTML = `
-          <h4>✨ Tu talle ideal</h4>
-          <div class="size-recommendation">${talleRecomendado}</div>
-          <p>Basado en tu altura (${altura} cm), peso (${peso} kg) y talle usual (${talleUsual}).</p>
-          <p style="margin-top: 1rem; font-size: 0.9rem; color: #065f46;">💡 Si estás entre dos talles, te recomendamos el más grande para mayor comodidad.</p>
-        `;
-        resultDiv.style.display = 'block';
-      });
+        window.open(`https://wa.me/5491176235960?text=${mensaje}`, '_blank');
+      };
     });
   </script>
 </body>
