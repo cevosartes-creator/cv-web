@@ -135,6 +135,10 @@
     .size-result h4 { color: #065f46; font-size: 1.2rem; margin-bottom: 0.5rem; }
     .size-result p { color: var(--text-light); margin: 0.5rem 0; font-size: 0.95rem; }
     .size-recommendation { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
+    .size-table { width: 100%; margin-top: 1rem; border-collapse: collapse; font-size: 0.85rem; }
+    .size-table th, .size-table td { padding: 8px; border: 1px solid var(--border); text-align: center; }
+    .size-table th { background: var(--bg); font-weight: 600; color: var(--primary); }
+    .size-table tr:nth-child(even) { background: #f8fafc; }
 
     @media (max-width: 768px) {
       .hamburger { display: flex; }
@@ -184,7 +188,7 @@
       <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados">
         <div class="products-grid">
           <!-- PRODUCTO 1: NEGRO -->
-          <article class="card">
+          <article class="card" data-category="calzados">
             <div class="card-img">
               <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience Negras" class="main-img" id="res-black-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
@@ -199,14 +203,14 @@
               <div class="price">$120.000</div>
               <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
               <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
-              <button class="size-guide-btn">📏 ¿No sabés tu talle?</button>
+              <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="res-negra" data-price="120000">💳 Comprar ahora</button>
             </div>
           </article>
 
           <!-- PRODUCTO 2: BLANCO -->
-          <article class="card">
+          <article class="card" data-category="calzados">
             <div class="card-img">
               <img src="zapatilla-blanca-1.jpg" alt="Botitas Resilience Blancas" class="main-img" id="res-white-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
@@ -221,14 +225,14 @@
               <div class="price">$120.000</div>
               <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
               <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
-              <button class="size-guide-btn">📏 ¿No sabés tu talle?</button>
+              <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="res-blanca" data-price="120000">💳 Comprar ahora</button>
             </div>
           </article>
 
           <!-- PRODUCTO 3: CHOCOLATE -->
-          <article class="card">
+          <article class="card" data-category="calzados">
             <div class="card-img">
               <img src="zapatilla-chocolate-1.jpg" alt="Botitas Resilience Chocolate" class="main-img" id="res-choco-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
@@ -243,7 +247,7 @@
               <div class="price">$120.000</div>
               <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
               <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
-              <button class="size-guide-btn">📏 ¿No sabés tu talle?</button>
+              <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="res-chocolate" data-price="120000">💳 Comprar ahora</button>
             </div>
@@ -328,14 +332,59 @@
     </button>
   </div>
 
-  <!-- MODAL GUÍA DE TALLAS INTELIGENTE -->
-  <div class="modal" id="sizeGuideModal">
+  <!-- MODAL GUÍA DE TALLAS - CALZADOS -->
+  <div class="modal" id="sizeGuideModalCalzados">
     <div class="modal-content">
       <button class="modal-close" aria-label="Cerrar modal">&times;</button>
-      <h3 style="color: var(--primary); margin-bottom: 0.5rem;">📏 Guía de Tallas Inteligente</h3>
+      <h3 style="color: var(--primary); margin-bottom: 0.5rem;">👟 Guía de Talles de Calzados</h3>
+      <p style="color: var(--text-light); font-size: 0.95rem;">Medí tu pie y encontrá tu talle perfecto.</p>
+      
+      <form class="size-form" id="sizeFormCalzados">
+        <label>
+          ¿Cuánto mide tu pie en centímetros?
+          <input type="number" id="largoPie" min="20" max="32" step="0.5" placeholder="Ej: 25.5" required>
+          <small style="color: var(--text-light); font-weight: normal; margin-top: 4px;">💡 Colocá una hoja de papel en el piso, apoyá tu pie y marcá la punta del dedo más largo y el talón. Medí la distancia en cm.</small>
+        </label>
+        
+        <button type="submit" class="btn" style="width: 100%; justify-content: center;">Calcular mi talle</button>
+      </form>
+      
+      <div class="size-result" id="sizeResultCalzados" style="display: none;"></div>
+      
+      <div style="margin-top: 2rem;">
+        <h4 style="color: var(--primary); margin-bottom: 1rem;">📊 Tabla de conversión</h4>
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th>Largo del pie (cm)</th>
+              <th>Talle Argentina</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>22.5</td><td>35</td></tr>
+            <tr><td>23.0</td><td>36</td></tr>
+            <tr><td>23.5</td><td>37</td></tr>
+            <tr><td>24.0</td><td>38</td></tr>
+            <tr><td>24.5</td><td>39</td></tr>
+            <tr><td>25.0</td><td>40</td></tr>
+            <tr><td>25.5</td><td>41</td></tr>
+            <tr><td>26.0</td><td>42</td></tr>
+            <tr><td>26.5</td><td>43</td></tr>
+            <tr><td>27.0</td><td>44</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL GUÍA DE TALLAS - INDUMENTARIA -->
+  <div class="modal" id="sizeGuideModalIndumentaria">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+      <h3 style="color: var(--primary); margin-bottom: 0.5rem;">👕 Guía de Tallas Inteligente</h3>
       <p style="color: var(--text-light); font-size: 0.95rem;">Completá tus datos y te recomendaremos el talle ideal para vos.</p>
       
-      <form class="size-form" id="sizeForm">
+      <form class="size-form" id="sizeFormIndumentaria">
         <label>
           Altura (cm)
           <input type="number" id="altura" min="140" max="210" placeholder="Ej: 170" required>
@@ -350,20 +399,19 @@
           Talle que usás normalmente
           <select id="talleUsual" required>
             <option value="">Seleccioná tu talle</option>
-            <option value="36">36</option>
-            <option value="37">37</option>
-            <option value="38">38</option>
-            <option value="39">39</option>
-            <option value="40">40</option>
-            <option value="41">41</option>
-            <option value="42">42</option>
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
           </select>
         </label>
         
         <button type="submit" class="btn" style="width: 100%; justify-content: center;">Calcular mi talle ideal</button>
       </form>
       
-      <div class="size-result" id="sizeResult" style="display: none;"></div>
+      <div class="size-result" id="sizeResultIndumentaria" style="display: none;"></div>
     </div>
   </div>
 
@@ -430,50 +478,110 @@
         });
       });
 
-      // 9. GUÍA DE TALLAS INTELIGENTE
+      // 9. GUÍA DE TALLAS INTELIGENTE - SISTEMA DUAL
       const sizeGuideBtns = document.querySelectorAll('.size-guide-btn');
-      const sizeGuideModal = document.getElementById('sizeGuideModal');
-      const closeModalBtn = document.querySelector('.modal-close');
+      const modalCalzados = document.getElementById('sizeGuideModalCalzados');
+      const modalIndumentaria = document.getElementById('sizeGuideModalIndumentaria');
 
       sizeGuideBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          sizeGuideModal.classList.add('active');
-          // Resetear resultado al abrir
-          document.getElementById('sizeResult').style.display = 'none';
-          document.getElementById('sizeForm').reset();
+          const type = btn.getAttribute('data-type');
+          if (type === 'calzados') {
+            modalCalzados.classList.add('active');
+            document.getElementById('sizeResultCalzados').style.display = 'none';
+            document.getElementById('sizeFormCalzados').reset();
+          } else {
+            modalIndumentaria.classList.add('active');
+            document.getElementById('sizeResultIndumentaria').style.display = 'none';
+            document.getElementById('sizeFormIndumentaria').reset();
+          }
         });
       });
 
-      closeModalBtn?.addEventListener('click', () => {
-        sizeGuideModal.classList.remove('active');
+      // Cerrar modales
+      document.querySelectorAll('.modal-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.closest('.modal').classList.remove('active');
+        });
       });
 
-      sizeGuideModal?.addEventListener('click', (e) => {
-        if (e.target === sizeGuideModal) {
-          sizeGuideModal.classList.remove('active');
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('active');
+          }
+        });
+      });
+
+      // Calcular talle CALZADOS
+      document.getElementById('sizeFormCalzados')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const largoPie = parseFloat(document.getElementById('largoPie').value);
+        
+        if (!largoPie) {
+          alert('Por favor ingresá el largo de tu pie');
+          return;
         }
+        
+        // Tabla de conversión (largo en cm -> talle argentino)
+        const tablaTalles = [
+          { min: 22.0, max: 22.9, talle: 35 },
+          { min: 23.0, max: 23.4, talle: 36 },
+          { min: 23.5, max: 23.9, talle: 37 },
+          { min: 24.0, max: 24.4, talle: 38 },
+          { min: 24.5, max: 24.9, talle: 39 },
+          { min: 25.0, max: 25.4, talle: 40 },
+          { min: 25.5, max: 25.9, talle: 41 },
+          { min: 26.0, max: 26.4, talle: 42 },
+          { min: 26.5, max: 26.9, talle: 43 },
+          { min: 27.0, max: 32.0, talle: 44 }
+        ];
+        
+        let talleRecomendado = null;
+        for (let rango of tablaTalles) {
+          if (largoPie >= rango.min && largoPie <= rango.max) {
+            talleRecomendado = rango.talle;
+            break;
+          }
+        }
+        
+        if (!talleRecomendado) {
+          talleRecomendado = largoPie < 22 ? 35 : 44;
+        }
+        
+        const resultDiv = document.getElementById('sizeResultCalzados');
+        resultDiv.innerHTML = `
+          <h4>✨ Tu talle ideal</h4>
+          <div class="size-recommendation">${talleRecomendado}</div>
+          <p>Basado en el largo de tu pie: ${largoPie} cm</p>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #065f46;">💡 Si estás entre dos talles, te recomendamos el más grande para mayor comodidad.</p>
+        `;
+        resultDiv.style.display = 'block';
       });
 
-      document.getElementById('sizeForm')?.addEventListener('submit', (e) => {
+      // Calcular talle INDUMENTARIA
+      document.getElementById('sizeFormIndumentaria')?.addEventListener('submit', (e) => {
         e.preventDefault();
         
         const altura = parseInt(document.getElementById('altura').value);
         const peso = parseInt(document.getElementById('peso').value);
-        const talleUsual = parseInt(document.getElementById('talleUsual').value);
+        const talleUsual = document.getElementById('talleUsual').value;
         
         if (!altura || !peso || !talleUsual) {
           alert('Por favor completá todos los campos');
           return;
         }
         
-        // Lógica de cálculo inteligente
-        let talleRecomendado = talleUsual;
+        // Convertir talle usual a índice numérico
+        const tallesIndumentaria = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+        let indiceTalle = tallesIndumentaria.indexOf(talleUsual);
         
         // Ajuste por altura
         if (altura < 160) {
-          talleRecomendado = Math.max(36, talleUsual - 1);
+          indiceTalle = Math.max(0, indiceTalle - 1);
         } else if (altura > 175) {
-          talleRecomendado = Math.min(42, talleUsual + 1);
+          indiceTalle = Math.min(tallesIndumentaria.length - 1, indiceTalle + 1);
         }
         
         // Ajuste por peso (IMC aproximado)
@@ -481,13 +589,14 @@
         const imc = peso / (alturaM * alturaM);
         
         if (imc < 18.5) {
-          talleRecomendado = Math.max(36, talleRecomendado - 1);
+          indiceTalle = Math.max(0, indiceTalle - 1);
         } else if (imc > 25) {
-          talleRecomendado = Math.min(42, talleRecomendado + 1);
+          indiceTalle = Math.min(tallesIndumentaria.length - 1, indiceTalle + 1);
         }
         
-        // Mostrar resultado
-        const resultDiv = document.getElementById('sizeResult');
+        const talleRecomendado = tallesIndumentaria[indiceTalle];
+        
+        const resultDiv = document.getElementById('sizeResultIndumentaria');
         resultDiv.innerHTML = `
           <h4>✨ Tu talle ideal</h4>
           <div class="size-recommendation">${talleRecomendado}</div>
