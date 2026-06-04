@@ -100,8 +100,18 @@
 
     .btn-whatsapp { width: 100%; background: var(--wa); color: #fff; padding: 16px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); border: none; cursor: pointer; }
     .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,211,102,.3); }
-    /* ESTADO DESHABILITADO DEL BOTÓN */
     .btn-whatsapp:disabled { background: #cbd5e1; color: #64748b; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.8; }
+    
+    .reels-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .reels-section h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); text-align: center; }
+    .reels-category { display: flex; gap: 16px; overflow-x: auto; padding: 10px 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .reels-category::-webkit-scrollbar { display: none; }
+    .reel-card { flex: 0 0 160px; height: 280px; border-radius: 16px; background: #000; position: relative; overflow: hidden; scroll-snap-align: start; cursor: pointer; box-shadow: var(--shadow); }
+    .reel-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .reel-card::after { content: '▶'; position: absolute; bottom: 16px; right: 16px; background: rgba(255,255,255,.9); color: var(--primary); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: .9rem; }
+    .reel-card.playing::after { content: ''; }
+    .reel-card:hover { transform: scale(1.02); }
+    .reel-title { position: absolute; bottom: 16px; left: 16px; right: 60px; color: #fff; font-size: .85rem; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,.8); }
     
     .modules { padding: 80px 0; background: #fff; }
     .module-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem; }
@@ -157,6 +167,7 @@
       .nav-links.open { right: 0; } .nav-overlay.show { display: block; }
       .module-block { grid-template-columns: 1fr; gap: 1.5rem; } .module-block.reverse { direction: ltr; }
       .products-grid { grid-template-columns: 1fr; }
+      .reel-card { flex: 0 0 130px; height: 230px; }
     }
     .status-msg { text-align: center; font-size: 0.9rem; margin-top: 0.8rem; font-weight: 600; transition: color 0.3s; }
     .status-msg.pending { color: #b45309; }
@@ -199,7 +210,7 @@
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-personalizar" id="tab-personalizar">🎨 Personalizar</button>
       </div>
 
-      <!-- PANEL CALZADOS -->
+      <!-- PANEL CALZADOS (CON REELS RESTAURADOS) -->
       <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados">
         <div class="products-grid">
           <article class="card">
@@ -265,6 +276,16 @@
             </div>
           </article>
         </div>
+
+        <!-- SECCIÓN DE REELS (RESTAURADA) -->
+        <div class="reels-section">
+          <h4>🎬 Reels de Calzados</h4>
+          <div class="reels-category">
+            <div class="reel-card"><video preload="metadata" poster="zapatilla-negra-1.jpg"><source src="reel-calzados-1.mp4" type="video/mp4"></video><span class="reel-title">En acción</span></div>
+            <div class="reel-card"><video preload="metadata" poster="zapatilla-negra-2.jpg"><source src="reel-calzados-2.mp4" type="video/mp4"></video><span class="reel-title">Detalles</span></div>
+            <div class="reel-card"><video preload="metadata" poster="zapatilla-negra-3.jpg"><source src="reel-calzados-3.mp4" type="video/mp4"></video><span class="reel-title">Comodidad</span></div>
+          </div>
+        </div>
       </div>
 
       <!-- PANEL ACCESORIOS -->
@@ -294,7 +315,7 @@
         </div>
       </div>
 
-      <!-- PANEL PERSONALIZAR (LÓGICA OPTIMIZADA: 2 PASOS + BOTÓN SIEMPRE VISIBLE) -->
+      <!-- PANEL PERSONALIZAR -->
       <div class="tab-panel" id="panel-personalizar" role="tabpanel" aria-labelledby="tab-personalizar" hidden>
         <div class="configurator">
           <h3 style="text-align: center; color: var(--primary); margin-bottom: 0.5rem;">🎨 Armá tu Producto Personalizado</h3>
@@ -302,7 +323,7 @@
           
           <div class="config-step">
             <h4><span>1</span> Elegí el Artículo Base (Obligatorio)</h4>
-            <select class="config-select" id="conf-articulo" onchange="checkFormValidity()">
+            <select class="config-select" id="conf-articulo" onchange="actualizarTalles()">
               <option value="">Seleccioná una opción...</option>
               <optgroup label="👟 Calzados">
                 <option value="Artículo 001">Artículo 001</option>
@@ -576,7 +597,16 @@
         thumb.classList.add('active'); 
       };
 
-      // 5. UALÁ BIS
+      // 5. Reels (RESTAURADO)
+      document.querySelectorAll('.reel-card').forEach(card => {
+        const video = card.querySelector('video'); if (!video) return;
+        card.addEventListener('click', () => {
+          if (video.paused) { video.play(); card.classList.add('playing'); } 
+          else { video.pause(); card.classList.remove('playing'); }
+        });
+      });
+
+      // 6. UALÁ BIS
       const linkPago = 'https://pagar.ualabis.com.ar/order/62d9c4728d2ab9d7b0c593492990e7ba2bce4c9265350f60';
       document.querySelectorAll('.add-cart[data-product]').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -586,12 +616,12 @@
         });
       });
 
-      // 6. WhatsApp flotante
+      // 7. WhatsApp flotante
       document.getElementById('waBtn')?.addEventListener('click', () => {
         window.open('https://wa.me/5491176235960?text=' + encodeURIComponent('Hola! Vi Cv en la web y quiero consultar.'), '_blank');
       });
 
-      // 7. Modales de Guía de Talles
+      // 8. Modales de Guía de Talles
       const modals = {
         calzados: document.getElementById('sizeGuideModalCalzados'),
         indumentaria: document.getElementById('sizeGuideModalIndumentaria')
@@ -736,7 +766,6 @@
 
       window.selectVisual = function(type, element) {
         const gridId = type === 'design' ? 'designGrid' : 'stampGrid';
-        // Si elige uno, deseleccionamos el otro para evitar confusión (solo 1 diseño/sello por artículo)
         const otherGridId = type === 'design' ? 'stampGrid' : 'designGrid';
         document.querySelectorAll(`#${otherGridId} .visual-item`).forEach(item => item.classList.remove('active'));
         
@@ -745,16 +774,15 @@
         
         if (type === 'design') {
           selectedDesign = element.getAttribute('data-name');
-          selectedStamp = null; // Limpiar el otro
+          selectedStamp = null;
         } else {
           selectedStamp = element.getAttribute('data-name');
-          selectedDesign = null; // Limpiar el otro
+          selectedDesign = null;
         }
         
         checkFormValidity();
       };
 
-      // FUNCIÓN PRINCIPAL: Verifica si se cumplen los 2 pasos obligatorios
       window.checkFormValidity = function() {
         const articulo = document.getElementById('conf-articulo').value;
         const talle = document.getElementById('conf-talle').value;
@@ -763,7 +791,6 @@
         const btn = document.getElementById('btnHacerPedido');
         const msg = document.getElementById('orderStatusMsg');
 
-        // Actualizar resumen visual
         document.getElementById('sum-articulo').textContent = articulo || '-';
         document.getElementById('sum-talle').textContent = talle || '-';
         document.getElementById('sum-color').textContent = color || 'No especificado';
@@ -773,7 +800,6 @@
         else if (selectedStamp) designoText = selectedStamp;
         document.getElementById('sum-designo').textContent = designoText;
 
-        // LÓGICA DE HABILITACIÓN: Solo Artículo + Talle son obligatorios
         if (articulo && talle) {
           btn.disabled = false;
           msg.textContent = "✅ ¡Listo! Revisá el resumen y hacé clic en el botón.";
