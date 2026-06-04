@@ -73,7 +73,7 @@
     
     .upload-notice { background: #fffbeb; border: 2px solid #f59e0b; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: flex; gap: 12px; align-items: flex-start; }
     .upload-notice svg { width: 24px; height: 24px; fill: #f59e0b; flex-shrink: 0; margin-top: 2px; }
-    .upload-notice p { font-size: 0.9rem; color: #92400e; margin: 0; line-height: 1.5; }
+    .upload-notice p { font-size: 0.95rem; color: #92400e; margin: 0; line-height: 1.5; }
 
     .btn-whatsapp { width: 100%; background: var(--wa); color: #fff; padding: 16px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); border: none; cursor: pointer; }
     .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,211,102,.3); }
@@ -97,8 +97,6 @@
     .shipping { background: #f0f9f4; border: 1px solid #c6f6d5; border-radius: 8px; padding: 10px 12px; margin: 1rem 0; font-size: .85rem; color: #276749; display: flex; gap: 8px; }
     .add-cart { width: 100%; padding: 14px; background: var(--accent); color: #fff; border-radius: 8px; font-weight: 700; margin-top: 1rem; transition: var(--transition); font-size: 1rem; }
     .add-cart:hover { background: var(--accent-hover); transform: translateY(-2px); }
-    .size-guide-btn { background: none; border: 2px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 8px; font-size: 0.9rem; width: 100%; }
-    .size-guide-btn:hover { background: var(--accent); color: #fff; }
     
     .modules { padding: 80px 0; background: #fff; }
     .module-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem; }
@@ -225,7 +223,7 @@
       </div>
 
       <!-- ========================================== -->
-      <!-- PANEL PERSONALIZAR (COMPLETO Y DETALLADO)  -->
+      <!-- PANEL PERSONALIZAR (COMPLETO Y DEFINITIVO) -->
       <!-- ========================================== -->
       <div class="tab-panel" id="panel-personalizar" role="tabpanel" aria-labelledby="tab-personalizar" hidden>
         <div class="configurator">
@@ -369,12 +367,12 @@
             
             <div class="upload-notice">
               <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-              <p><strong>⚠️ Paso final importante:</strong> Al hacer clic en el botón de abajo, se abrirá WhatsApp con todos estos detalles pre-escritos. <strong>No olvides adjuntar tu archivo de imagen personalizado</strong> directamente en ese chat para que podamos imprimirlo.</p>
+              <p><strong>📎 Nota importante:</strong> Si tenés una imagen, foto, logo, símbolo, etc., para imprimir en el producto, podés enviarla adjuntándola por aquí una vez que se abra el chat de WhatsApp.</p>
             </div>
 
             <button class="btn-whatsapp" onclick="sendWhatsAppOrder()">
               <svg width="24" height="24" viewBox="0 0 32 32" fill="currentColor"><path d="M16.004 0C7.164 0 0 7.163 0 16.004c0 2.823.737 5.58 2.137 8.012L.073 32l8.172-2.044A15.95 15.95 0 0016.004 32C24.836 32 32 24.836 32 16.004 32 7.163 24.836 0 16.004 0zm0 29.18a13.15 13.15 0 01-6.72-1.844l-.48-.285-4.99 1.25 1.334-4.87-.312-.496A13.12 13.12 0 012.82 16.004c0-7.27 5.914-13.18 13.184-13.18 7.27 0 13.176 5.91 13.176 13.18 0 7.27-5.906 13.176-13.176 13.176z"/></svg>
-              Enviar Pedido y Adjuntar Imagen por WhatsApp
+              Hacer el pedido
             </button>
           </div>
         </div>
@@ -407,7 +405,7 @@
       <div class="container">
         <h2 class="section-title">Preguntas Frecuentes</h2>
         <div style="max-width:800px;margin:0 auto;">
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq1">¿Cómo funciona la personalización? <span class="faq-icon"></span></button><div id="faq1" class="faq-content" role="region"><div class="faq-content-inner">Elegí tu artículo, talle, color, diseño y sello en la pestaña "Personalizar". Enviá el pedido por WhatsApp y <strong>adjuntá tu imagen ahí mismo</strong>. Te pasamos el precio final y el link de pago.</div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq1">¿Cómo funciona la personalización? <span class="faq-icon"></span></button><div id="faq1" class="faq-content" role="region"><div class="faq-content-inner">Elegí tu artículo, talle, color, diseño y sello en la pestaña "Personalizar". Hacé clic en "Hacer el pedido" y adjuntá tu imagen, foto o logo directamente en el chat de WhatsApp. Te pasamos el precio final y el link de pago.</div></div></div>
           <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq2">¿Tiempo de producción? <span class="faq-icon"></span></button><div id="faq2" class="faq-content" role="region"><div class="faq-content-inner">Al ser hechos a medida con impresión personalizada, el plazo de producción es de 3 a 5 días hábiles, más el tiempo de envío estándar.</div></div></div>
         </div>
       </div>
@@ -470,7 +468,6 @@
       let selectedDesign = null;
       let selectedStamp = null;
 
-      // Base de datos de talles según el artículo
       const talleDB = {
         calzados: ["33", "34", "35", "36", "37", "38", "39", "40"],
         infantil: ["4", "6", "8", "10", "12", "14", "16"],
@@ -516,9 +513,9 @@
       window.actualizarTalles = function() {
         const articulo = document.getElementById('conf-articulo').value;
         const talleSelect = document.getElementById('conf-talle');
-        talleSelect.innerHTML = ''; // Limpiar opciones anteriores
+        talleSelect.innerHTML = ''; 
         
-        let opciones = talleDB.accesorios_pequenos; // Default
+        let opciones = talleDB.accesorios_pequenos; 
 
         if (articulo.includes('Artículo 00')) opciones = talleDB.calzados;
         else if (articulo.includes('Infantil')) opciones = talleDB.infantil;
@@ -527,13 +524,11 @@
         else if (articulo.includes('Pulsera')) opciones = talleDB.pulsera;
         else if (articulo.includes('Cinto') || articulo.includes('Hebilla')) opciones = talleDB.cinto;
 
-        // Agregar opción por defecto
         const defaultOpt = document.createElement('option');
         defaultOpt.value = "";
         defaultOpt.textContent = "Seleccioná el talle / medida...";
         talleSelect.appendChild(defaultOpt);
 
-        // Llenar con las opciones correctas
         opciones.forEach(op => {
           const opt = document.createElement('option');
           opt.value = op;
@@ -541,7 +536,6 @@
           talleSelect.appendChild(opt);
         });
 
-        // Resetear selección visual
         selectedDesign = null;
         selectedStamp = null;
         document.querySelectorAll('.visual-item').forEach(item => item.classList.remove('active'));
@@ -587,7 +581,7 @@
                         `🎨 *Color:* ${color}%0A` +
                         `🖼️ *Diseño a imprimir:* ${selectedDesign}%0A` +
                         `🔖 *Sello a imprimir:* ${selectedStamp}%0A%0A` +
-                        `📎 *ADJUNTO MI IMAGEN PERSONALIZADA EN ESTE MENSAJE.*%0A%0A` +
+                        `📎 *ADJUNTO MI IMAGEN, FOTO O LOGO PARA IMPRIMIR EN ESTE MENSAJE.*%0A%0A` +
                         `¿Me podrían confirmar el precio final y el link de pago de Ualá Bis? ¡Gracias!`;
         
         window.open(`https://wa.me/5491176235960?text=${mensaje}`, '_blank');
