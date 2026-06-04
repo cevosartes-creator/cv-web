@@ -89,7 +89,7 @@
     .visual-item.active { border-color: var(--accent); transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,86,179,.2); z-index: 2; }
     .visual-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(10, 25, 47, 0.85); color: #fff; font-size: 0.7rem; font-weight: 600; text-align: center; padding: 4px 2px; z-index: 3; }
 
-    .order-summary { background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; display: none; animation: fade .4s ease; }
+    .order-summary { background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; animation: fade .4s ease; }
     .order-summary h4 { color: #065f46; margin-bottom: 1rem; font-size: 1.2rem; }
     .summary-line { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; border-bottom: 1px dashed #bbf7d0; padding-bottom: 4px; }
     .summary-line strong { color: var(--primary); text-align: right; max-width: 60%; }
@@ -100,6 +100,8 @@
 
     .btn-whatsapp { width: 100%; background: var(--wa); color: #fff; padding: 16px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); border: none; cursor: pointer; }
     .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,211,102,.3); }
+    /* ESTADO DESHABILITADO DEL BOTÓN */
+    .btn-whatsapp:disabled { background: #cbd5e1; color: #64748b; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.8; }
     
     .modules { padding: 80px 0; background: #fff; }
     .module-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem; }
@@ -156,6 +158,9 @@
       .module-block { grid-template-columns: 1fr; gap: 1.5rem; } .module-block.reverse { direction: ltr; }
       .products-grid { grid-template-columns: 1fr; }
     }
+    .status-msg { text-align: center; font-size: 0.9rem; margin-top: 0.8rem; font-weight: 600; transition: color 0.3s; }
+    .status-msg.pending { color: #b45309; }
+    .status-msg.ready { color: #065f46; }
   </style>
 </head>
 <body>
@@ -194,7 +199,7 @@
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-personalizar" id="tab-personalizar">🎨 Personalizar</button>
       </div>
 
-      <!-- PANEL CALZADOS (COMPLETO RESTAURADO) -->
+      <!-- PANEL CALZADOS -->
       <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados">
         <div class="products-grid">
           <article class="card">
@@ -289,15 +294,15 @@
         </div>
       </div>
 
-      <!-- PANEL PERSONALIZAR (COMPLETO Y FUNCIONAL) -->
+      <!-- PANEL PERSONALIZAR (LÓGICA OPTIMIZADA: 2 PASOS + BOTÓN SIEMPRE VISIBLE) -->
       <div class="tab-panel" id="panel-personalizar" role="tabpanel" aria-labelledby="tab-personalizar" hidden>
         <div class="configurator">
           <h3 style="text-align: center; color: var(--primary); margin-bottom: 0.5rem;">🎨 Armá tu Producto Personalizado</h3>
-          <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Seguí los 5 pasos. El botón "Hacer el pedido" aparecerá al completarlos todos.</p>
+          <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Solo necesitás elegir el Artículo y el Talle. El resto es opcional o lo enviás por WhatsApp.</p>
           
           <div class="config-step">
-            <h4><span>1</span> Elegí el Artículo Base</h4>
-            <select class="config-select" id="conf-articulo" onchange="actualizarTalles()">
+            <h4><span>1</span> Elegí el Artículo Base (Obligatorio)</h4>
+            <select class="config-select" id="conf-articulo" onchange="checkFormValidity()">
               <option value="">Seleccioná una opción...</option>
               <optgroup label="👟 Calzados">
                 <option value="Artículo 001">Artículo 001</option>
@@ -313,19 +318,19 @@
                 <option value="Remera Infantil Unisex Celeste">Remera Infantil Unisex Celeste</option>
               </optgroup>
               <optgroup label="👕 Indumentaria Adultos">
-                <option value="Remera Clásica Man Blanca (Fit regular, cuello redondo)">Remera Clásica Man Blanca</option>
-                <option value="Remera Clásica Man Negra (Fit regular, cuello redondo)">Remera Clásica Man Negra</option>
-                <option value="Remera Clásica Woman Blanca (Fit femenino, cuello redondo)">Remera Clásica Woman Blanca</option>
-                <option value="Remera Clásica Woman Negra (Fit femenino, cuello redondo)">Remera Clásica Woman Negra</option>
-                <option value="Remera Oversize Blanca (Caída relajada, unisex)">Remera Oversize Blanca</option>
-                <option value="Remera Oversize Negra (Caída relajada, unisex)">Remera Oversize Negra</option>
-                <option value="Remera Oversize Stone Wash (Caída relajada, efecto vintage)">Remera Oversize Stone Wash</option>
-                <option value="Buzo Hoodie Negro (Con capucha, cómodo y abrigado)">Buzo Hoodie Negro</option>
-                <option value="Buzo Hoodie Blanco (Con capucha, cómodo y abrigado)">Buzo Hoodie Blanco</option>
-                <option value="Buzo Hoodie Stone Wash (Con capucha, efecto desgastado)">Buzo Hoodie Stone Wash</option>
-                <option value="Buzo Cuello Redondo Negro (Sin capucha, cómodo)">Buzo Cuello Redondo Negro</option>
-                <option value="Buzo Cuello Redondo Blanco (Sin capucha, cómodo)">Buzo Cuello Redondo Blanco</option>
-                <option value="Buzo Cuello Redondo Stone Wash (Sin capucha, efecto desgastado)">Buzo Cuello Redondo Stone Wash</option>
+                <option value="Remera Clásica Man Blanca">Remera Clásica Man Blanca</option>
+                <option value="Remera Clásica Man Negra">Remera Clásica Man Negra</option>
+                <option value="Remera Clásica Woman Blanca">Remera Clásica Woman Blanca</option>
+                <option value="Remera Clásica Woman Negra">Remera Clásica Woman Negra</option>
+                <option value="Remera Oversize Blanca">Remera Oversize Blanca</option>
+                <option value="Remera Oversize Negra">Remera Oversize Negra</option>
+                <option value="Remera Oversize Stone Wash">Remera Oversize Stone Wash</option>
+                <option value="Buzo Hoodie Negro">Buzo Hoodie Negro</option>
+                <option value="Buzo Hoodie Blanco">Buzo Hoodie Blanco</option>
+                <option value="Buzo Hoodie Stone Wash">Buzo Hoodie Stone Wash</option>
+                <option value="Buzo Cuello Redondo Negro">Buzo Cuello Redondo Negro</option>
+                <option value="Buzo Cuello Redondo Blanco">Buzo Cuello Redondo Blanco</option>
+                <option value="Buzo Cuello Redondo Stone Wash">Buzo Cuello Redondo Stone Wash</option>
               </optgroup>
               <optgroup label="👜 Accesorios">
                 <option value="Dije Aro Circular">Dije Aro Circular</option>
@@ -359,22 +364,22 @@
                 <option value="Hebilla de Cinto Hexágono">Hebilla de Cinto Hexágono</option>
                 <option value="Hebilla de Cinto Estrella">Hebilla de Cinto Estrella</option>
                 <option value="Hebilla de Cinto Corazón">Hebilla de Cinto Corazón</option>
-                <option value="Prendedor Pin 3.8 cm (Ideal para ilustraciones y eventos)">Prendedor Pin 3.8 cm</option>
+                <option value="Prendedor Pin 3.8 cm">Prendedor Pin 3.8 cm</option>
               </optgroup>
             </select>
           </div>
 
           <div class="config-step">
-            <h4><span>2</span> Elegí el Talle / Medida</h4>
-            <select class="config-select" id="conf-talle" onchange="updateSummary()">
+            <h4><span>2</span> Elegí el Talle / Medida (Obligatorio)</h4>
+            <select class="config-select" id="conf-talle" onchange="checkFormValidity()">
               <option value="">Seleccioná primero un artículo base</option>
             </select>
           </div>
 
           <div class="config-step">
-            <h4><span>3</span> Elegí el Color</h4>
-            <select class="config-select" id="conf-color" onchange="updateSummary()">
-              <option value="">Seleccioná una opción...</option>
+            <h4><span>3</span> Elegí el Color (Opcional)</h4>
+            <select class="config-select" id="conf-color" onchange="checkFormValidity()">
+              <option value="">No especificar (o ya está incluido en el artículo)</option>
               <optgroup label="Neutros y Clásicos">
                 <option value="Negro">Negro</option><option value="Blanco">Blanco</option><option value="Blanco Roto">Blanco Roto</option>
                 <option value="Crema">Crema</option><option value="Off-white (Hueso)">Off-white (Hueso)</option><option value="Crudo">Crudo</option>
@@ -403,7 +408,8 @@
           </div>
 
           <div class="config-step">
-            <h4><span>4</span> Elegí el Diseño a Imprimir</h4>
+            <h4><span>4</span> Elegí el Diseño a Imprimir (Opcional)</h4>
+            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">Si no elegís ninguno, podrás adjuntar tu propia imagen en WhatsApp.</p>
             <div class="visual-grid" id="designGrid">
               <div class="visual-item" data-name="Diseño #001" onclick="selectVisual('design', this)"><img src="imagenes/diseno-001.jpg" alt="Diseño 001" loading="lazy"><div class="visual-label">#001</div></div>
               <div class="visual-item" data-name="Diseño #002" onclick="selectVisual('design', this)"><img src="imagenes/diseno-002.jpg" alt="Diseño 002" loading="lazy"><div class="visual-label">#002</div></div>
@@ -413,7 +419,7 @@
           </div>
 
           <div class="config-step">
-            <h4><span>5</span> Elegí el Sello a Imprimir</h4>
+            <h4><span>5</span> Elegí el Sello a Imprimir (Opcional)</h4>
             <div class="visual-grid" id="stampGrid">
               <div class="visual-item" data-name="Sello #001" onclick="selectVisual('stamp', this)"><img src="imagenes/sello-001.jpg" alt="Sello 001" loading="lazy"><div class="visual-label">#001</div></div>
               <div class="visual-item" data-name="Sello #002" onclick="selectVisual('stamp', this)"><img src="imagenes/sello-002.jpg" alt="Sello 002" loading="lazy"><div class="visual-label">#002</div></div>
@@ -422,23 +428,24 @@
             </div>
           </div>
 
-          <div class="order-summary" id="orderSummary">
-            <h4>✅ ¡Completaste todos los pasos! Revisá tu pedido:</h4>
+          <!-- RESUMEN Y BOTÓN SIEMPRE VISIBLES -->
+          <div class="order-summary">
+            <h4>📋 Resumen de tu Pedido</h4>
             <div class="summary-line"><span>Artículo:</span> <strong id="sum-articulo">-</strong></div>
-            <div class="summary-line"><span>Talle / Medida:</span> <strong id="sum-talle" style="color: var(--accent);">-</strong></div>
-            <div class="summary-line"><span>Color:</span> <strong id="sum-color">-</strong></div>
-            <div class="summary-line"><span>Diseño:</span> <strong id="sum-design">-</strong></div>
-            <div class="summary-line"><span>Sello:</span> <strong id="sum-stamp">-</strong></div>
+            <div class="summary-line"><span>Talle / Medida:</span> <strong id="sum-talle">-</strong></div>
+            <div class="summary-line"><span>Color:</span> <strong id="sum-color">No especificado</strong></div>
+            <div class="summary-line"><span>Diseño/Sello:</span> <strong id="sum-designo">Adjuntaré mi propia imagen</strong></div>
             
             <div class="upload-notice">
               <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-              <p><strong>📎 Nota importante:</strong> Si tenés una imagen, foto, logo, símbolo, etc., para imprimir en el producto, podés enviarla adjuntándola por aquí una vez que se abra el chat de WhatsApp.</p>
+              <p><strong>📎 Nota importante:</strong> Si tenés una imagen, foto, logo o símbolo propio para imprimir, simplemente adjuntalo en el chat de WhatsApp al hacer clic en el botón de abajo.</p>
             </div>
 
-            <button class="btn-whatsapp" onclick="sendWhatsAppOrder()">
+            <button id="btnHacerPedido" class="btn-whatsapp" disabled onclick="sendWhatsAppOrder()">
               <svg width="24" height="24" viewBox="0 0 32 32" fill="currentColor"><path d="M16.004 0C7.164 0 0 7.163 0 16.004c0 2.823.737 5.58 2.137 8.012L.073 32l8.172-2.044A15.95 15.95 0 0016.004 32C24.836 32 32 24.836 32 16.004 32 7.163 24.836 0 16.004 0zm0 29.18a13.15 13.15 0 01-6.72-1.844l-.48-.285-4.99 1.25 1.334-4.87-.312-.496A13.12 13.12 0 012.82 16.004c0-7.27 5.914-13.18 13.184-13.18 7.27 0 13.176 5.91 13.176 13.18 0 7.27-5.906 13.176-13.176 13.176z"/></svg>
               Hacer el pedido
             </button>
+            <p id="orderStatusMsg" class="status-msg pending">⚠️ Seleccioná un Artículo y un Talle para habilitar el botón.</p>
           </div>
         </div>
       </div>
@@ -470,7 +477,7 @@
       <div class="container">
         <h2 class="section-title">Preguntas Frecuentes</h2>
         <div style="max-width:800px;margin:0 auto;">
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq1">¿Cómo funciona la personalización? <span class="faq-icon"></span></button><div id="faq1" class="faq-content" role="region"><div class="faq-content-inner">Elegí tu artículo, talle, color, diseño y sello en la pestaña "Personalizar". Hacé clic en "Hacer el pedido" y adjuntá tu imagen, foto o logo directamente en el chat de WhatsApp. Te pasamos el precio final y el link de pago.</div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq1">¿Cómo funciona la personalización? <span class="faq-icon"></span></button><div id="faq1" class="faq-content" role="region"><div class="faq-content-inner">Elegí tu artículo y talle en la pestaña "Personalizar". Si tenés un diseño propio, hacé clic en "Hacer el pedido" y adjuntá tu imagen directamente en el chat de WhatsApp. Te pasamos el precio y el link de pago.</div></div></div>
           <div class="faq-item"><button class="faq-btn" aria-expanded="false" aria-controls="faq2">¿Tiempo de producción? <span class="faq-icon"></span></button><div id="faq2" class="faq-content" role="region"><div class="faq-content-inner">Al ser hechos a medida con impresión personalizada, el plazo de producción es de 3 a 5 días hábiles, más el tiempo de envío estándar.</div></div></div>
         </div>
       </div>
@@ -534,7 +541,7 @@
       menuBtn?.addEventListener('click', toggleMenu); overlay?.addEventListener('click', toggleMenu);
       nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.contains('open') && toggleMenu()));
 
-      // 2. Tabs (Corregido para asegurar que funcione)
+      // 2. Tabs
       const tabs = document.querySelectorAll('.tab-btn');
       const panels = document.querySelectorAll('.tab-panel');
       tabs.forEach(tab => {
@@ -648,7 +655,7 @@
       });
 
       // ==========================================
-      // LÓGICA DEL CONFIGURADOR DE PERSONALIZACIÓN
+      // LÓGICA DEL CONFIGURADOR OPTIMIZADA
       // ==========================================
       let selectedDesign = null;
       let selectedStamp = null;
@@ -724,35 +731,57 @@
         selectedDesign = null;
         selectedStamp = null;
         document.querySelectorAll('.visual-item').forEach(item => item.classList.remove('active'));
-        updateSummary();
+        checkFormValidity();
       };
 
       window.selectVisual = function(type, element) {
         const gridId = type === 'design' ? 'designGrid' : 'stampGrid';
+        // Si elige uno, deseleccionamos el otro para evitar confusión (solo 1 diseño/sello por artículo)
+        const otherGridId = type === 'design' ? 'stampGrid' : 'designGrid';
+        document.querySelectorAll(`#${otherGridId} .visual-item`).forEach(item => item.classList.remove('active'));
+        
         document.querySelectorAll(`#${gridId} .visual-item`).forEach(item => item.classList.remove('active'));
         element.classList.add('active');
         
-        if (type === 'design') selectedDesign = element.getAttribute('data-name');
-        if (type === 'stamp') selectedStamp = element.getAttribute('data-name');
+        if (type === 'design') {
+          selectedDesign = element.getAttribute('data-name');
+          selectedStamp = null; // Limpiar el otro
+        } else {
+          selectedStamp = element.getAttribute('data-name');
+          selectedDesign = null; // Limpiar el otro
+        }
         
-        updateSummary();
+        checkFormValidity();
       };
 
-      window.updateSummary = function() {
+      // FUNCIÓN PRINCIPAL: Verifica si se cumplen los 2 pasos obligatorios
+      window.checkFormValidity = function() {
         const articulo = document.getElementById('conf-articulo').value;
         const talle = document.getElementById('conf-talle').value;
         const color = document.getElementById('conf-color').value;
         
-        // El botón solo aparece si TODOS los campos están completos
-        if (articulo && talle && color && selectedDesign && selectedStamp) {
-          document.getElementById('sum-articulo').textContent = articulo;
-          document.getElementById('sum-talle').textContent = talle;
-          document.getElementById('sum-color').textContent = color;
-          document.getElementById('sum-design').textContent = selectedDesign;
-          document.getElementById('sum-stamp').textContent = selectedStamp;
-          document.getElementById('orderSummary').style.display = 'block';
+        const btn = document.getElementById('btnHacerPedido');
+        const msg = document.getElementById('orderStatusMsg');
+
+        // Actualizar resumen visual
+        document.getElementById('sum-articulo').textContent = articulo || '-';
+        document.getElementById('sum-talle').textContent = talle || '-';
+        document.getElementById('sum-color').textContent = color || 'No especificado';
+        
+        let designoText = 'Adjuntaré mi propia imagen';
+        if (selectedDesign) designoText = selectedDesign;
+        else if (selectedStamp) designoText = selectedStamp;
+        document.getElementById('sum-designo').textContent = designoText;
+
+        // LÓGICA DE HABILITACIÓN: Solo Artículo + Talle son obligatorios
+        if (articulo && talle) {
+          btn.disabled = false;
+          msg.textContent = "✅ ¡Listo! Revisá el resumen y hacé clic en el botón.";
+          msg.className = "status-msg ready";
         } else {
-          document.getElementById('orderSummary').style.display = 'none';
+          btn.disabled = true;
+          msg.textContent = "⚠️ Seleccioná un Artículo y un Talle para habilitar el botón.";
+          msg.className = "status-msg pending";
         }
       };
 
@@ -761,12 +790,17 @@
         const talle = document.getElementById('conf-talle').value;
         const color = document.getElementById('conf-color').value;
         
+        let detalleDiseno = "Adjunto mi propia imagen/logo para imprimir";
+        if (selectedDesign) detalleDiseno = selectedDesign;
+        else if (selectedStamp) detalleDiseno = selectedStamp;
+
+        const colorText = color ? color : "No especificado (o incluido en el artículo)";
+
         const mensaje = `¡Hola Cv! 👋 Quiero hacer un pedido personalizado:%0A%0A` +
                         `👕 *Artículo:* ${articulo}%0A` +
                         `📏 *Talle / Medida:* ${talle}%0A` +
-                        `🎨 *Color:* ${color}%0A` +
-                        `🖼️ *Diseño a imprimir:* ${selectedDesign}%0A` +
-                        `🔖 *Sello a imprimir:* ${selectedStamp}%0A%0A` +
+                        `🎨 *Color:* ${colorText}%0A` +
+                        `🖼️ *Diseño/Sello:* ${detalleDiseno}%0A%0A` +
                         `📎 *ADJUNTO MI IMAGEN, FOTO O LOGO PARA IMPRIMIR EN ESTE MENSAJE.*%0A%0A` +
                         `¿Me podrían confirmar el precio final y el link de pago de Ualá Bis? ¡Gracias!`;
         
