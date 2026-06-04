@@ -268,8 +268,95 @@
         <div class="products-grid"><p style="grid-column:1/-1;text-align:center;color:#888; padding:40px;">Próximamente nuevos accesorios.</p></div>
       </div>
 
-      <div class="tab-panel" id="panel-indumentaria" role="tabpanel" aria-labelledby="tab-indumentaria" hidden>
-        <div class="products-grid"><p style="grid-column:1/-1;text-align:center;color:#888; padding:40px;">Próximamente nueva indumentaria.</p></div>
+      <div class="tab-panel" id="panel-indumentaria" role="tabpanel" aria-labelledby="tab-indumentaria">
+        <div class="products-grid">
+          <!-- PRODUCTO INDUMENTARIA 1: REMERA -->
+          <article class="card" data-category="indumentaria">
+            <div class="card-img">
+              <img src="indumentaria/remera-blanca-1.jpg" alt="Remera Básica Blanca" class="main-img" id="remera-white-main" width="600" height="400" loading="lazy">
+              <div class="img-thumbs">
+                <img src="indumentaria/remera-blanca-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('remera-white-main', this)" width="50" height="50" loading="lazy">
+                <img src="indumentaria/remera-blanca-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('remera-white-main', this)" width="50" height="50" loading="lazy">
+                <img src="indumentaria/remera-blanca-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('remera-white-main', this)" width="50" height="50" loading="lazy">
+              </div>
+              <span class="badge">Nuevo</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Remera Básica Blanca</h3>
+              <div class="price">$45.000</div>
+              <ul class="benefits"><li>Algodón 100% premium</li><li>Corte clásico unisex</li><li>Costuras reforzadas</li></ul>
+              <div class="sizes" role="group">
+                <button class="size-btn" aria-pressed="false">XS</button>
+                <button class="size-btn" aria-pressed="false">S</button>
+                <button class="size-btn" aria-pressed="false">M</button>
+                <button class="size-btn" aria-pressed="false">L</button>
+                <button class="size-btn" aria-pressed="false">XL</button>
+                <button class="size-btn" aria-pressed="false">XXL</button>
+              </div>
+              <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
+              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              <button class="add-cart" data-product="remera-blanca" data-price="45000">💳 Comprar ahora</button>
+            </div>
+          </article>
+
+          <!-- PRODUCTO INDUMENTARIA 2: JEANS -->
+          <article class="card" data-category="indumentaria">
+            <div class="card-img">
+              <img src="indumentaria/jeans-azul-1.jpg" alt="Jeans Clásicos Azul" class="main-img" id="jeans-blue-main" width="600" height="400" loading="lazy">
+              <div class="img-thumbs">
+                <img src="indumentaria/jeans-azul-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('jeans-blue-main', this)" width="50" height="50" loading="lazy">
+                <img src="indumentaria/jeans-azul-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('jeans-blue-main', this)" width="50" height="50" loading="lazy">
+                <img src="indumentaria/jeans-azul-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('jeans-blue-main', this)" width="50" height="50" loading="lazy">
+              </div>
+              <span class="badge">Más Vendido</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Jeans Clásicos Azul</h3>
+              <div class="price">$95.000</div>
+              <ul class="benefits"><li>Denim stretch cómodo</li><li>Corte recto moderno</li><li>Bolsillos funcionales</li></ul>
+              <div class="sizes" role="group">
+                <button class="size-btn" aria-pressed="false">XS</button>
+                <button class="size-btn" aria-pressed="false">S</button>
+                <button class="size-btn" aria-pressed="false">M</button>
+                <button class="size-btn" aria-pressed="false">L</button>
+                <button class="size-btn" aria-pressed="false">XL</button>
+                <button class="size-btn" aria-pressed="false">XXL</button>
+              </div>
+              <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
+              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              <button class="add-cart" data-product="jeans-azul" data-price="95000">💳 Comprar ahora</button>
+            </div>
+          </article>
+
+          <!-- PRODUCTO INDUMENTARIA 3: BUZO -->
+          <article class="card" data-category="indumentaria">
+            <div class="card-img">
+              <img src="indumentaria/buzo-negro-1.jpg" alt="Buzo Negro con Capucha" class="main-img" id="buzo-black-main" width="600" height="400" loading="lazy">
+              <div class="img-thumbs">
+                <img src="indumentaria/buzo-negro-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('buzo-black-main', this)" width="50" height="50" loading="lazy">
+                <img src="indumentaria/buzo-negro-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('buzo-black-main', this)" width="50" height="50" loading="lazy">
+                <img src="indumentaria/buzo-negro-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('buzo-black-main', this)" width="50" height="50" loading="lazy">
+              </div>
+              <span class="badge">Temporada</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Buzo Negro con Capucha</h3>
+              <div class="price">$85.000</div>
+              <ul class="benefits"><li>Franja interior suave</li><li>Capucha ajustable</li><li>Bolsillo canguro</li></ul>
+              <div class="sizes" role="group">
+                <button class="size-btn" aria-pressed="false">XS</button>
+                <button class="size-btn" aria-pressed="false">S</button>
+                <button class="size-btn" aria-pressed="false">M</button>
+                <button class="size-btn" aria-pressed="false">L</button>
+                <button class="size-btn" aria-pressed="false">XL</button>
+                <button class="size-btn" aria-pressed="false">XXL</button>
+              </div>
+              <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
+              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              <button class="add-cart" data-product="buzo-negro" data-price="85000">💳 Comprar ahora</button>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
