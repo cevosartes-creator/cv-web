@@ -249,7 +249,57 @@
             </div>
           </article>
         </div>
-        
+
+                  <!-- PRODUCTO 2: CON 9 FOTOS -->
+          <article class="card">
+            <div class="card-img">
+              <!-- La imagen principal que se ve al inicio -->
+              <img src="Pantubota-negra-1.jpg" alt="Producto 2" class="main-img" id="prod2-main" width="600" height="400" loading="lazy">
+              
+              <!-- Las 9 miniaturas para hacer clic -->
+              <div class="img-thumbs">
+                <img src="Pantubota-negra-1.jpg" alt="Vista 1" class="thumb active" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
+                <img src="Pantubota-negra-2.jpg" alt="Vista 2" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
+                <img src="Pantubota-negra-3.jpg" alt="Vista 3" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
+                <img src="Pantubota-verdeazulada-1.jpg" alt="Vista 4" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
+                <img src="Pantubota-verdeazulada-2.jpg" alt="Vista 5" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
+                <img src="Pantubota-verdeazulada-3.jpg" alt="Vista 6" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
+                <img src="Pantubota-bordo-1.jpg" alt="Vista 7" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
+                <img src="Pantubota-bordo-2.jpg" alt="Vista 8" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
+                <img src="Pantubota-bordo-3.jpg" alt="Vista 9" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
+              </div>
+              <span class="badge">Botas&Zapatillas</span>
+            </div>
+            
+            <div class="card-body">
+              <h3 class="card-title">Convertibles Tetè</h3>
+              <div class="price">$90.000</div>
+              <ul class="benefits">
+                <li>Cuero genuino e interior suave y acolchonado. </li>
+                <li>Sistema de transformación rápido y sin cierres.</li>
+                <li>Flexibles y fáciles de limpiar.  </li>
+                <li>Suelas de goma antideslizantes.</li>
+                <li>No pierdan la estética ni el ajuste en ninguna de sus versiones.</li>
+                <li>Accesorio saludable: Plantillas ergonòmicas para reducir la fatiga, 
+                    mejorar la circulación y amortiguar los impactos al caminar o estar 
+                    de pie por largos períodos.</li>
+              </ul>
+              
+              <!-- Talles (cambialos según sea indumentaria o calzado) -->
+              <div class="sizes" role="group">
+                <button class="size-btn" aria-pressed="false">S</button>
+                <button class="size-btn" aria-pressed="false">M</button>
+                <button class="size-btn" aria-pressed="false">L</button>
+                <button class="size-btn" aria-pressed="false">XL</button>
+              </div>
+              
+              <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
+              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              
+              <!-- Link de pago (cambiá el data-product y data-price si tenés otro link) -->
+              <button class="add-cart" data-product="producto2" data-price="00000">💳 Comprar ahora</button>
+            </div>
+          </article>
         <div class="reels-section">
           <h4>🎬 Reels de Calzados</h4>
           <div class="reels-category">
