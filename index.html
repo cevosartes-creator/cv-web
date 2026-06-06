@@ -28,7 +28,8 @@
     .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
     .section-title { font-size: clamp(1.75rem, 4vw, 2.2rem); font-weight: 800; text-align: center; margin-bottom: .5rem; color: var(--primary); }
     .section-sub { text-align: center; color: var(--text-light); margin-bottom: 2.5rem; max-width: 600px; margin-inline: auto; }
-    header { position: sticky; top: 0; background: rgba(255,255,255,.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 100; }
+    
+    header { position: sticky; top: 0; background: #ffffff; border-bottom: 1px solid var(--border); z-index: 100; }
     .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
     .logo { display: inline-flex; align-items: center; padding: 4px 0; }
     .logo img { height: 48px; width: auto; max-width: 160px; display: block; }
@@ -37,12 +38,14 @@
     .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); }
     .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 90; }
+    
     .hero { background: linear-gradient(135deg, var(--primary), #16213e); color: #fff; padding: 80px 20px 60px; text-align: center; }
     .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
     .hero h1 span { color: var(--accent); }
     .hero p { font-size: clamp(1rem, 2vw, 1.25rem); opacity: .9; max-width: 700px; margin: 0 auto 2rem; }
     .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: var(--transition); font-size: 1.1rem; }
     .btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,86,179,.3); }
+    
     .tabs { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 2rem 0 1.5rem; }
     .tab-btn { padding: 10px 20px; border: 2px solid var(--border); border-radius: 50px; font-weight: 600; transition: var(--transition); color: var(--text); }
     .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
@@ -51,11 +54,10 @@
     @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform var(--transition); }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.1); }
+    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
     .card-img { position: relative; background: #f1f5f9; }
     .main-img { width: 100%; height: 300px; object-fit: cover; display: block; }
-    .img-thumbs { display: flex; gap: 8px; padding: 10px; background: #fff; justify-content: center; border-top: 1px solid var(--border); }
+    .img-thumbs { display: flex; gap: 8px; padding: 10px; background: #fff; justify-content: center; border-top: 1px solid var(--border); flex-wrap: wrap; }
     .thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 2px solid transparent; cursor: pointer; opacity: 0.6; transition: .2s; }
     .thumb:hover, .thumb.active { opacity: 1; border-color: var(--accent); }
     .badge { position: absolute; top: 12px; left: 12px; background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: .75rem; font-weight: 700; z-index: 2; text-transform: uppercase; letter-spacing: 1px; }
@@ -78,13 +80,12 @@
     .config-step:last-of-type { border-bottom: none; }
     .config-step h4 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
     .config-step h4 span { background: var(--accent); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 0.9rem; flex-shrink: 0; }
-    .config-select { width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; background: #fff; cursor: pointer; }
-    .config-select:focus { outline: none; border-color: var(--accent); }
+    .config-select, .config-textarea { width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; background: #fff; cursor: text; font-family: var(--font); }
+    .config-select:focus, .config-textarea:focus { outline: none; border-color: var(--accent); }
     .config-select optgroup { font-weight: 700; color: var(--primary); font-style: normal; }
-    .config-textarea { width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; background: #fff; cursor: text; resize: vertical; min-height: 100px; font-family: var(--font); }
-    .config-textarea:focus { outline: none; border-color: var(--accent); }
+    .config-textarea { resize: vertical; min-height: 100px; }
     
-    .order-summary { background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; animation: fade .4s ease; }
+    .order-summary { background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; }
     .order-summary h4 { color: #065f46; margin-bottom: 1rem; font-size: 1.2rem; }
     .summary-line { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; border-bottom: 1px dashed #bbf7d0; padding-bottom: 4px; }
     .summary-line strong { color: var(--primary); text-align: right; max-width: 60%; }
@@ -92,18 +93,17 @@
     .upload-notice svg { width: 24px; height: 24px; fill: #f59e0b; flex-shrink: 0; margin-top: 2px; }
     .upload-notice p { font-size: 0.95rem; color: #92400e; margin: 0; line-height: 1.5; }
     .btn-whatsapp { width: 100%; background: var(--wa); color: #fff; padding: 16px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); border: none; cursor: pointer; }
-    .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,211,102,.3); }
-    .btn-whatsapp:disabled { background: #cbd5e1; color: #64748b; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.8; }
+    .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); }
+    .btn-whatsapp:disabled { background: #cbd5e1; color: #64748b; cursor: not-allowed; transform: none; opacity: 0.8; }
     
     .reels-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
     .reels-section h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); text-align: center; }
     .reels-category { display: flex; gap: 16px; overflow-x: auto; padding: 10px 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .reels-category::-webkit-scrollbar { display: none; }
-    .reel-card { flex: 0 0 160px; height: 280px; border-radius: 16px; background: #000; position: relative; overflow: hidden; scroll-snap-align: start; cursor: pointer; box-shadow: var(--shadow); }
+    .reel-card { flex: 0 0 160px; height: 280px; border-radius: 16px; background: #000; position: relative; overflow: hidden; scroll-snap-align: start; cursor: pointer; }
     .reel-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
     .reel-card::after { content: '▶'; position: absolute; bottom: 16px; right: 16px; background: rgba(255,255,255,.9); color: var(--primary); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: .9rem; }
     .reel-card.playing::after { content: ''; }
-    .reel-card:hover { transform: scale(1.02); }
     .reel-title { position: absolute; bottom: 16px; left: 16px; right: 60px; color: #fff; font-size: .85rem; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,.8); }
     
     .modules { padding: 80px 0; background: #fff; }
@@ -121,7 +121,7 @@
     .faq-btn { width: 100%; padding: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; text-align: left; font-size: 1.05rem; color: var(--primary); background: #fff; border: none; cursor: pointer; }
     .faq-btn:hover { background: #f8fafc; }
     .faq-icon { width: 20px; height: 20px; position: relative; flex-shrink: 0; transition: transform 0.3s ease; }
-    .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: var(--accent); border-radius: 2px; transition: transform var(--transition); }
+    .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: var(--accent); border-radius: 2px; }
     .faq-icon::before { width: 14px; height: 2px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
     .faq-icon::after { width: 2px; height: 14px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
     .faq-item.active .faq-icon { transform: rotate(180deg); }
@@ -132,26 +132,25 @@
     .faq-content-inner strong { color: var(--primary); }
     
     footer { background: var(--primary); color: rgba(255,255,255,.9); padding: 60px 20px 30px; text-align: center; }
-    .footer-logo { width: 140px; height: auto; margin: 0 auto 20px; opacity: 1; image-rendering: -webkit-optimize-contrast; display: block; }
+    .footer-logo { width: 140px; height: auto; margin: 0 auto 20px; display: block; }
     .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 30px; }
     .footer-links a { color: #fff; font-weight: 500; }
+    
     .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 9999; text-decoration: none; }
-    .wa-btn { width: 60px; height: 60px; border-radius: 50%; background-color: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); position: relative; transition: transform 0.3s ease; }
-    .wa-btn:hover { transform: scale(1.1); }
+    .wa-btn { width: 60px; height: 60px; border-radius: 50%; background-color: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); position: relative; }
     .wa-btn svg { width: 32px; height: 32px; fill: #ffffff; }
     .pulse { position: absolute; inset: 0; border-radius: 50%; background: #25D366; animation: pulse 2s infinite; }
     @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.6); opacity: 0; } }
 
-    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
     .modal.active { display: flex; }
-    .modal-content { background: #fff; border-radius: var(--radius); max-width: 450px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+    .modal-content { background: #fff; border-radius: var(--radius); max-width: 450px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; }
     .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-light); line-height: 1; }
-    .modal-close:hover { color: var(--primary); }
     .size-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
     .size-form label { display: flex; flex-direction: column; gap: 0.5rem; font-weight: 600; color: var(--primary); font-size: 0.95rem; }
-    .size-form input, .size-form select { padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; transition: var(--transition); }
+    .size-form input, .size-form select { padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; }
     .size-form input:focus, .size-form select:focus { outline: none; border-color: var(--accent); }
-    .size-result { margin-top: 1.5rem; padding: 1.5rem; background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; text-align: center; animation: fade .4s ease; }
+    .size-result { margin-top: 1.5rem; padding: 1.5rem; background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; text-align: center; }
     .size-result h4 { color: #065f46; font-size: 1.2rem; margin-bottom: 0.5rem; }
     .size-result p { color: var(--text-light); margin: 0.5rem 0; font-size: 0.95rem; }
     .size-recommendation { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
@@ -164,7 +163,7 @@
       .products-grid { grid-template-columns: 1fr; }
       .reel-card { flex: 0 0 130px; height: 230px; }
     }
-    .status-msg { text-align: center; font-size: 0.9rem; margin-top: 0.8rem; font-weight: 600; transition: color 0.3s; }
+    .status-msg { text-align: center; font-size: 0.9rem; margin-top: 0.8rem; font-weight: 600; }
     .status-msg.pending { color: #b45309; }
     .status-msg.ready { color: #065f46; }
   </style>
@@ -206,29 +205,51 @@
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-personalizar" id="tab-personalizar">🎨 Personalizar</button>
       </div>
 
+      <!-- PANEL CALZADOS: AHORA CON UN SOLO PRODUCTO Y 9 FOTOS -->
       <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados">
         <div class="products-grid">
           <article class="card">
             <div class="card-img">
-              <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience Negras" class="main-img" id="res-black-main" width="600" height="400" loading="lazy">
+              <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience" class="main-img" id="res-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
-                <img src="zapatilla-negra-1.jpg" class="thumb active" onclick="cambiarImg('res-black-main', this)" width="50" height="50" loading="lazy">
-                <img src="zapatilla-negra-2.jpg" class="thumb" onclick="cambiarImg('res-black-main', this)" width="50" height="50" loading="lazy">
-                <img src="zapatilla-negra-3.jpg" class="thumb" onclick="cambiarImg('res-black-main', this)" width="50" height="50" loading="lazy">
+                <!-- Fotos Negras -->
+                <img src="zapatilla-negra-1.jpg" alt="Negro Vista 1" class="thumb active" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
+                <img src="zapatilla-negra-2.jpg" alt="Negro Vista 2" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
+                <img src="zapatilla-negra-3.jpg" alt="Negro Vista 3" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
+                <!-- Fotos Blancas -->
+                <img src="zapatilla-blanca-1.jpg" alt="Blanco Vista 1" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
+                <img src="zapatilla-blanca-2.jpg" alt="Blanco Vista 2" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
+                <img src="zapatilla-blanca-3.jpg" alt="Blanco Vista 3" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
+                <!-- Fotos Chocolate -->
+                <img src="zapatilla-chocolate-1.jpg" alt="Chocolate Vista 1" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
+                <img src="zapatilla-chocolate-2.jpg" alt="Chocolate Vista 2" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
+                <img src="zapatilla-chocolate-3.jpg" alt="Chocolate Vista 3" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">Nuevo</span>
+              <span class="badge">3 Colores Disponibles</span>
             </div>
             <div class="card-body">
-              <h3 class="card-title">Botitas Resilience Negras</h3>
+              <h3 class="card-title">Botitas Resilience</h3>
               <div class="price">$120.000</div>
-              <ul class="benefits"><li>Cuero calidad premium</li><li>Suela antideslizante</li><li>Comodidad todo el día</li></ul>
-              <div class="sizes" role="group"><button class="size-btn" aria-pressed="false">36</button><button class="size-btn" aria-pressed="false">37</button><button class="size-btn" aria-pressed="false">38</button><button class="size-btn" aria-pressed="false">39</button><button class="size-btn" aria-pressed="false">40</button></div>
+              <ul class="benefits">
+                <li>Cuero calidad premium</li>
+                <li>Suela antideslizante</li>
+                <li>Comodidad todo el día</li>
+                <li>Disponible en Negro, Blanco y Chocolate</li>
+              </ul>
+              <div class="sizes" role="group">
+                <button class="size-btn" aria-pressed="false">36</button>
+                <button class="size-btn" aria-pressed="false">37</button>
+                <button class="size-btn" aria-pressed="false">38</button>
+                <button class="size-btn" aria-pressed="false">39</button>
+                <button class="size-btn" aria-pressed="false">40</button>
+              </div>
               <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
-              <button class="add-cart" data-product="res-negra" data-price="120000">💳 Comprar ahora</button>
+              <button class="add-cart" data-product="resilience" data-price="120000">💳 Comprar ahora</button>
             </div>
           </article>
         </div>
+        
         <div class="reels-section">
           <h4>🎬 Reels de Calzados</h4>
           <div class="reels-category">
@@ -340,7 +361,7 @@
             <div class="summary-line"><span>Artículo:</span> <strong id="sum-articulo">-</strong></div>
             <div class="summary-line"><span>Talle / Medida:</span> <strong id="sum-talle">-</strong></div>
             <div class="summary-line"><span>Color:</span> <strong id="sum-color">No especificado</strong></div>
-            <div class="summary-line"><span>Diseño/Sello:</span> <strong id="sum-designo">Adjuntaré mi propia imagen</strong></div>
+            <div class="summary-line"><span>Diseño/Sello:</span> <strong id="sum-designo">Sin diseño seleccionado</strong></div>
             
             <div class="upload-notice">
               <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
@@ -379,7 +400,6 @@
 
         <div class="faq-category">
           <h3 class="faq-category-title">📏 Guías de Talle y Producto</h3>
-          
           <div class="faq-item">
             <button class="faq-btn" aria-expanded="false">¿Cómo elijo mi talle correcto? <span class="faq-icon"></span></button>
             <div class="faq-content"><div class="faq-content-inner">
@@ -389,143 +409,69 @@
                 <li><strong>Para Calzado:</strong> Medí el largo de tu pie desde el talón hasta el dedo más largo apoyándolo sobre una hoja. Sumá entre 0.5 cm y 1 cm para mayor comodidad y comparalo con la tabla.</li>
                 <li><strong>Para Indumentaria:</strong> Medí el contorno de tu pecho, cintura y cadera con una cinta métrica flexible sin ajustar.</li>
               </ul>
-              <p style="margin-top: 1rem;"><strong>¿Estás buscando el talle para un calzado, prenda o accesorio específico?</strong></p>
-              <p>Si me compartís qué producto te interesa, puedo ayudarte a identificar tu talle sugerido y asegurarnos de que todos los detalles de tu pedido sean perfectos para vos; para lograrlo junt@s comunicate directamente a nuestro <strong>Canal de Atención al Cliente vía WhatsApp</strong>.</p>
+              <p style="margin-top: 1rem;">Si me compartís qué producto te interesa, puedo ayudarte a identificar tu talle sugerido. Comunicate directamente a nuestro <strong>Canal de Atención al Cliente vía WhatsApp</strong>.</p>
             </div></div>
           </div>
-
           <div class="faq-item">
             <button class="faq-btn" aria-expanded="false">¿Las prendas/calzados son de calce chico, justo o grande? <span class="faq-icon"></span></button>
             <div class="faq-content"><div class="faq-content-inner">
-              <p>En <strong>Cv Calzados, Accesorios e Indumentaria</strong> confeccionamos nuestros productos utilizando tablas de talles y medidas estándar. Manejamos numeraciones convencionales y proporciones regulares para asegurar que cada Calzado o Prenda se adapte correctamente a la mayoría de nuestros clientes.</p>
-              <p style="margin-top: 1rem;">Al tratarse de artículos de moda y diseño, es fundamental asegurar el calce perfecto para evitar devoluciones o incomodidades.</p>
-              <p style="margin-top: 1rem;">Si te gustaría realizar un pedido o confirmar si el modelo que te interesa tiene las dimensiones ideales para vos, podés indicarnos directamente a nuestro <strong>Canal de Atención al Cliente WhatsApp</strong>:</p>
-              <ul>
-                <li>Qué tipo de producto estás buscando (botas, carteras, cintos, etc.).</li>
-                <li>El talle habitual que usás.</li>
-                <li>Si necesitás confirmar la longitud exacta en centímetros de la plantilla o el contorno.</li>
-              </ul>
-              <p>De esta forma, te asesoraremos para garantizar que tu elección sea la correcta. ¿Te gustaría consultar por algún modelo o artículo en particular?</p>
+              <p>En <strong>Cv</strong> confeccionamos nuestros productos utilizando tablas de talles y medidas estándar. Manejamos numeraciones convencionales y proporciones regulares.</p>
+              <p style="margin-top: 1rem;">Si te gustaría realizar un pedido o confirmar si el modelo que te interesa tiene las dimensiones ideales para vos, indicanos directamente a nuestro WhatsApp: el tipo de producto, tu talle habitual y si necesitás confirmar la longitud exacta en centímetros.</p>
             </div></div>
           </div>
-
           <div class="faq-item">
             <button class="faq-btn" aria-expanded="false">¿Cómo debo cuidar mis prendas y calzados para que duren más? <span class="faq-icon"></span></button>
             <div class="faq-content"><div class="faq-content-inner">
-              <p><strong>1. Prendas y calzados de Cuero</strong></p>
-              <ul>
-                <li><strong>Limpieza:</strong> Quita el polvo con un paño seco o cepillo suave. Para limpiar manchas, usa un paño ligeramente humedecido con agua y jabón neutro. Seca de inmediato.</li>
-                <li><strong>Hidratación:</strong> Aplica una capa fina de Silicona al agua (específica para cueros) o Crema hidratante neutra para cuero o pomada específica para mantener la flexibilidad y evitar grietas.</li>
-                <li><strong>Guardado:</strong> Cuelga las prendas en perchas anchas para mantener su forma. No uses fundas de plástico. Para el calzado, evitar guardar los calzados unos sobre otros porque los comprimen y deforman; se pueden rellenar con papel para que conserven su estructura.</li>
-              </ul>
-              <p style="margin-top: 1rem;"><strong>Prendas y calzados de Ecocuero (Cuero sintético)</strong></p>
-              <ul>
-                <li><strong>Limpieza:</strong> Pasa un paño suave y seco con regularidad. Evita el uso de alcohol o químicos abrasivos.</li>
-                <li><strong>Hidratación:</strong> Aplica una crema hidratante para piel sin perfume con un paño limpio para evitar que se reseque y cuartee.</li>
-                <li><strong>Guardado:</strong> ¡Nunca los guardes doblados ni apretados! El ecocuero tiende a descascararse si se pliega. Guarda siempre las prendas colgadas en perchas y en lugares ventilados.</li>
-              </ul>
-              <p style="margin-top: 1rem;"><strong>Prendas y calzados de Tela</strong></p>
-              <ul>
-                <li><strong>Lavado:</strong> Lava siempre con agua fría y del revés. Evita el uso permanente de blanqueadores y trata de no abusar del secarropas.</li>
-                <li><strong>Calzado:</strong> Los zapatos de tela pueden requerir una limpieza localizada (a mano) para no deformar su estructura o arruinar su suela.</li>
-                <li><strong>Secado:</strong> Seca las prendas colgadas a la sombra para preservar los colores originales.</li>
-              </ul>
-              <p style="margin-top: 1rem;"><strong>Cuidados Generales Adicionales</strong></p>
-              <ul>
-                <li><strong>Rotación y Ventilación:</strong> El calzado necesita rotación de modelo (pares) y una ventilación correcta para así evitar malos olores.</li>
-                <li><strong>Resolver la Humedad:</strong> Si se mojan, déjalos secar a temperatura ambiente. Nunca los pongas cerca de estufas, radiadores o al sol directo, ya que el calor extremo puede llegar a quemar o dañar los materiales.</li>
-              </ul>
+              <p><strong>Cuero:</strong> Quita el polvo con un paño seco. Para manchas, usa un paño ligeramente humedecido con agua y jabón neutro. Hidrata con crema específica para cuero. No uses fundas de plástico.</p>
+              <p style="margin-top: 1rem;"><strong>Ecocuero:</strong> Pasa un paño suave y seco. Evita alcohol. ¡Nunca los guardes doblados ni apretados! Guarda siempre colgados en perchas.</p>
+              <p style="margin-top: 1rem;"><strong>Tela:</strong> Lava siempre con agua fría y del revés. Seca las prendas colgadas a la sombra para preservar los colores originales.</p>
             </div></div>
           </div>
-
           <div class="faq-item">
             <button class="faq-btn" aria-expanded="false">¿Los accesorios son hipoalergénicos? <span class="faq-icon"></span></button>
             <div class="faq-content"><div class="faq-content-inner">
-              <p>En <strong>Cv</strong> para los Accesorios Dijes utilizamos resinas de Industria Argentina de alta calidad y están bien curadas (es decir, que han completado su proceso de polimerización química) y son inertes y entonces sí, los accesorios se vuelven seguros. En este estado, no liberan químicos, lo que los hace hipoalergénicos, y su naturaleza plástica los sella, volviéndolos impermeables al agua y al sudor.</p>
-              <p style="margin-top: 1rem;"><strong>Puntos clave de nuestros accesorios:</strong></p>
-              <ul>
-                <li><strong>Son hipoalergénicos:</strong> Al estar totalmente curadas, las resinas epoxi para joyería son aptas para pieles sensibles.</li>
-                <li><strong>Son impermeables:</strong> El sellado evita la absorción de humedad, protegiendo la pieza y garantizando que se puedan mojar.</li>
-                <li><strong>Tienen un acabado profesional:</strong> Este tratamiento de curado en la industria nacional suele aportar un brillo cristal y una gran resistencia a los impactos.</li>
-              </ul>
+              <p>Sí. Utilizamos resinas de Industria Argentina de alta calidad que están bien curadas (han completado su proceso de polimerización química). Son inertes, no liberan químicos, lo que los hace hipoalergénicos, y su naturaleza plástica los sella, volviéndolos impermeables al agua y al sudor.</p>
             </div></div>
           </div>
-
           <div class="faq-item">
             <button class="faq-btn" aria-expanded="false">¿Los accesorios de qué medida son? <span class="faq-icon"></span></button>
             <div class="faq-content"><div class="faq-content-inner">
-              <p>Las medidas exactas de los dijes para aros, pulseras, colgantes o hebillas para cintos y cinturones varían.</p>
-              <ul>
-                <li>Al ser una línea personalizable, los tamaños arrancan en mini dijes de <strong>1 cm</strong> y se extienden hasta piezas más grandes de <strong>2,5 cm a 10 cm</strong>.</li>
-                <li>Las dimensiones exactas del Accesorio Modelo siempre figuran en la descripción de la foto de cada producto de ésta, nuestra tienda oficial.</li>
-              </ul>
-              <p style="margin-top: 1rem;">Si necesitas ayuda o querés revisar las medidas de un modelo en particular, decime:</p>
-              <ul>
-                <li>¿Qué dije o diseño estás buscando?</li>
-                <li>¿Para qué tipo de accesorio lo necesitás (aros, pulsera, collar, hebilla para cinto, llavero, souvenirs, etc)?</li>
-              </ul>
-              <p>Puedo ayudarte a buscar el modelo exacto que necesitás o diseñamos lo que necesitás junt@s.</p>
+              <p>Al ser una línea personalizable, los tamaños arrancan en mini dijes de 1 cm y se extienden hasta piezas más grandes de 2,5 cm a 10 cm. Las dimensiones exactas figuran en la descripción de la foto de cada producto.</p>
             </div></div>
           </div>
-
           <div class="faq-item">
             <button class="faq-btn" aria-expanded="false">¿Qué genera la marca Cv en Branding visual y Merchandising? <span class="faq-icon"></span></button>
             <div class="faq-content"><div class="faq-content-inner">
-              <p>En <strong>CV</strong>, ubicado en Ciudadela, resolvemos también identidad visual desde la conceptualización gráfica. Diseñamos tu logo desde cero y te ofrecemos soluciones de impresión personalizadas para darle vida a tu marca, comercio, emprendimiento o banda musical.</p>
-              <p style="margin-top: 1rem;">Contamos con un servicio integral que te permite contar con el diseño y la producción en un mismo lugar:</p>
-              <ul>
-                <li><strong>Desarrollo de Identidad:</strong> Creación de logotipos, paleta de colores, tipografías y adaptaciones.</li>
-              </ul>
-              <p style="margin-top: 1rem;">En CV brindamos soluciones integrales en impresión, merchandising y textil. Personalizamos artículos con las imágenes, logotipos o diseños que necesites. Nuestro catálogo de productos incluye:</p>
-              <ul>
-                <li><strong>Textil:</strong> Estampado en Cuero: calzados, cintos, cinturones, pulseras, tarjeteros, carteras, bolsos de mano, etc.</li>
-                <li>Estampado para indumentaria y ropa personalizada.</li>
-                <li>Estampado sobre Accesorios: Aros, pulseras, collares y hebillas para cinto.</li>
-                <li>Estampados en Pines Prendedores Personalizados.</li>
-                <li>Estampados en Regalería: Llaveros y souvenirs a medida.</li>
-              </ul>
-              <p style="margin-top: 1rem;">Para brindarte una atención más profunda, detallada y darte un presupuesto exacto, cuéntanos:</p>
-              <ul>
-                <li>¿Qué producto específico necesitás personalizar?</li>
-                <li>¿Cuál es la cantidad de unidades requeridas?</li>
-                <li>¿Tenés el diseño listo o necesitás ayuda para armarlo?</li>
-              </ul>
-              <p>Te podemos asesorar inmediatamente sobre las opciones de materiales y tiempos de producción.</p>
+              <p>En CV, ubicado en Ciudadela, resolvemos identidad visual desde la conceptualización gráfica. Diseñamos tu logo desde cero y ofrecemos soluciones de impresión personalizadas.</p>
+              <p style="margin-top: 1rem;"><strong>Nuestro catálogo incluye:</strong> Estampado en Cuero (calzados, cintos, carteras), Indumentaria personalizada, Accesorios (aros, pulseras, hebillas), Pines Prendedores y Regalería (llaveros, souvenirs).</p>
             </div></div>
           </div>
         </div>
 
         <div class="faq-category">
           <h3 class="faq-category-title">🚚 Envíos y Entregas</h3>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cuáles son los métodos de envío y cuánto cuestan? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Cv utiliza las plataformas Andreani, OCA, Correo Argentino y mensajería privada. Los costos varían según el destino y el peso del paquete. Te informamos el costo exacto antes de confirmar tu pedido.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cuál es el tiempo de demora de mi pedido? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Los pedidos estándar se despachan en 3-5 días hábiles una vez confirmado el pago. El tiempo de entrega depende del destino (CABA/GBA: 2-4 días, Interior: 5-7 días). Los productos personalizados pueden requerir días adicionales de producción.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Realizan envíos internacionales o solo a todo el país? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Por el momento realizamos envíos únicamente dentro de Argentina.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Puedo hacer un seguimiento de mi compra? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>¡Sí! Una vez despachado tu pedido, te enviamos por WhatsApp el número de seguimiento y el enlace directo a la plataforma del correo.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Qué pasa si no hay nadie en mi domicilio al momento de la entrega? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>El correo realizará hasta 3 intentos de entrega. Si no se logra entregar, el paquete vuelve a sucursal y te contactaremos para coordinar un nuevo envío.</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cuáles son los métodos de envío? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Utilizamos Andreani, OCA, Correo Argentino y mensajería privada. Te informamos el costo exacto antes de confirmar tu pedido.</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cuál es el tiempo de demora? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Los pedidos estándar se despachan en 3-5 días hábiles. CABA/GBA: 2-4 días, Interior: 5-7 días. Los productos personalizados pueden requerir días adicionales.</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Hacen envíos internacionales? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Por el momento realizamos envíos únicamente dentro de Argentina.</p></div></div></div>
         </div>
 
         <div class="faq-category">
           <h3 class="faq-category-title">🔄 Cambios y Devoluciones</h3>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cuál es la política de cambios y devoluciones? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Aceptamos cambios dentro de los 10 días corridos desde la recepción, siempre que el producto esté en perfectas condiciones, sin uso y con sus etiquetas. <strong>Los productos personalizados NO tienen cambio ni devolución</strong>.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Tiene costo realizar un cambio de talle o modelo? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>El cambio es sin costo si el error fue nuestro. Si el cambio es por talle o preferencia personal, el costo del envío de devolución corre por cuenta del cliente.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cuál es el plazo máximo para realizar un cambio? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Tenés 10 días corridos desde la recepción del producto para solicitar un cambio.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cómo procedo si el producto llega con una falla o defecto? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Contactanos inmediatamente por WhatsApp con fotos del problema. Nos haremos cargo del reemplazo sin costo adicional y cubriremos los gastos de envío.</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cuál es la política de cambios? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Aceptamos cambios dentro de los 10 días corridos, siempre que el producto esté en perfectas condiciones, sin uso y con sus etiquetas. <strong>Los productos personalizados NO tienen cambio ni devolución</strong>.</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Tiene costo el cambio? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Es sin costo si el error fue nuestro. Si es por preferencia personal, el envío de devolución corre por cuenta del cliente.</p></div></div></div>
         </div>
 
         <div class="faq-category">
           <h3 class="faq-category-title">💳 Formas de Pago</h3>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cuáles son los medios de pago disponibles? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Aceptamos tarjetas de crédito y débito, Mercado Pago, Ualá Bis, transferencia bancaria y efectivo (solo para retiro en local).</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Ofrecen cuotas sin interés o descuento por transferencia? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>¡Sí! Ofrecemos hasta 12 cuotas sin interés con tarjetas seleccionadas y un 10% de descuento pagando con transferencia bancaria.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Es seguro comprar en esta página web? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Absolutamente. Nuestra web cuenta con certificado SSL y los pagos se procesan a través de plataformas certificadas como Ualá Bis y Mercado Pago.</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Medios de pago? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Tarjetas de crédito y débito, Mercado Pago, Ualá Bis, transferencia bancaria y efectivo (solo retiro en local).</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Cuotas o descuentos? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>¡Sí! Hasta 12 cuotas sin interés con tarjetas seleccionadas y 10% de descuento pagando con transferencia bancaria.</p></div></div></div>
         </div>
 
         <div class="faq-category">
           <h3 class="faq-category-title">🏪 Tienda y Stock</h3>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Tienen local físico para probarme los productos? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>¡Sí! Contamos con un showroom en Ciudadela, Buenos Aires. Horarios: Lunes a Viernes de 10:00 a 18:00 hs y Sábados de 10:00 a 14:00 hs. Te recomendamos coordinar tu visita por WhatsApp.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Qué hago si el producto que quiero está sin stock? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Contactanos por WhatsApp. Podemos reservarlo para vos cuando vuelva a estar disponible, ofrecerte alternativas similares o fabricarlo bajo pedido.</p></div></div></div>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Venden al por mayor? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Sí, ofrecemos precios especiales para compras al por mayor a partir de 10 unidades del mismo modelo. Contactanos por WhatsApp para acceder a nuestra lista mayorista.</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Tienen local físico? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>¡Sí! Showroom en Ciudadela, Buenos Aires. Lunes a Viernes de 10:00 a 18:00 hs y Sábados de 10:00 a 14:00 hs. Coordiná tu visita por WhatsApp.</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Venden al por mayor? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Sí, precios especiales a partir de 10 unidades del mismo modelo. Contactanos por WhatsApp para acceder a la lista mayorista.</p></div></div></div>
         </div>
-
       </div>
     </section>
   </main>
@@ -756,12 +702,9 @@
         }
         
         const colorText = color ? color : "No especificado (o incluido en el artículo)";
-
         const mensaje = `¡Hola Cv! 👋 Quiero hacer un pedido personalizado:%0A%0A` +
-                        `👕 *Artículo:* ${articulo}%0A` +
-                        `📏 *Talle / Medida:* ${talle}%0A` +
-                        `🎨 *Color:* ${colorText}%0A` +
-                        `🖼️ *Detalles de Impresión:* ${detalleDiseno}%0A%0A` +
+                        `👕 *Artículo:* ${articulo}%0A` + `📏 *Talle / Medida:* ${talle}%0A` +
+                        `🎨 *Color:* ${colorText}%0A` + `🖼️ *Detalles de Impresión:* ${detalleDiseno}%0A%0A` +
                         `📎 *ADJUNTO MI IMAGEN, FOTO O LOGO PARA IMPRIMIR EN ESTE MENSAJE.*%0A%0A` +
                         `¿Me podrían confirmar el precio final y el link de pago de Ualá Bis? ¡Gracias!`;
         window.open(`https://wa.me/5491176235960?text=${mensaje}`, '_blank');
