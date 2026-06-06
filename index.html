@@ -231,6 +231,7 @@
                 <li>Cuero calidad premium</li>
                 <li>Suela antideslizante</li>
                 <li>Comodidad todo el día</li>
+                <li>¿Probaste Plantillas Ergonòmicas?</li>
               </ul>
               <div class="sizes" role="group">
                 <button class="size-btn" aria-pressed="false">36</button>
@@ -245,10 +246,10 @@
             </div>
           </article>
 
-          <!-- PRODUCTO 2: PANTUBOTA -->
+          <!-- PRODUCTO 2: CONVERTIBLES TETÈ -->
           <article class="card">
             <div class="card-img">
-              <img src="Pantubota-bordo-1.jpg" alt="Pantubota Convertible" class="main-img" id="prod2-main" width="600" height="400" loading="lazy">
+              <img src="Pantubota-bordo-1.jpg" alt="Convertibles Tetè" class="main-img" id="prod2-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
                 <img src="Pantubota-bordo-1.jpg" alt="Bordo Vista 1" class="thumb active" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
                 <img src="Pantubota-bordo-2.jpg" alt="Bordo Vista 2" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
@@ -263,8 +264,8 @@
               <span class="badge">3 Colores</span>
             </div>
             <div class="card-body">
-              <h3 class="card-title">Pantubota Convertible</h3>
-              <div class="price">$00.000</div>
+              <h3 class="card-title">Convertibles Tetè</h3>
+              <div class="price">$90.000</div>
               <ul class="benefits">
                 <li>Modelo convertible Botas & Zapatillas</li>
                 <li>Cuero genuino exterior e interior suave</li>
@@ -280,7 +281,7 @@
               </div>
               <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
-              <button class="add-cart" data-product="pantubota" data-price="00000">💳 Comprar ahora</button>
+              <button class="add-cart" data-product="Convertibles Tetè" data-pago="https://pagar.ualabis.com.ar/order/42f1d5e17c39fa95eb68a36c4478ad0643068558b41a4f4b">💳 Comprar ahora</button>
             </div>
           </article>
         </div>
@@ -604,12 +605,22 @@
         });
       });
 
-      const linkPago = 'https://pagar.ualabis.com.ar/order/62d9c4728d2ab9d7b0c593492990e7ba2bce4c9265350f60';
-      document.querySelectorAll('.add-cart[data-product]').forEach(btn => {
+           // Lógica mejorada para múltiples links de pago
+      document.querySelectorAll('.add-cart').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
-          btn.disabled = true; btn.textContent = '🔗 Redirigiendo...';
-          setTimeout(() => { window.open(linkPago, '_blank', 'noopener,noreferrer'); btn.disabled = false; btn.textContent = '💳 Comprar ahora'; }, 300);
+          
+          // Toma el link del atributo data-pago. Si no existe, usa WhatsApp como respaldo.
+          const linkPago = btn.getAttribute('data-pago') || 'https://wa.me/5491176235960?text=Hola!%20Quiero%20comprar%20este%20producto%20y%20necesito%20el%20link%20de%20pago.';
+          
+          btn.disabled = true; 
+          btn.textContent = '🔗 Redirigiendo...';
+          
+          setTimeout(() => { 
+            window.open(linkPago, '_blank', 'noopener,noreferrer'); 
+            btn.disabled = false; 
+            btn.textContent = '💳 Comprar ahora'; 
+          }, 500);
         });
       });
 
