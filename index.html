@@ -25,7 +25,7 @@
     .skip-link { position: absolute; top: -100%; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 12px 24px; border-radius: 8px; z-index: 9999; }
     .skip-link:focus { top: 12px; }
     :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; width: 100%; }
     .section-title { font-size: clamp(1.75rem, 4vw, 2.2rem); font-weight: 800; text-align: center; margin-bottom: .5rem; color: var(--primary); }
     .section-sub { text-align: center; color: var(--text-light); margin-bottom: 2.5rem; max-width: 600px; margin-inline: auto; }
     
@@ -76,20 +76,45 @@
     .size-guide-btn { background: none; border: 2px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 8px; font-size: 0.9rem; width: 100%; }
     .size-guide-btn:hover { background: var(--accent); color: #fff; }
     
-    .configurator { background: #fff; border-radius: var(--radius); padding: 2rem; border: 1px solid var(--border); box-shadow: var(--shadow); max-width: 800px; margin: 0 auto; }
+    /* CORRECCIÓN DE DESENCUADRE EN PERSONALIZAR */
+    .configurator { 
+      background: #fff; 
+      border-radius: var(--radius); 
+      padding: 1.5rem; 
+      border: 1px solid var(--border); 
+      box-shadow: var(--shadow); 
+      max-width: 100%; 
+      width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
     .config-step { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
     .config-step:last-of-type { border-bottom: none; }
-    .config-step h4 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+    .config-step h4 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .config-step h4 span { background: var(--accent); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 0.9rem; flex-shrink: 0; }
-    .config-select, .config-textarea { width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; background: #fff; cursor: text; font-family: var(--font); }
+    .config-step p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; word-wrap: break-word; }
+    
+    .config-select, .config-textarea { 
+      width: 100%; 
+      padding: 14px; 
+      border: 2px solid var(--border); 
+      border-radius: 8px; 
+      font-size: 1rem; 
+      background: #fff; 
+      cursor: text; 
+      font-family: var(--font); 
+      box-sizing: border-box;
+      overflow-wrap: break-word;
+    }
     .config-select:focus, .config-textarea:focus { outline: none; border-color: var(--accent); }
     .config-select optgroup { font-weight: 700; color: var(--primary); font-style: normal; }
     .config-textarea { resize: vertical; min-height: 100px; }
     
-    .order-summary { background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; }
+    .order-summary { background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; padding: 1.5rem; margin-top: 1rem; overflow-wrap: break-word; }
     .order-summary h4 { color: #065f46; margin-bottom: 1rem; font-size: 1.2rem; }
-    .summary-line { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; border-bottom: 1px dashed #bbf7d0; padding-bottom: 4px; }
-    .summary-line strong { color: var(--primary); text-align: right; max-width: 60%; }
+    .summary-line { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; border-bottom: 1px dashed #bbf7d0; padding-bottom: 4px; flex-wrap: wrap; gap: 5px; }
+    .summary-line strong { color: var(--primary); text-align: right; max-width: 60%; word-wrap: break-word; }
     .upload-notice { background: #fffbeb; border: 2px solid #f59e0b; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: flex; gap: 12px; align-items: flex-start; }
     .upload-notice svg { width: 24px; height: 24px; fill: #f59e0b; flex-shrink: 0; margin-top: 2px; }
     .upload-notice p { font-size: 0.95rem; color: #92400e; margin: 0; line-height: 1.5; }
@@ -158,7 +183,7 @@
 
     @media (max-width: 768px) {
       .hamburger { display: flex; }
-      .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: #fff; flex-direction: column; padding: 80px 30px; gap: 1.5rem; box-shadow: -4px 0 20px rgba(0,0,0,.1); transition: right var(--transition); z-index: 100; }
+      .nav-links { position: fixed; top: 0; right: -100%; width: 85%; height: 100vh; background: #fff; flex-direction: column; padding: 80px 20px; gap: 1.5rem; box-shadow: -4px 0 20px rgba(0,0,0,.1); transition: right var(--transition); z-index: 100; }
       .nav-links.open { right: 0; } .nav-overlay.show { display: block; }
       .module-block { grid-template-columns: 1fr; gap: 1.5rem; } .module-block.reverse { direction: ltr; }
       .products-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -169,6 +194,7 @@
       .card-title { font-size: 1.1rem; }
       .price { font-size: 1.3rem; }
       .reel-card { flex: 0 0 130px; height: 230px; flex-shrink: 0; }
+      .configurator { padding: 1rem; }
     }
     .status-msg { text-align: center; font-size: 0.9rem; margin-top: 0.8rem; font-weight: 600; }
     .status-msg.pending { color: #b45309; }
@@ -214,8 +240,6 @@
 
       <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados">
         <div class="products-grid">
-          
-          <!-- PRODUCTO 1: BOTITAS RESILIENCE -->
           <article class="card">
             <div class="card-img">
               <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience" class="main-img" id="res-main" width="600" height="400" loading="lazy">
@@ -238,6 +262,7 @@
               <ul class="benefits">
                 <li>Cuero calidad premium</li>
                 <li>Suela antideslizante</li>
+                <li>Plantilla Ergonòmica</li>
                 <li>Comodidad todo el día</li>
               </ul>
               <div class="sizes" role="group">
@@ -253,10 +278,9 @@
             </div>
           </article>
 
-          <!-- PRODUCTO 2: PANTUBOTA -->
           <article class="card">
             <div class="card-img">
-              <img src="Pantubota-bordo-1.jpg" alt="Pantubota Convertible" class="main-img" id="prod2-main" width="600" height="400" loading="lazy">
+              <img src="Pantubota-bordo-1.jpg" alt="Convertibles Tetè" class="main-img" id="prod2-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
                 <img src="Pantubota-bordo-1.jpg" alt="Bordo Vista 1" class="thumb active" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
                 <img src="Pantubota-bordo-2.jpg" alt="Bordo Vista 2" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
@@ -268,10 +292,10 @@
                 <img src="Pantubota-verdeazulada-2.jpg" alt="Verdeazulada Vista 2" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
                 <img src="Pantubota-verdeazulada-3.jpg" alt="Verdeazulada Vista 3" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">Estilo</span>
+              <span class="badge">Sensacional Oferta!</span>
             </div>
             <div class="card-body">
-              <h3 class="card-title">Pantubota Convertible</h3>
+              <h3 class="card-title">Convertibles Tetè</h3>
               <div class="price">$90.000</div>
               <ul class="benefits">
                 <li>Modelo convertible Botas & Zapatillas</li>
@@ -288,12 +312,10 @@
               </div>
               <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
-              <!-- REEMPLAZÁ "TU_CODIGO_AQUI" POR TU LINK REAL DE UALÁ -->
-              <button class="add-cart" data-product="pantubota" data-pago="https://pagar.ualabis.com.ar/order/42f1d5e17c39fa95eb68a36c4478ad0643068558b41a4f4b">💳 Comprar ahora</button>
+              <button class="add-cart" data-product="convertible" data-pago="https://pagar.ualabis.com.ar/order/42f1d5e17c39fa95eb68a36c4478ad0643068558b41a4f4b">💳 Comprar ahora</button>
             </div>
           </article>
 
-          <!-- PRODUCTO 3: GUILLES MULTI-OUTFITS -->
           <article class="card">
             <div class="card-img">
               <img src="guillermina-1.png" alt="Guilles multi-outfits" class="main-img" id="prod3-main" width="600" height="400" loading="lazy">
@@ -312,7 +334,7 @@
                 <img src="guillermina-13.png" alt="Vista 12" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
                 <img src="guillermina-14.png" alt="Vista 13" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">Confort</span>
+              <span class="badge">Estilo</span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Guilles multi-outfits</h3>
@@ -335,30 +357,14 @@
               <button class="add-cart" data-product="guilles" data-pago="https://pagar.ualabis.com.ar/order/9a9a64825bd275bd56c7283c9f774dd5f917931711d3550e?">💳 Comprar ahora</button>
             </div>
           </article>
-
         </div>
         
         <div class="reels-section">
           <h4>🎬 Reels de Calzados</h4>
           <div class="reels-category">
-            <div class="reel-card">
-              <video preload="metadata" poster="zapatilla-negra-1.jpg" muted playsinline loop>
-                <source src="reel-calzados-1.mp4" type="video/mp4">
-              </video>
-              <span class="reel-title">En acción</span>
-            </div>
-            <div class="reel-card">
-              <video preload="metadata" poster="zapatilla-negra-2.jpg" muted playsinline loop>
-                <source src="reel-calzados-2.mp4" type="video/mp4">
-              </video>
-              <span class="reel-title">Detalles</span>
-            </div>
-            <div class="reel-card">
-              <video preload="metadata" poster="zapatilla-negra-3.jpg" muted playsinline loop>
-                <source src="reel-calzados-3.mp4" type="video/mp4">
-              </video>
-              <span class="reel-title">Comodidad</span>
-            </div>
+            <div class="reel-card"><video preload="metadata" poster="zapatilla-negra-1.jpg" muted playsinline loop><source src="reel-calzados-1.mp4" type="video/mp4"></video><span class="reel-title">En acción</span></div>
+            <div class="reel-card"><video preload="metadata" poster="zapatilla-negra-2.jpg" muted playsinline loop><source src="reel-calzados-2.mp4" type="video/mp4"></video><span class="reel-title">Detalles</span></div>
+            <div class="reel-card"><video preload="metadata" poster="zapatilla-negra-3.jpg" muted playsinline loop><source src="reel-calzados-3.mp4" type="video/mp4"></video><span class="reel-title">Comodidad</span></div>
           </div>
         </div>
       </div>
@@ -422,10 +428,71 @@
             <h4><span>1</span> Elegí el Artículo Base (Obligatorio)</h4>
             <select class="config-select" id="conf-articulo" onchange="actualizarTalles()">
               <option value="">Seleccioná una opción...</option>
-              <optgroup label="👟 Calzados"><option value="Artículo 001">Artículo 001</option><option value="Artículo 002">Artículo 002</option><option value="Artículo 003">Artículo 003</option></optgroup>
-              <optgroup label="👕 Indumentaria Infantil"><option value="Remera Infantil Unisex Blanca">Remera Infantil Unisex Blanca</option><option value="Remera Infantil Unisex Gris">Remera Infantil Unisex Gris</option><option value="Remera Infantil Unisex Amarilla">Remera Infantil Unisex Amarilla</option><option value="Remera Infantil Unisex Rosa">Remera Infantil Unisex Rosa</option><option value="Remera Infantil Unisex Negra">Remera Infantil Unisex Negra</option><option value="Remera Infantil Unisex Celeste">Remera Infantil Unisex Celeste</option></optgroup>
-              <optgroup label="👕 Indumentaria Adultos"><option value="Remera Clásica Man Blanca">Remera Clásica Man Blanca</option><option value="Remera Clásica Man Negra">Remera Clásica Man Negra</option><option value="Remera Clásica Woman Blanca">Remera Clásica Woman Blanca</option><option value="Remera Clásica Woman Negra">Remera Clásica Woman Negra</option><option value="Remera Oversize Blanca">Remera Oversize Blanca</option><option value="Remera Oversize Negra">Remera Oversize Negra</option><option value="Remera Oversize Stone Wash">Remera Oversize Stone Wash</option><option value="Buzo Hoodie Negro">Buzo Hoodie Negro</option><option value="Buzo Hoodie Blanco">Buzo Hoodie Blanco</option><option value="Buzo Hoodie Stone Wash">Buzo Hoodie Stone Wash</option><option value="Buzo Cuello Redondo Negro">Buzo Cuello Redondo Negro</option><option value="Buzo Cuello Redondo Blanco">Buzo Cuello Redondo Blanco</option><option value="Buzo Cuello Redondo Stone Wash">Buzo Cuello Redondo Stone Wash</option></optgroup>
-              <optgroup label="👜 Accesorios"><option value="Dije Aro Circular">Dije Aro Circular</option><option value="Dije Aro Cuadrado">Dije Aro Cuadrado</option><option value="Dije Aro Rectangular">Dije Aro Rectangular</option><option value="Dije Aro Triangular">Dije Aro Triangular</option><option value="Dije Aro Triangular invertido">Dije Aro Triangular invertido</option><option value="Dije Aro Forma de gota">Dije Aro Forma de gota</option><option value="Dije Aro Rombo">Dije Aro Rombo</option><option value="Dije Aro Hexágono">Dije Aro Hexágono</option><option value="Dije Aro Estrella">Dije Aro Estrella</option><option value="Dije Aro Corazón">Dije Aro Corazón</option><option value="Dije Aro Púa (musical)">Dije Aro Púa (musical)</option><option value="Dije Colgante Púa (musical)">Dije Colgante Púa (musical)</option><option value="Dije Colgante Circular">Dije Colgante Circular</option><option value="Dije Colgante Cuadrado">Dije Colgante Cuadrado</option><option value="Dije Colgante Rectangular">Dije Colgante Rectangular</option><option value="Dije Colgante Triangular">Dije Colgante Triangular</option><option value="Dije Colgante Triangular invertido">Dije Colgante Triangular invertido</option><option value="Dije Colgante Forma de gota">Dije Colgante Forma de gota</option><option value="Dije Colgante Rombo">Dije Colgante Rombo</option><option value="Dije Colgante Hexágono">Dije Colgante Hexágono</option><option value="Dije Colgante Estrella">Dije Colgante Estrella</option><option value="Dije Colgante Corazón">Dije Colgante Corazón</option><option value="Dije Pulsera Circular">Dije Pulsera Circular</option><option value="Dije Pulsera Cuadrado">Dije Pulsera Cuadrado</option><option value="Hebilla de Cinto Circular">Hebilla de Cinto Circular</option><option value="Hebilla de Cinto Cuadrado">Hebilla de Cinto Cuadrado</option><option value="Hebilla de Cinto Rectangular">Hebilla de Cinto Rectangular</option><option value="Hebilla de Cinto Rombo">Hebilla de Cinto Rombo</option><option value="Hebilla de Cinto Hexágono">Hebilla de Cinto Hexágono</option><option value="Hebilla de Cinto Estrella">Hebilla de Cinto Estrella</option><option value="Hebilla de Cinto Corazón">Hebilla de Cinto Corazón</option><option value="Prendedor Pin 3.8 cm">Prendedor Pin 3.8 cm</option></optgroup>
+              <optgroup label="👟 Calzados">
+                <option value="Botitas Resilience">1- Botitas Resilience</option>
+                <option value="Convertibles Tetè">2- Convertibles Tetè</option>
+                <option value="Guilles multi-outfits">3- Guilles multi-outfits</option>
+                <option value="Borcegos Kam">4- Borcegos Kam</option>
+                <option value="Zapatillas Confort">5- Zapatillas Confort</option>
+                <option value="Borcegos Símbolos">6- Borcegos Símbolos</option>
+              </optgroup>
+              <optgroup label="👕 Indumentaria Infantil">
+                <option value="Remera Infantil Unisex Blanca">Remera Infantil Unisex Blanca</option>
+                <option value="Remera Infantil Unisex Gris">Remera Infantil Unisex Gris</option>
+                <option value="Remera Infantil Unisex Amarilla">Remera Infantil Unisex Amarilla</option>
+                <option value="Remera Infantil Unisex Rosa">Remera Infantil Unisex Rosa</option>
+                <option value="Remera Infantil Unisex Negra">Remera Infantil Unisex Negra</option>
+                <option value="Remera Infantil Unisex Celeste">Remera Infantil Unisex Celeste</option>
+              </optgroup>
+              <optgroup label="👕 Indumentaria Adultos">
+                <option value="Remera Clásica Man Blanca">Remera Clásica Man Blanca</option>
+                <option value="Remera Clásica Man Negra">Remera Clásica Man Negra</option>
+                <option value="Remera Clásica Woman Blanca">Remera Clásica Woman Blanca</option>
+                <option value="Remera Clásica Woman Negra">Remera Clásica Woman Negra</option>
+                <option value="Remera Oversize Blanca">Remera Oversize Blanca</option>
+                <option value="Remera Oversize Negra">Remera Oversize Negra</option>
+                <option value="Remera Oversize Stone Wash">Remera Oversize Stone Wash</option>
+                <option value="Buzo Hoodie Negro">Buzo Hoodie Negro</option>
+                <option value="Buzo Hoodie Blanco">Buzo Hoodie Blanco</option>
+                <option value="Buzo Hoodie Stone Wash">Buzo Hoodie Stone Wash</option>
+                <option value="Buzo Cuello Redondo Negro">Buzo Cuello Redondo Negro</option>
+                <option value="Buzo Cuello Redondo Blanco">Buzo Cuello Redondo Blanco</option>
+                <option value="Buzo Cuello Redondo Stone Wash">Buzo Cuello Redondo Stone Wash</option>
+              </optgroup>
+              <optgroup label="👜 Accesorios">
+                <option value="Dije Aro Circular">Dije Aro Circular</option>
+                <option value="Dije Aro Cuadrado">Dije Aro Cuadrado</option>
+                <option value="Dije Aro Rectangular">Dije Aro Rectangular</option>
+                <option value="Dije Aro Triangular">Dije Aro Triangular</option>
+                <option value="Dije Aro Triangular invertido">Dije Aro Triangular invertido</option>
+                <option value="Dije Aro Forma de gota">Dije Aro Forma de gota</option>
+                <option value="Dije Aro Rombo">Dije Aro Rombo</option>
+                <option value="Dije Aro Hexágono">Dije Aro Hexágono</option>
+                <option value="Dije Aro Estrella">Dije Aro Estrella</option>
+                <option value="Dije Aro Corazón">Dije Aro Corazón</option>
+                <option value="Dije Aro Púa (musical)">Dije Aro Púa (musical)</option>
+                <option value="Dije Colgante Púa (musical)">Dije Colgante Púa (musical)</option>
+                <option value="Dije Colgante Circular">Dije Colgante Circular</option>
+                <option value="Dije Colgante Cuadrado">Dije Colgante Cuadrado</option>
+                <option value="Dije Colgante Rectangular">Dije Colgante Rectangular</option>
+                <option value="Dije Colgante Triangular">Dije Colgante Triangular</option>
+                <option value="Dije Colgante Triangular invertido">Dije Colgante Triangular invertido</option>
+                <option value="Dije Colgante Forma de gota">Dije Colgante Forma de gota</option>
+                <option value="Dije Colgante Rombo">Dije Colgante Rombo</option>
+                <option value="Dije Colgante Hexágono">Dije Colgante Hexágono</option>
+                <option value="Dije Colgante Estrella">Dije Colgante Estrella</option>
+                <option value="Dije Colgante Corazón">Dije Colgante Corazón</option>
+                <option value="Dije Pulsera Circular">Dije Pulsera Circular</option>
+                <option value="Dije Pulsera Cuadrado">Dije Pulsera Cuadrado</option>
+                <option value="Hebilla de Cinto Circular">Hebilla de Cinto Circular</option>
+                <option value="Hebilla de Cinto Cuadrado">Hebilla de Cinto Cuadrado</option>
+                <option value="Hebilla de Cinto Rectangular">Hebilla de Cinto Rectangular</option>
+                <option value="Hebilla de Cinto Rombo">Hebilla de Cinto Rombo</option>
+                <option value="Hebilla de Cinto Hexágono">Hebilla de Cinto Hexágono</option>
+                <option value="Hebilla de Cinto Estrella">Hebilla de Cinto Estrella</option>
+                <option value="Hebilla de Cinto Corazón">Hebilla de Cinto Corazón</option>
+                <option value="Prendedor Pin 3.8 cm">Prendedor Pin 3.8 cm</option>
+              </optgroup>
             </select>
           </div>
 
@@ -449,13 +516,13 @@
 
           <div class="config-step">
             <h4><span>4</span> Elegí en la Pestaña Estampas la/las Imágenes a Imprimir (Opcional)</h4>
-            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">Encontrarás en la <strong>"Pestaña Estampas"</strong> una numeración en cada una de las Imágenes elegidas (por ejemplo: "Diseño 003"). Escribí el número exacto de tu o tus estampas elegidas y dónde querés la impresión (en el frente, en la espalda, o en las dos).</p>
+            <p>Encontrarás en la <strong>"Pestaña Estampas"</strong> una numeración en cada una de las Imágenes elegidas (por ejemplo: "Diseño 003"). Escribí el número exacto de tu o tus estampas elegidas y dónde querés la impresión (en el frente, en la espalda, o en las dos).</p>
             <textarea class="config-textarea" id="conf-diseno" placeholder="Ejemplo: Diseño 003 en el frente del buzo, Diseño 001 en la espalda" onchange="checkFormValidity()"></textarea>
           </div>
 
           <div class="config-step">
             <h4><span>5</span> Elegí en la Pestaña Estampas el Sello a Imprimir (Opcional)</h4>
-            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">Encontrarás en la <strong>"Pestaña Estampas"</strong> una numeración en cada uno de los Sellos elegidos (por ejemplo: "Sello 002"). Escribí el número exacto de tu Sello elegido y cómo querés ver plasmada la impresión.</p>
+            <p>Encontrarás en la <strong>"Pestaña Estampas"</strong> una numeración en cada uno de los Sellos elegidos (por ejemplo: "Sello 002"). Escribí el número exacto de tu Sello elegido y cómo querés ver plasmada la impresión.</p>
             <textarea class="config-textarea" id="conf-sello" placeholder="Ejemplo: Sello 002 en el lado izquierdo del pecho" onchange="checkFormValidity()"></textarea>
           </div>
 
@@ -750,8 +817,9 @@
         const talleSelect = document.getElementById('conf-talle');
         talleSelect.innerHTML = ''; 
         let opciones = talleDB.accesorios_pequenos; 
-        if (articulo.includes('Artículo 00')) opciones = talleDB.calzados;
-        else if (articulo.includes('Infantil')) opciones = talleDB.infantil;
+        if (articulo.includes('Artículo 00') || articulo.includes('Botitas') || articulo.includes('Convertibles') || articulo.includes('Guilles') || articulo.includes('Borcegos') || articulo.includes('Zapatillas')) {
+            opciones = talleDB.calzados;
+        } else if (articulo.includes('Infantil')) opciones = talleDB.infantil;
         else if (articulo.includes('Remera') && !articulo.includes('Infantil')) opciones = talleDB.remera_adulto;
         else if (articulo.includes('Buzo')) opciones = talleDB.buzo_adulto;
         else if (articulo.includes('Pulsera')) opciones = talleDB.pulsera;
@@ -795,6 +863,7 @@
         }
       };
 
+      // CORRECCIÓN DE EMOJIS EN WHATSAPP: Usamos encodeURIComponent en toda la cadena
       window.sendWhatsAppOrder = function() {
         const articulo = document.getElementById('conf-articulo').value;
         const talle = document.getElementById('conf-talle').value;
@@ -810,12 +879,11 @@
         }
         
         const colorText = color ? color : "No especificado (o incluido en el artículo)";
-        const mensaje = `¡Hola Cv! 👋 Quiero hacer un pedido personalizado:%0A%0A` +
-                        `👕 *Artículo:* ${articulo}%0A` + `📏 *Talle / Medida:* ${talle}%0A` +
-                        `🎨 *Color:* ${colorText}%0A` + `🖼️ *Detalles de Impresión:* ${detalleDiseno}%0A%0A` +
-                        `📎 *ADJUNTO MI IMAGEN, FOTO O LOGO PARA IMPRIMIR EN ESTE MENSAJE.*%0A%0A` +
-                        `¿Me podrían confirmar el precio final y el link de pago de Ualá Bis? ¡Gracias!`;
-        window.open(`https://wa.me/5491176235960?text=${mensaje}`, '_blank');
+        
+        // Usamos \n para saltos de línea reales y dejamos que encodeURIComponent maneje los emojis perfectamente
+        const mensaje = `¡Hola Cv! 👋 Quiero hacer un pedido personalizado:\n\n👕 *Artículo:* ${articulo}\n📏 *Talle / Medida:* ${talle}\n🎨 *Color:* ${colorText}\n🖼️ *Detalles de Impresión:* ${detalleDiseno}\n\n📎 *ADJUNTO MI IMAGEN, FOTO O LOGO PARA IMPRIMIR EN ESTE MENSAJE.*\n\n¿Me podrían confirmar el precio final y el link de pago de Ualá Bis? ¡Gracias!`;
+        
+        window.open(`https://wa.me/5491176235960?text=${encodeURIComponent(mensaje)}`, '_blank');
       };
 
       document.querySelectorAll('.faq-btn').forEach(btn => {
