@@ -76,37 +76,14 @@
     .size-guide-btn { background: none; border: 2px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 8px; font-size: 0.9rem; width: 100%; }
     .size-guide-btn:hover { background: var(--accent); color: #fff; }
     
-    /* CORRECCIÓN DE DESENCUADRE EN PERSONALIZAR */
-    .configurator { 
-      background: #fff; 
-      border-radius: var(--radius); 
-      padding: 1.5rem; 
-      border: 1px solid var(--border); 
-      box-shadow: var(--shadow); 
-      max-width: 100%; 
-      width: 100%;
-      box-sizing: border-box;
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-    }
+    .configurator { background: #fff; border-radius: var(--radius); padding: 1.5rem; border: 1px solid var(--border); box-shadow: var(--shadow); max-width: 100%; width: 100%; box-sizing: border-box; overflow-wrap: break-word; word-wrap: break-word; }
     .config-step { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
     .config-step:last-of-type { border-bottom: none; }
     .config-step h4 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .config-step h4 span { background: var(--accent); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 0.9rem; flex-shrink: 0; }
     .config-step p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; word-wrap: break-word; }
     
-    .config-select, .config-textarea { 
-      width: 100%; 
-      padding: 14px; 
-      border: 2px solid var(--border); 
-      border-radius: 8px; 
-      font-size: 1rem; 
-      background: #fff; 
-      cursor: text; 
-      font-family: var(--font); 
-      box-sizing: border-box;
-      overflow-wrap: break-word;
-    }
+    .config-select, .config-textarea { width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; background: #fff; cursor: text; font-family: var(--font); box-sizing: border-box; overflow-wrap: break-word; }
     .config-select:focus, .config-textarea:focus { outline: none; border-color: var(--accent); }
     .config-select optgroup { font-weight: 700; color: var(--primary); font-style: normal; }
     .config-textarea { resize: vertical; min-height: 100px; }
@@ -262,7 +239,7 @@
               <ul class="benefits">
                 <li>Cuero calidad premium</li>
                 <li>Suela antideslizante</li>
-                <li>Plantilla Ergonòmica</li>
+                <li>Plantilla Ergonómica</li>
                 <li>Comodidad todo el día</li>
               </ul>
               <div class="sizes" role="group">
@@ -328,11 +305,12 @@
                 <img src="guillermina-6.png" alt="Vista 6" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
                 <img src="guillermina-7.png" alt="Vista 7" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
                 <img src="guillermina-8.png" alt="Vista 8" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
-                <img src="guillermina-10.png" alt="Vista 9" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
-                <img src="guillermina-11.png" alt="Vista 10" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
-                <img src="guillermina-12.png" alt="Vista 11" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
-                <img src="guillermina-13.png" alt="Vista 12" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
-                <img src="guillermina-14.png" alt="Vista 13" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
+                <img src="guillermina-9.png" alt="Vista 9" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
+                <img src="guillermina-10.png" alt="Vista 10" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
+                <img src="guillermina-11.png" alt="Vista 11" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
+                <img src="guillermina-12.png" alt="Vista 12" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
+                <img src="guillermina-13.png" alt="Vista 13" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
+                <img src="guillermina-14.png" alt="Vista 14" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
               </div>
               <span class="badge">Estilo</span>
             </div>
@@ -401,19 +379,19 @@
           <div style="margin-bottom: 4rem;">
             <h4 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem; text-align: center; border-bottom: 3px solid var(--accent); display: inline-block; padding-bottom: 0.5rem; width: 100%;">🖼️ Imágenes</h4>
             <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
-              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/diseno-001.jpg" alt="Diseño 001" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Diseño #001</p></div>
-              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/diseno-002.jpg" alt="Diseño 002" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Diseño #002</p></div>
-              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/diseno-003.jpg" alt="Diseño 003" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Diseño #003</p></div>
-              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/diseno-004.jpg" alt="Diseño 004" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Diseño #004</p></div>
+              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/diseno-001.jpg" alt="Diseño 001" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Diseño 001</p></div>
+              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/diseno-002.jpg" alt="Diseño 002" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Diseño 002</p></div>
+              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/diseno-003.jpg" alt="Diseño 003" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Diseño 003</p></div>
+              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/diseno-004.jpg" alt="Diseño 004" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Diseño 004</p></div>
             </div>
           </div>
           <div>
             <h4 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem; text-align: center; border-bottom: 3px solid var(--accent); display: inline-block; padding-bottom: 0.5rem; width: 100%;">🔖 Sellos</h4>
             <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
-              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/sello-001.jpg" alt="Sello 001" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Sello #001</p></div>
-              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/sello-002.jpg" alt="Sello 002" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Sello #002</p></div>
-              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/sello-003.jpg" alt="Sello 003" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Sello #003</p></div>
-              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/sello-004.jpg" alt="Sello 004" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Sello #004</p></div>
+              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/sello-001.jpg" alt="Sello 001" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Sello 001</p></div>
+              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/sello-002.jpg" alt="Sello 002" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Sello 002</p></div>
+              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/sello-003.jpg" alt="Sello 003" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Sello 003</p></div>
+              <div class="card" style="text-align: center; padding: 1rem;"><img src="imagenes/sello-004.jpg" alt="Sello 004" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; background: #f1f5f9;"><p style="font-weight: 700; color: var(--primary);">Sello 004</p></div>
             </div>
           </div>
         </div>
@@ -639,7 +617,7 @@
 
         <div class="faq-category">
           <h3 class="faq-category-title">🏪 Tienda y Stock</h3>
-          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Tienen local físico? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>¡Sí! Showroom en Ciudadela, Buenos Aires. Lunes a Viernes de 10:00 a 18:00 hs y Sábados de 10:00 a 14:00 hs. Coordiná tu visita por WhatsApp.</p></div></div></div>
+          <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Tienen local físico? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>¡Sí! Showroom en Ciudadela, Buenos Aires. <strong>Lunes a Sábados de 11:00 a 19:00 hs</strong>. Coordiná tu visita por WhatsApp.</p></div></div></div>
           <div class="faq-item"><button class="faq-btn" aria-expanded="false">¿Venden al por mayor? <span class="faq-icon"></span></button><div class="faq-content"><div class="faq-content-inner"><p>Sí, precios especiales a partir de 10 unidades del mismo modelo. Contactanos por WhatsApp para acceder a la lista mayorista.</p></div></div></div>
         </div>
       </div>
@@ -806,7 +784,7 @@
         calzados: ["33", "34", "35", "36", "37", "38", "39", "40"],
         infantil: ["4", "6", "8", "10", "12", "14", "16"],
         remera_adulto: ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"],
-        buzo_adulto: ["XS", "S", "M", "L", "XL"],
+        buzo_adulto: ["XS", "S", "M", "L", "XL", "XXL"],
         pulsera: ["Fino (5-10mm) - Mujer S/M", "Fino (5-10mm) - Mujer L/XL", "Fino (5-10mm) - Hombre S/M", "Fino (5-10mm) - Hombre L/XL", "Medio (10-20mm) - Mujer S/M", "Medio (10-20mm) - Mujer L/XL", "Medio (10-20mm) - Hombre S/M", "Medio (10-20mm) - Hombre L/XL", "Ancho (20-50mm) - Mujer S/M", "Ancho (20-50mm) - Mujer L/XL", "Ancho (20-50mm) - Hombre S/M", "Ancho (20-50mm) - Hombre L/XL"],
         cinto: ["Mujer Clásico/Jeans (2.0-3.5cm) - Talle XS (90-95cm)", "Mujer Clásico/Jeans (2.0-3.5cm) - Talle S (100cm)", "Mujer Clásico/Jeans (2.0-3.5cm) - Talle M (105cm)", "Mujer Clásico/Jeans (2.0-3.5cm) - Talle L (110cm)", "Mujer Clásico/Jeans (2.0-3.5cm) - Talle XL (115-120cm)", "Mujer Fino/Fiesta (1.0-2.0cm) - Talle XS (90-95cm)", "Mujer Fino/Fiesta (1.0-2.0cm) - Talle S (100cm)", "Mujer Fino/Fiesta (1.0-2.0cm) - Talle M (105cm)", "Mujer Fino/Fiesta (1.0-2.0cm) - Talle L (110cm)", "Mujer Fino/Fiesta (1.0-2.0cm) - Talle XL (115-120cm)", "Hombre Formal (2.5-3.5cm) - Talle 85-90cm", "Hombre Formal (2.5-3.5cm) - Talle 95-100cm", "Hombre Formal (2.5-3.5cm) - Talle 105-110cm", "Hombre Formal (2.5-3.5cm) - Talle 115-120cm", "Hombre Casual (3.5-4.0cm) - Talle 85-90cm", "Hombre Casual (3.5-4.0cm) - Talle 95-100cm", "Hombre Casual (3.5-4.0cm) - Talle 105-110cm", "Hombre Casual (3.5-4.0cm) - Talle 115-120cm"],
         accesorios_pequenos: ["Único / Estándar"]
@@ -863,7 +841,6 @@
         }
       };
 
-      // CORRECCIÓN DE EMOJIS EN WHATSAPP: Usamos encodeURIComponent en toda la cadena
       window.sendWhatsAppOrder = function() {
         const articulo = document.getElementById('conf-articulo').value;
         const talle = document.getElementById('conf-talle').value;
@@ -880,7 +857,6 @@
         
         const colorText = color ? color : "No especificado (o incluido en el artículo)";
         
-        // Usamos \n para saltos de línea reales y dejamos que encodeURIComponent maneje los emojis perfectamente
         const mensaje = `¡Hola Cv! 👋 Quiero hacer un pedido personalizado:\n\n👕 *Artículo:* ${articulo}\n📏 *Talle / Medida:* ${talle}\n🎨 *Color:* ${colorText}\n🖼️ *Detalles de Impresión:* ${detalleDiseno}\n\n📎 *ADJUNTO MI IMAGEN, FOTO O LOGO PARA IMPRIMIR EN ESTE MENSAJE.*\n\n¿Me podrían confirmar el precio final y el link de pago de Ualá Bis? ¡Gracias!`;
         
         window.open(`https://wa.me/5491176235960?text=${encodeURIComponent(mensaje)}`, '_blank');
