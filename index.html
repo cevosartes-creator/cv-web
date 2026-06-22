@@ -53,10 +53,11 @@
     .tab-panel:not([hidden]) { display: block; }
     @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    .products-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
     .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); width: 100%; max-width: 100%; }
     .card-img { position: relative; background: #f1f5f9; width: 100%; }
-    .main-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; display: block; background: #f8fafc; aspect-ratio: 4/3; }
+    .main-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; display: block; background: #f8fafc; aspect-ratio: 4/3; cursor: grab; user-select: none; }
+    .main-img:active { cursor: grabbing; }
     .img-thumbs { display: flex; gap: 8px; padding: 10px; background: #fff; justify-content: flex-start; border-top: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
     .img-thumbs::-webkit-scrollbar { display: none; }
     .thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 2px solid transparent; cursor: pointer; opacity: 0.6; transition: .2s; flex-shrink: 0; }
@@ -110,8 +111,8 @@
     .reel-title { position: absolute; bottom: 16px; left: 16px; right: 60px; color: #fff; font-size: .85rem; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,.8); }
     
     .modules { padding: 80px 0; background: #fff; }
-    .module-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem; }
-    .module-block.reverse { direction: rtl; } .module-block.reverse > * { direction: ltr; }
+    .module-block { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .module-block.reverse { direction: ltr; } .module-block.reverse > * { direction: ltr; }
     .module-img { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; background: #f1f5f9; }
     .module-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .module-text h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: .75rem; color: var(--primary); }
@@ -162,8 +163,6 @@
       .hamburger { display: flex; }
       .nav-links { position: fixed; top: 0; right: -100%; width: 85%; height: 100vh; background: #fff; flex-direction: column; padding: 80px 20px; gap: 1.5rem; box-shadow: -4px 0 20px rgba(0,0,0,.1); transition: right var(--transition); z-index: 100; }
       .nav-links.open { right: 0; } .nav-overlay.show { display: block; }
-      .module-block { grid-template-columns: 1fr; gap: 1.5rem; } .module-block.reverse { direction: ltr; }
-      .products-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .main-img { max-height: 350px; }
       .img-thumbs { justify-content: flex-start; }
       .thumb { width: 45px; height: 45px; }
@@ -351,7 +350,9 @@
         <div class="products-grid"><p style="grid-column:1/-1;text-align:center;color:#888; padding:40px;">Próximamente nuevos accesorios. Mientras tanto, ¡personalizá el tuyo en la pestaña "Personalizar"!</p></div>
       </div>
 
-                <!-- BUZO CON LOGO CV (3 fotos) -->
+      <div class="tab-panel" id="panel-indumentaria" role="tabpanel" aria-labelledby="tab-indumentaria" hidden>
+        <div class="products-grid">
+          <!-- BUZO CON LOGO CV (3 fotos) -->
           <article class="card">
             <div class="card-img">
               <img src="buzo-logo-blanco-1.png" alt="Buzo con Logo Cv" class="main-img" id="buzo-logo-main" width="600" height="400" loading="lazy">
@@ -360,7 +361,7 @@
                 <img src="buzo-logo-blanco-2.png" alt="Vista 2" class="thumb" onclick="cambiarImg('buzo-logo-main', this)" width="50" height="50" loading="lazy">
                 <img src="buzo-logo-blanco-3.png" alt="Vista 3" class="thumb" onclick="cambiarImg('buzo-logo-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">LOGOS!</span>
+              <span class="badge">LOGOS</span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Buzo con Logo Cv</h3>
@@ -443,7 +444,7 @@
                 <li>Algodón 100% peinado de 280gr</li>
                 <li>Cuello redondo reforzado</li>
                 <li>Corte relajado y cómodo</li>
-                <li>Ideal para ambos sexos</li>
+                <li>Ideal para personalizar</li>
               </ul>
               <div class="sizes" role="group">
                 <button class="size-btn" aria-pressed="false">XS</button>
@@ -459,10 +460,10 @@
             </div>
           </article>
 
-          <!-- REMERA BÁSICA BLANCA (se mantiene) -->
+          <!-- REMERA BÁSICA BLANCA -->
           <article class="card">
             <div class="card-img">
-              <img src="indumentaria/remera-blanca-1.jpg" alt="Remera Básica Blanca" class="main-img" width="600" height="400" loading="lazy">
+              <img src="indumentaria/remera-blanca-1.jpg" alt="Remera Básica Blanca" class="main-img" id="remera-main" width="600" height="400" loading="lazy">
             </div>
             <div class="card-body">
               <h3 class="card-title">Remera Básica Blanca</h3>
@@ -476,7 +477,31 @@
               <button class="add-cart" data-product="remera-blanca" data-pago="TU_CODIGO_AQUI">💳 Comprar ahora</button>
             </div>
           </article>
-          </article>
+        </div>
+
+        <!-- REELS DE INDUMENTARIA -->
+        <div class="reels-section">
+          <h4>🎬 Reels de Indumentaria</h4>
+          <div class="reels-category">
+            <div class="reel-card">
+              <video preload="metadata" poster="buzo-logo-blanco-1.png" muted playsinline loop>
+                <source src="reel-indumentaria.1.mp4" type="video/mp4">
+              </video>
+              <span class="reel-title">Estilo</span>
+            </div>
+            <div class="reel-card">
+              <video preload="metadata" poster="buzo-hoodie-negro-1.png" muted playsinline loop>
+                <source src="reel-indumentaria.2.mp4" type="video/mp4">
+              </video>
+              <span class="reel-title">Confort</span>
+            </div>
+            <div class="reel-card">
+              <video preload="metadata" poster="buzo-cuello-redondo-blanco-1.png" muted playsinline loop>
+                <source src="reel-indumentaria.3.mp4" type="video/mp4">
+              </video>
+              <span class="reel-title">Calidad</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -534,10 +559,6 @@
                 <option value="Buzo con Logo">Buzo con Logo</option>
                 <option value="Buzo Hoodie Negro">Buzo Hoodie Negro</option>
                 <option value="Buzo Cuello Redondo Blanco">Buzo Cuello Redondo Blanco</option>
-                <option value="Buzo Hoodie Blanco">Buzo Hoodie Blanco</option>
-                <option value="Buzo Hoodie Stone Wash">Buzo Hoodie Stone Wash</option>
-                <option value="Buzo Cuello Redondo Negro">Buzo Cuello Redondo Negro</option>
-                <option value="Buzo Cuello Redondo Stone Wash">Buzo Cuello Redondo Stone Wash</option>
                 <option value="Remera Clásica Man Blanca">Remera Clásica Man Blanca</option>
                 <option value="Remera Clásica Man Negra">Remera Clásica Man Negra</option>
                 <option value="Remera Clásica Woman Blanca">Remera Clásica Woman Blanca</option>
@@ -545,6 +566,12 @@
                 <option value="Remera Oversize Blanca">Remera Oversize Blanca</option>
                 <option value="Remera Oversize Negra">Remera Oversize Negra</option>
                 <option value="Remera Oversize Stone Wash">Remera Oversize Stone Wash</option>
+                <option value="Buzo Hoodie Negro">Buzo Hoodie Negro</option>
+                <option value="Buzo Hoodie Blanco">Buzo Hoodie Blanco</option>
+                <option value="Buzo Hoodie Stone Wash">Buzo Hoodie Stone Wash</option>
+                <option value="Buzo Cuello Redondo Negro">Buzo Cuello Redondo Negro</option>
+                <option value="Buzo Cuello Redondo Blanco">Buzo Cuello Redondo Blanco</option>
+                <option value="Buzo Cuello Redondo Stone Wash">Buzo Cuello Redondo Stone Wash</option>
               </optgroup>
               <optgroup label="👜 Accesorios">
                 <option value="Dije Aro Circular">Dije Aro Circular</option>
@@ -816,6 +843,57 @@
         thumb.parentElement.querySelectorAll('.thumb').forEach(t => t.classList.remove('active')); 
         thumb.classList.add('active'); 
       };
+
+      // Función para hacer las imágenes deslizables con touch y mouse
+      document.querySelectorAll('.main-img').forEach(img => {
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let startIndex = 0;
+        let thumbs = [];
+        
+        img.addEventListener('mousedown', startDrag);
+        img.addEventListener('touchstart', startDrag, {passive: true});
+        
+        function startDrag(e) {
+          isDragging = true;
+          const card = img.closest('.card');
+          thumbs = Array.from(card.querySelectorAll('.thumb'));
+          startIndex = thumbs.findIndex(t => t.classList.contains('active'));
+          startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+          img.style.cursor = 'grabbing';
+        }
+        
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag, {passive: true});
+        
+        function drag(e) {
+          if (!isDragging) return;
+          currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+        }
+        
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
+        
+        function endDrag(e) {
+          if (!isDragging) return;
+          isDragging = false;
+          img.style.cursor = 'grab';
+          
+          const deltaX = currentX - startX;
+          const threshold = 50; // Mínimo de píxeles para cambiar
+          
+          if (Math.abs(deltaX) > threshold) {
+            if (deltaX > 0 && startIndex > 0) {
+              // Deslizar a la izquierda (foto anterior)
+              cambiarImg(mainId, thumbs[startIndex - 1]);
+            } else if (deltaX < 0 && startIndex < thumbs.length - 1) {
+              // Deslizar a la derecha (foto siguiente)
+              cambiarImg(mainId, thumbs[startIndex + 1]);
+            }
+          }
+        }
+      });
 
       document.querySelectorAll('.reel-card').forEach(card => {
         const video = card.querySelector('video'); if (!video) return;
