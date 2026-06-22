@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cv | Calzados, Accesorios e Indumentaria</title>
   <meta name="description" content="Tienda oficial Cv. Calzados, accesorios e indumentaria de diseño.">
+  
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Cv | Moda contemporánea con intención">
+  <meta property="og:description" content="Calzados, accesorios e indumentaria diseñados para expresar identidad">
+  <meta property="og:image" content="logo-cv.png">
+  <meta property="og:url" content="https://sellolavictoria.com">
+  <meta property="og:type" content="website">
+  
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -54,9 +62,9 @@
     @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); width: 100%; max-width: 100%; }
+    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); width: 100%; max-width: 100%; position: relative; }
     .card-img { position: relative; background: #f1f5f9; width: 100%; }
-    .main-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; display: block; background: #f8fafc; aspect-ratio: 4/3; cursor: grab; user-select: none; }
+    .main-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; display: block; background: #f8fafc; aspect-ratio: 4/3; cursor: grab; user-select: none; touch-action: none; }
     .main-img:active { cursor: grabbing; }
     .img-thumbs { display: flex; gap: 8px; padding: 10px; background: #fff; justify-content: flex-start; border-top: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
     .img-thumbs::-webkit-scrollbar { display: none; }
@@ -76,6 +84,44 @@
     .add-cart:hover { background: var(--accent-hover); transform: translateY(-2px); }
     .size-guide-btn { background: none; border: 2px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 8px; font-size: 0.9rem; width: 100%; }
     .size-guide-btn:hover { background: var(--accent); color: #fff; }
+    
+    /* Botones de compartir */
+    .share-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .share-btn {
+      flex: 1;
+      min-width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 1.2rem;
+    }
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .share-btn.whatsapp { border-color: #25D366; color: #25D366; }
+    .share-btn.whatsapp:hover { background: #25D366; color: #fff; }
+    .share-btn.facebook { border-color: #1877F2; color: #1877F2; }
+    .share-btn.facebook:hover { background: #1877F2; color: #fff; }
+    .share-btn.instagram { border-color: #E4405F; color: #E4405F; }
+    .share-btn.instagram:hover { background: #E4405F; color: #fff; }
+    .share-btn.tiktok { border-color: #000; color: #000; }
+    .share-btn.tiktok:hover { background: #000; color: #fff; }
+    .share-btn.copy { border-color: var(--accent); color: var(--accent); }
+    .share-btn.copy:hover { background: var(--accent); color: #fff; }
     
     .configurator { background: #fff; border-radius: var(--radius); padding: 1.5rem; border: 1px solid var(--border); box-shadow: var(--shadow); max-width: 100%; width: 100%; box-sizing: border-box; overflow-wrap: break-word; word-wrap: break-word; }
     .config-step { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
@@ -174,6 +220,8 @@
       .price { font-size: 1.3rem; }
       .reel-card { flex: 0 0 130px; height: 230px; flex-shrink: 0; }
       .configurator { padding: 1rem; }
+      .share-buttons { gap: 6px; }
+      .share-btn { min-width: 35px; height: 35px; font-size: 1rem; }
     }
     .status-msg { text-align: center; font-size: 0.9rem; margin-top: 0.8rem; font-weight: 600; }
     .status-msg.pending { color: #b45309; }
@@ -219,7 +267,7 @@
 
       <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados">
         <div class="products-grid">
-          <article class="card">
+          <article class="card" id="producto-resilience" data-producto="Botitas Resilience" data-precio="$120.000" data-imagen="zapatilla-negra-1.jpg">
             <div class="card-img">
               <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience" class="main-img" id="res-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
@@ -254,10 +302,19 @@
               <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="resilience" data-pago="https://pagar.ualabis.com.ar/order/62d9c4728d2ab9d7b0c593492990e7ba2bce4c9265350f60">💳 Comprar ahora</button>
+              
+              <!-- Botones de compartir -->
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'resilience')" title="Compartir en WhatsApp">📱</button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'resilience')" title="Compartir en Facebook">📘</button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'resilience')" title="Compartir en Instagram">📸</button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'resilience')" title="Compartir en TikTok">🎵</button>
+                <button class="share-btn copy" onclick="copiarLink('resilience')" title="Copiar enlace">🔗</button>
+              </div>
             </div>
           </article>
 
-          <article class="card">
+          <article class="card" id="producto-convertible" data-producto="Convertibles Tetè" data-precio="$90.000" data-imagen="Pantubota-bordo-1.jpg">
             <div class="card-img">
               <img src="Pantubota-bordo-1.jpg" alt="Convertibles Tetè" class="main-img" id="prod2-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
@@ -292,10 +349,18 @@
               <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="convertible" data-pago="https://pagar.ualabis.com.ar/order/42f1d5e17c39fa95eb68a36c4478ad0643068558b41a4f4b">💳 Comprar ahora</button>
+              
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'convertible')" title="Compartir en WhatsApp">📱</button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'convertible')" title="Compartir en Facebook">📘</button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'convertible')" title="Compartir en Instagram">📸</button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'convertible')" title="Compartir en TikTok">🎵</button>
+                <button class="share-btn copy" onclick="copiarLink('convertible')" title="Copiar enlace">🔗</button>
+              </div>
             </div>
           </article>
 
-          <article class="card">
+          <article class="card" id="producto-guilles" data-producto="Guilles multi-outfits" data-precio="$65.000" data-imagen="guillermina-1.png">
             <div class="card-img">
               <img src="guillermina-1.png" alt="Guilles multi-outfits" class="main-img" id="prod3-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
@@ -335,6 +400,14 @@
               <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="guilles" data-pago="https://pagar.ualabis.com.ar/order/9a9a64825bd275bd56c7283c9f774dd5f917931711d3550e?">💳 Comprar ahora</button>
+              
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'guilles')" title="Compartir en WhatsApp">📱</button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'guilles')" title="Compartir en Facebook">📘</button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'guilles')" title="Compartir en Instagram">📸</button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'guilles')" title="Compartir en TikTok">🎵</button>
+                <button class="share-btn copy" onclick="copiarLink('guilles')" title="Copiar enlace">🔗</button>
+              </div>
             </div>
           </article>
         </div>
@@ -355,7 +428,7 @@
 
       <div class="tab-panel" id="panel-indumentaria" role="tabpanel" aria-labelledby="tab-indumentaria" hidden>
         <div class="products-grid">
-          <article class="card">
+          <article class="card" id="producto-buzo-logo" data-producto="Buzo con Logo Cv" data-precio="$85.000" data-imagen="buzo-logo-blanco-1.png">
             <div class="card-img">
               <img src="buzo-logo-blanco-1.png" alt="Buzo con Logo Cv" class="main-img" id="buzo-logo-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
@@ -370,9 +443,9 @@
               <div class="price">$59.000</div>
               <ul class="benefits">
                 <li>Algodón 100% premium frizado</li>
-                <li>Tu Logo visible! </li>
+                <li>Tu LOGO Visible! </li>
                 <li>Cuello redondo reforzado</li>
-                <li>Tres zonas de Estampado a elecciòn</li>
+                <li>Elegì la zona del estampado </li>
               </ul>
               <div class="sizes" role="group">
                 <button class="size-btn" aria-pressed="false">XS</button>
@@ -385,10 +458,18 @@
               <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="buzo-logo" data-pago="TU_CODIGO_AQUI">💳 Comprar ahora</button>
+              
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'buzo-logo')" title="Compartir en WhatsApp">📱</button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'buzo-logo')" title="Compartir en Facebook">📘</button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'buzo-logo')" title="Compartir en Instagram">📸</button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'buzo-logo')" title="Compartir en TikTok">🎵</button>
+                <button class="share-btn copy" onclick="copiarLink('buzo-logo')" title="Copiar enlace">🔗</button>
+              </div>
             </div>
           </article>
 
-          <article class="card">
+          <article class="card" id="producto-buzo-hoodie" data-producto="Buzo Hoodie Negro" data-precio="$95.000" data-imagen="buzo-hoodie-negro-1.png">
             <div class="card-img">
               <img src="buzo-hoodie-negro-1.png" alt="Buzo Hoodie Negro" class="main-img" id="buzo-hoodie-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
@@ -420,10 +501,18 @@
               <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="buzo-hoodie" data-pago="TU_CODIGO_AQUI">💳 Comprar ahora</button>
+              
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'buzo-hoodie')" title="Compartir en WhatsApp">📱</button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'buzo-hoodie')" title="Compartir en Facebook">📘</button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'buzo-hoodie')" title="Compartir en Instagram">📸</button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'buzo-hoodie')" title="Compartir en TikTok">🎵</button>
+                <button class="share-btn copy" onclick="copiarLink('buzo-hoodie')" title="Copiar enlace">🔗</button>
+              </div>
             </div>
           </article>
 
-          <article class="card">
+          <article class="card" id="producto-buzo-cr" data-producto="Buzo Cuello Redondo Blanco" data-precio="$80.000" data-imagen="buzo-cuello-redondo-blanco-1.png">
             <div class="card-img">
               <img src="buzo-cuello-redondo-blanco-1.png" alt="Buzo Cuello Redondo Blanco" class="main-img" id="buzo-cr-main" width="600" height="400" loading="lazy">
               <div class="img-thumbs">
@@ -457,10 +546,18 @@
               <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="buzo-cr-blanco" data-pago="TU_CODIGO_AQUI">💳 Comprar ahora</button>
+              
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'buzo-cr')" title="Compartir en WhatsApp">📱</button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'buzo-cr')" title="Compartir en Facebook">📘</button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'buzo-cr')" title="Compartir en Instagram">📸</button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'buzo-cr')" title="Compartir en TikTok">🎵</button>
+                <button class="share-btn copy" onclick="copiarLink('buzo-cr')" title="Copiar enlace">🔗</button>
+              </div>
             </div>
           </article>
 
-          <article class="card">
+          <article class="card" id="producto-remera" data-producto="Remera Básica Blanca" data-precio="$45.000" data-imagen="indumentaria/remera-blanca-1.jpg">
             <div class="card-img">
               <img src="indumentaria/remera-blanca-1.jpg" alt="Remera Básica Blanca" class="main-img" id="remera-main" width="600" height="400" loading="lazy">
             </div>
@@ -474,6 +571,14 @@
               <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
               <div class="shipping">🚚 Envío gratis > $150.000</div>
               <button class="add-cart" data-product="remera-blanca" data-pago="TU_CODIGO_AQUI">💳 Comprar ahora</button>
+              
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'remera')" title="Compartir en WhatsApp">📱</button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'remera')" title="Compartir en Facebook">📘</button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'remera')" title="Compartir en Instagram">📸</button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'remera')" title="Compartir en TikTok">🎵</button>
+                <button class="share-btn copy" onclick="copiarLink('remera')" title="Copiar enlace">🔗</button>
+              </div>
             </div>
           </article>
         </div>
@@ -840,28 +945,30 @@
         thumb.classList.add('active'); 
       };
 
-      // Función de deslizamiento mejorada
+      // Función de deslizamiento mejorada para PC y móvil
       document.querySelectorAll('.main-img').forEach(img => {
+        let isDragging = false;
         let startX = 0;
         let startY = 0;
-        let isDragging = false;
         
-        const handleStart = (e) => {
+        const startDrag = (e) => {
           isDragging = true;
-          startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-          startY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+          startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+          startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+          img.style.cursor = 'grabbing';
         };
         
-        const handleEnd = (e) => {
+        const endDrag = (e) => {
           if (!isDragging) return;
           isDragging = false;
+          img.style.cursor = 'grab';
           
-          const endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
-          const endY = e.type.includes('touch') ? e.changedTouches[0].clientY : e.clientY;
+          const endX = e.type.includes('mouse') ? e.clientX : e.changedTouches[0].clientX;
+          const endY = e.type.includes('mouse') ? e.clientY : e.changedTouches[0].clientY;
           const diffX = endX - startX;
           const diffY = endY - startY;
           
-          // Solo procesar si el movimiento horizontal fue mayor que el vertical
+          // Solo cambiar si el movimiento horizontal es mayor que el vertical y supera 50px
           if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
             const card = img.closest('.card');
             const thumbs = Array.from(card.querySelectorAll('.thumb'));
@@ -877,11 +984,14 @@
           }
         };
         
-        img.addEventListener('mousedown', handleStart);
-        img.addEventListener('touchstart', handleStart, { passive: true });
-        img.addEventListener('mouseup', handleEnd);
-        img.addEventListener('touchend', handleEnd);
-        img.addEventListener('mouseleave', () => { isDragging = false; });
+        // Eventos para mouse (PC)
+        img.addEventListener('mousedown', startDrag);
+        img.addEventListener('mouseup', endDrag);
+        img.addEventListener('mouseleave', () => { isDragging = false; img.style.cursor = 'grab'; });
+        
+        // Eventos para touch (móvil)
+        img.addEventListener('touchstart', startDrag, { passive: true });
+        img.addEventListener('touchend', endDrag);
       });
 
       document.querySelectorAll('.reel-card').forEach(card => {
@@ -1037,6 +1147,94 @@
         
         window.open(`https://wa.me/5491176235960?text=${encodeURIComponent(mensaje)}`, '_blank');
       };
+
+      // Funciones de compartir en redes sociales
+      window.compartirProducto = function(red, productoId) {
+        const producto = document.getElementById(`producto-${productoId}`);
+        if (!producto) return;
+        
+        const nombre = producto.dataset.producto;
+        const precio = producto.dataset.precio;
+        const imagen = producto.dataset.imagen;
+        const url = `${window.location.origin}${window.location.pathname}#producto-${productoId}`;
+        const texto = `¡Mirá este producto de Cv! ${nombre} - ${precio}\n\n`;
+        
+        let shareUrl = '';
+        
+        switch(red) {
+          case 'whatsapp':
+            shareUrl = `https://wa.me/?text=${encodeURIComponent(texto + url)}`;
+            break;
+          case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            break;
+          case 'instagram':
+            // Instagram no permite compartir links directamente, copiamos al portapapeles
+            navigator.clipboard.writeText(url).then(() => {
+              alert('✅ Link copiado! Ahora podés pegarlo en Instagram Stories o DM');
+            });
+            return;
+          case 'tiktok':
+            // TikTok tampoco permite compartir links directamente
+            navigator.clipboard.writeText(url).then(() => {
+              alert('✅ Link copiado! Ahora podés pegarlo en TikTok');
+            });
+            return;
+        }
+        
+        if (shareUrl) {
+          window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+      };
+
+      window.copiarLink = function(productoId) {
+        const url = `${window.location.origin}${window.location.pathname}#producto-${productoId}`;
+        navigator.clipboard.writeText(url).then(() => {
+          alert('✅ Link copiado al portapapeles!');
+        }).catch(() => {
+          // Fallback para navegadores antiguos
+          const textArea = document.createElement('textarea');
+          textArea.value = url;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          alert('✅ Link copiado al portapapeles!');
+        });
+      };
+
+      // Navegación por hash (para links directos a productos)
+      window.addEventListener('hashchange', () => {
+        const hash = window.location.hash;
+        if (hash.startsWith('#producto-')) {
+          const productoId = hash.replace('#producto-', '');
+          const producto = document.getElementById(`producto-${productoId}`);
+          if (producto) {
+            // Buscar en qué pestaña está el producto y activarla
+            const tabPanel = producto.closest('.tab-panel');
+            if (tabPanel) {
+              const tabId = tabPanel.id.replace('panel-', 'tab-');
+              const tabBtn = document.getElementById(tabId);
+              if (tabBtn) {
+                tabBtn.click();
+                setTimeout(() => {
+                  producto.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  producto.style.transition = 'transform 0.3s';
+                  producto.style.transform = 'scale(1.02)';
+                  setTimeout(() => {
+                    producto.style.transform = 'scale(1)';
+                  }, 300);
+                }, 100);
+              }
+            }
+          }
+        }
+      });
+
+      // Verificar hash al cargar la página
+      if (window.location.hash) {
+        window.dispatchEvent(new Event('hashchange'));
+      }
 
       document.querySelectorAll('.faq-btn').forEach(btn => {
         btn.addEventListener('click', () => {
