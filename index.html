@@ -6,7 +6,7 @@
   <title>Cv | Calzados, Accesorios e Indumentaria</title>
   <meta name="description" content="Tienda oficial Cv. Calzados, accesorios e indumentaria de diseño.">
   
-  <!-- Open Graph para redes sociales -->
+  <!-- Open Graph dinámico (se actualiza con JavaScript) -->
   <meta property="og:title" content="Cv | Moda contemporánea con intención">
   <meta property="og:description" content="Calzados, accesorios e indumentaria diseñados para expresar identidad">
   <meta property="og:image" content="logo-cv.png">
@@ -41,8 +41,16 @@
     .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
     .logo { display: inline-flex; align-items: center; padding: 4px 0; }
     .logo img { height: 48px; width: auto; max-width: 160px; display: block; }
-    .nav-links { display: flex; gap: 1.5rem; } .nav-links a { font-weight: 500; transition: color var(--transition); color: var(--primary); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { font-weight: 500; transition: color var(--transition); color: var(--primary); }
     .nav-links a:hover { color: var(--accent); }
+    
+    /* Íconos de redes sociales en el header */
+    .social-header { display: flex; gap: 12px; align-items: center; }
+    .social-header a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; transition: var(--transition); }
+    .social-header a:hover { transform: scale(1.1); }
+    .social-header svg { width: 20px; height: 20px; }
+    
     .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); }
     .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 90; }
@@ -62,10 +70,40 @@
     @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); width: 100%; max-width: 100%; position: relative; }
+    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); width: 100%; max-width: 100%; position: relative; transition: var(--transition); }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
     .card-img { position: relative; background: #f1f5f9; width: 100%; }
-    .main-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; display: block; background: #f8fafc; aspect-ratio: 4/3; cursor: grab; user-select: none; touch-action: none; }
-    .main-img:active { cursor: grabbing; }
+    
+    /* Imagen principal más grande con flechas */
+    .main-img-container { position: relative; width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #f8fafc; cursor: grab; user-select: none; touch-action: pan-y; }
+    .main-img-container:active { cursor: grabbing; }
+    .main-img { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; }
+    
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 3;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      font-size: 1.2rem;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    .main-img-container:hover .nav-arrow { opacity: 1; }
+    .nav-arrow:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+    .nav-arrow.prev { left: 10px; }
+    .nav-arrow.next { right: 10px; }
+    
     .img-thumbs { display: flex; gap: 8px; padding: 10px; background: #fff; justify-content: flex-start; border-top: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
     .img-thumbs::-webkit-scrollbar { display: none; }
     .thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 2px solid transparent; cursor: pointer; opacity: 0.6; transition: .2s; flex-shrink: 0; }
@@ -79,13 +117,35 @@
     .sizes { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0; }
     .size-btn { min-width: 40px; height: 36px; border: 2px solid var(--border); border-radius: 6px; font-weight: 600; transition: var(--transition); color: var(--text); }
     .size-btn[aria-pressed="true"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+    
+    /* Cantidad */
+    .quantity-section { margin: 1rem 0; display: flex; align-items: center; gap: 10px; }
+    .quantity-label { font-weight: 600; color: var(--primary); font-size: 0.95rem; }
+    .quantity-control { display: flex; align-items: center; border: 2px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .quantity-btn { width: 36px; height: 36px; background: #f8fafc; border: none; cursor: pointer; font-size: 1.2rem; font-weight: bold; color: var(--primary); transition: var(--transition); }
+    .quantity-btn:hover { background: var(--accent); color: #fff; }
+    .quantity-input { width: 50px; height: 36px; text-align: center; border: none; font-size: 1rem; font-weight: 600; color: var(--primary); }
+    .quantity-input:focus { outline: none; }
+    
     .shipping { background: #f0f9f4; border: 1px solid #c6f6d5; border-radius: 8px; padding: 10px 12px; margin: 1rem 0; font-size: .85rem; color: #276749; display: flex; gap: 8px; }
+    
+    /* Botón calcular envío */
+    .shipping-calculator { margin: 1rem 0; }
+    .shipping-calculator-btn { width: 100%; padding: 12px; background: #fff; color: var(--accent); border: 2px solid var(--accent); border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .shipping-calculator-btn:hover { background: var(--accent); color: #fff; }
+    .shipping-input-group { display: none; margin-top: 10px; gap: 8px; }
+    .shipping-input-group.active { display: flex; }
+    .shipping-input { flex: 1; padding: 10px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; }
+    .shipping-input:focus { outline: none; border-color: var(--accent); }
+    .shipping-calc-btn { padding: 10px 20px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+    .shipping-calc-btn:hover { background: var(--accent-hover); }
+    
     .add-cart { width: 100%; padding: 14px; background: var(--accent); color: #fff; border-radius: 8px; font-weight: 700; margin-top: 1rem; transition: var(--transition); font-size: 1rem; }
     .add-cart:hover { background: var(--accent-hover); transform: translateY(-2px); }
     .size-guide-btn { background: none; border: 2px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 8px; font-size: 0.9rem; width: 100%; }
     .size-guide-btn:hover { background: var(--accent); color: #fff; }
     
-    /* Botones de compartir */
+    /* Botones de compartir con íconos oficiales SVG */
     .share-buttons {
       display: flex;
       gap: 8px;
@@ -99,29 +159,20 @@
       min-width: 40px;
       height: 40px;
       border-radius: 8px;
-      border: 2px solid var(--border);
-      background: #fff;
+      border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: var(--transition);
-      font-size: 1.2rem;
     }
-    .share-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
-    .share-btn.whatsapp { border-color: #25D366; color: #25D366; }
-    .share-btn.whatsapp:hover { background: #25D366; color: #fff; }
-    .share-btn.facebook { border-color: #1877F2; color: #1877F2; }
-    .share-btn.facebook:hover { background: #1877F2; color: #fff; }
-    .share-btn.instagram { border-color: #E4405F; color: #E4405F; }
-    .share-btn.instagram:hover { background: #E4405F; color: #fff; }
-    .share-btn.tiktok { border-color: #000; color: #000; }
-    .share-btn.tiktok:hover { background: #000; color: #fff; }
-    .share-btn.copy { border-color: var(--accent); color: var(--accent); }
-    .share-btn.copy:hover { background: var(--accent); color: #fff; }
+    .share-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .share-btn svg { width: 20px; height: 20px; fill: #fff; }
+    .share-btn.whatsapp { background: #25D366; }
+    .share-btn.facebook { background: #1877F2; }
+    .share-btn.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+    .share-btn.tiktok { background: #000; }
+    .share-btn.copy { background: var(--accent); }
     
     .configurator { background: #fff; border-radius: var(--radius); padding: 1.5rem; border: 1px solid var(--border); box-shadow: var(--shadow); max-width: 100%; width: 100%; box-sizing: border-box; overflow-wrap: break-word; word-wrap: break-word; }
     .config-step { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
@@ -129,7 +180,6 @@
     .config-step h4 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .config-step h4 span { background: var(--accent); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 0.9rem; flex-shrink: 0; }
     .config-step p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; word-wrap: break-word; }
-    
     .config-select, .config-textarea { width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; background: #fff; cursor: text; font-family: var(--font); box-sizing: border-box; overflow-wrap: break-word; }
     .config-select:focus, .config-textarea:focus { outline: none; border-color: var(--accent); }
     .config-select optgroup { font-weight: 700; color: var(--primary); font-style: normal; }
@@ -185,6 +235,10 @@
     .footer-logo { width: 140px; height: auto; margin: 0 auto 20px; display: block; }
     .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 30px; }
     .footer-links a { color: #fff; font-weight: 500; }
+    .footer-social { display: flex; justify-content: center; gap: 16px; margin-bottom: 20px; }
+    .footer-social a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); transition: var(--transition); }
+    .footer-social a:hover { background: var(--accent); transform: translateY(-2px); }
+    .footer-social svg { width: 22px; height: 22px; fill: #fff; }
     
     .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 9999; text-decoration: none; }
     .wa-btn { width: 60px; height: 60px; border-radius: 50%; background-color: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); position: relative; }
@@ -212,7 +266,6 @@
       .products-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .module-block { grid-template-columns: 1fr; gap: 1.5rem; }
       .module-block.reverse { direction: ltr; }
-      .main-img { max-height: 350px; }
       .img-thumbs { justify-content: flex-start; }
       .thumb { width: 45px; height: 45px; }
       .card-body { padding: 1.2rem; }
@@ -221,7 +274,9 @@
       .reel-card { flex: 0 0 130px; height: 230px; flex-shrink: 0; }
       .configurator { padding: 1rem; }
       .share-buttons { gap: 6px; }
-      .share-btn { min-width: 35px; height: 35px; font-size: 1rem; }
+      .share-btn { min-width: 35px; height: 35px; }
+      .share-btn svg { width: 18px; height: 18px; }
+      .nav-arrow { width: 35px; height: 35px; font-size: 1rem; }
     }
     .status-msg { text-align: center; font-size: 0.9rem; margin-top: 0.8rem; font-weight: 600; }
     .status-msg.pending { color: #b45309; }
@@ -238,10 +293,22 @@
       </a>
       <nav class="nav-links" id="nav" role="navigation">
         <a href="#productos">Productos</a><a href="#personalizar">Personalizar</a><a href="#nosotros">Nosotros</a><a href="#faq">Preguntas</a>
+        <div class="social-header">
+          <!-- Íconos oficiales de redes sociales en el header -->
+          <a href="https://www.instagram.com/cv_oficial/" target="_blank" rel="noopener" title="Instagram Cv">
+            <svg viewBox="0 0 24 24"><path fill="#E4405F" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@cv_oficial" target="_blank" rel="noopener" title="TikTok Cv">
+            <svg viewBox="0 0 24 24"><path fill="#000" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/cv.oficial" target="_blank" rel="noopener" title="Facebook Cv">
+            <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+        <button class="hamburger" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span><span></span>
+        </button>
       </nav>
-      <button class="hamburger" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
   <div class="nav-overlay" id="overlay"></div>
@@ -267,9 +334,13 @@
 
       <div class="tab-panel" id="panel-calzados" role="tabpanel" aria-labelledby="tab-calzados">
         <div class="products-grid">
-          <article class="card" id="producto-resilience" data-producto="Botitas Resilience" data-precio="$120.000" data-imagen="zapatilla-negra-1.jpg">
+          <article class="card" id="producto-resilience" data-producto="Botitas Resilience" data-precio="$120.000" data-imagen="zapatilla-negra-1.jpg" data-descripcion="Cuero calidad premium, suela antideslizante, plantilla ergonómica">
             <div class="card-img">
-              <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience" class="main-img" id="res-main" width="600" height="400" loading="lazy">
+              <div class="main-img-container" id="container-res-main">
+                <img src="zapatilla-negra-1.jpg" alt="Botitas Resilience" class="main-img" id="res-main" width="600" height="600" loading="lazy">
+                <div class="nav-arrow prev" onclick="cambiarFotoAnterior('res-main')">‹</div>
+                <div class="nav-arrow next" onclick="cambiarFotoSiguiente('res-main')">›</div>
+              </div>
               <div class="img-thumbs">
                 <img src="zapatilla-negra-1.jpg" alt="Negro Vista 1" class="thumb active" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
                 <img src="zapatilla-negra-2.jpg" alt="Negro Vista 2" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
@@ -281,7 +352,7 @@
                 <img src="zapatilla-chocolate-2.jpg" alt="Chocolate Vista 2" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
                 <img src="zapatilla-chocolate-3.jpg" alt="Chocolate Vista 3" class="thumb" onclick="cambiarImg('res-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">Funcionalidad</span>
+              <span class="badge"></span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Botitas Resilience</h3>
@@ -300,23 +371,55 @@
                 <button class="size-btn" aria-pressed="false">40</button>
               </div>
               <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              
+              <div class="quantity-section">
+                <span class="quantity-label">Cantidad:</span>
+                <div class="quantity-control">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, -1)">−</button>
+                  <input type="number" class="quantity-input" value="1" min="1" max="99">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, 1)">+</button>
+                </div>
+              </div>
+              
+              <div class="shipping-calculator">
+                <button class="shipping-calculator-btn" onclick="toggleShippingCalc(this)">
+                  🚚 Calculá el costo del envío
+                </button>
+                <div class="shipping-input-group">
+                  <input type="text" class="shipping-input" placeholder="Código postal" maxlength="5" pattern="[0-9]{4,5}">
+                  <button class="shipping-calc-btn" onclick="calcularEnvio(this)">Calcular</button>
+                </div>
+              </div>
+              
               <button class="add-cart" data-product="resilience" data-pago="https://pagar.ualabis.com.ar/order/62d9c4728d2ab9d7b0c593492990e7ba2bce4c9265350f60">💳 Comprar ahora</button>
               
-              <!-- Botones de compartir -->
               <div class="share-buttons">
-                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'resilience')" title="Compartir en WhatsApp">📱</button>
-                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'resilience')" title="Compartir en Facebook">📘</button>
-                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'resilience')" title="Compartir en Instagram">📸</button>
-                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'resilience')" title="Compartir en TikTok">🎵</button>
-                <button class="share-btn copy" onclick="copiarLink('resilience')" title="Copiar enlace">🔗</button>
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'resilience')" title="Compartir en WhatsApp">
+                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'resilience')" title="Compartir en Facebook">
+                  <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'resilience')" title="Compartir en Instagram">
+                  <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'resilience')" title="Compartir en TikTok">
+                  <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                </button>
+                <button class="share-btn copy" onclick="copiarLink('resilience')" title="Copiar enlace">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
               </div>
             </div>
           </article>
 
-          <article class="card" id="producto-convertible" data-producto="Convertibles Tetè" data-precio="$90.000" data-imagen="Pantubota-bordo-1.jpg">
+          <article class="card" id="producto-convertible" data-producto="Convertibles Tetè" data-precio="$90.000" data-imagen="Pantubota-bordo-1.jpg" data-descripcion="Modelo convertible Botas & Zapatillas, cuero genuino">
             <div class="card-img">
-              <img src="Pantubota-bordo-1.jpg" alt="Convertibles Tetè" class="main-img" id="prod2-main" width="600" height="400" loading="lazy">
+              <div class="main-img-container" id="container-prod2-main">
+                <img src="Pantubota-bordo-1.jpg" alt="Convertibles Tetè" class="main-img" id="prod2-main" width="600" height="600" loading="lazy">
+                <div class="nav-arrow prev" onclick="cambiarFotoAnterior('prod2-main')">‹</div>
+                <div class="nav-arrow next" onclick="cambiarFotoSiguiente('prod2-main')">›</div>
+              </div>
               <div class="img-thumbs">
                 <img src="Pantubota-bordo-1.jpg" alt="Bordo Vista 1" class="thumb active" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
                 <img src="Pantubota-bordo-2.jpg" alt="Bordo Vista 2" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
@@ -328,7 +431,7 @@
                 <img src="Pantubota-verdeazulada-2.jpg" alt="Verdeazulada Vista 2" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
                 <img src="Pantubota-verdeazulada-3.jpg" alt="Verdeazulada Vista 3" class="thumb" onclick="cambiarImg('prod2-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">Confort</span>
+              <span class="badge"></span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Convertibles Tetè</h3>
@@ -347,22 +450,43 @@
                 <button class="size-btn" aria-pressed="false">40</button>
               </div>
               <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              
+              <div class="quantity-section">
+                <span class="quantity-label">Cantidad:</span>
+                <div class="quantity-control">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, -1)">−</button>
+                  <input type="number" class="quantity-input" value="1" min="1" max="99">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, 1)">+</button>
+                </div>
+              </div>
+              
+              <div class="shipping-calculator">
+                <button class="shipping-calculator-btn" onclick="toggleShippingCalc(this)">🚚 Calculá el costo del envío</button>
+                <div class="shipping-input-group">
+                  <input type="text" class="shipping-input" placeholder="Código postal" maxlength="5" pattern="[0-9]{4,5}">
+                  <button class="shipping-calc-btn" onclick="calcularEnvio(this)">Calcular</button>
+                </div>
+              </div>
+              
               <button class="add-cart" data-product="convertible" data-pago="https://pagar.ualabis.com.ar/order/42f1d5e17c39fa95eb68a36c4478ad0643068558b41a4f4b">💳 Comprar ahora</button>
               
               <div class="share-buttons">
-                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'convertible')" title="Compartir en WhatsApp">📱</button>
-                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'convertible')" title="Compartir en Facebook">📘</button>
-                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'convertible')" title="Compartir en Instagram">📸</button>
-                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'convertible')" title="Compartir en TikTok">🎵</button>
-                <button class="share-btn copy" onclick="copiarLink('convertible')" title="Copiar enlace">🔗</button>
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'convertible')" title="Compartir en WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'convertible')" title="Compartir en Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'convertible')" title="Compartir en Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'convertible')" title="Compartir en TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></button>
+                <button class="share-btn copy" onclick="copiarLink('convertible')" title="Copiar enlace"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
               </div>
             </div>
           </article>
 
-          <article class="card" id="producto-guilles" data-producto="Guilles multi-outfits" data-precio="$65.000" data-imagen="guillermina-1.png">
+          <article class="card" id="producto-guilles" data-producto="Guilles multi-outfits" data-precio="$65.000" data-imagen="guillermina-1.png" data-descripcion="Cuero genuino de 1ª Calidad, tira clásica con ajuste seguro">
             <div class="card-img">
-              <img src="guillermina-1.png" alt="Guilles multi-outfits" class="main-img" id="prod3-main" width="600" height="400" loading="lazy">
+              <div class="main-img-container" id="container-prod3-main">
+                <img src="guillermina-1.png" alt="Guilles multi-outfits" class="main-img" id="prod3-main" width="600" height="600" loading="lazy">
+                <div class="nav-arrow prev" onclick="cambiarFotoAnterior('prod3-main')">‹</div>
+                <div class="nav-arrow next" onclick="cambiarFotoSiguiente('prod3-main')">›</div>
+              </div>
               <div class="img-thumbs">
                 <img src="guillermina-1.png" alt="Vista 1" class="thumb active" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
                 <img src="guillermina-2.png" alt="Vista 2" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
@@ -379,7 +503,7 @@
                 <img src="guillermina-13.png" alt="Vista 13" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
                 <img src="guillermina-14.png" alt="Vista 14" class="thumb" onclick="cambiarImg('prod3-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">Estilo</span>
+              <span class="badge"></span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Guilles multi-outfits</h3>
@@ -398,15 +522,32 @@
                 <button class="size-btn" aria-pressed="false">40</button>
               </div>
               <button class="size-guide-btn" data-type="calzados">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              
+              <div class="quantity-section">
+                <span class="quantity-label">Cantidad:</span>
+                <div class="quantity-control">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, -1)">−</button>
+                  <input type="number" class="quantity-input" value="1" min="1" max="99">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, 1)">+</button>
+                </div>
+              </div>
+              
+              <div class="shipping-calculator">
+                <button class="shipping-calculator-btn" onclick="toggleShippingCalc(this)">🚚 Calculá el costo del envío</button>
+                <div class="shipping-input-group">
+                  <input type="text" class="shipping-input" placeholder="Código postal" maxlength="5" pattern="[0-9]{4,5}">
+                  <button class="shipping-calc-btn" onclick="calcularEnvio(this)">Calcular</button>
+                </div>
+              </div>
+              
               <button class="add-cart" data-product="guilles" data-pago="https://pagar.ualabis.com.ar/order/9a9a64825bd275bd56c7283c9f774dd5f917931711d3550e?">💳 Comprar ahora</button>
               
               <div class="share-buttons">
-                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'guilles')" title="Compartir en WhatsApp">📱</button>
-                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'guilles')" title="Compartir en Facebook">📘</button>
-                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'guilles')" title="Compartir en Instagram">📸</button>
-                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'guilles')" title="Compartir en TikTok">🎵</button>
-                <button class="share-btn copy" onclick="copiarLink('guilles')" title="Copiar enlace">🔗</button>
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'guilles')" title="Compartir en WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'guilles')" title="Compartir en Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'guilles')" title="Compartir en Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'guilles')" title="Compartir en TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></button>
+                <button class="share-btn copy" onclick="copiarLink('guilles')" title="Copiar enlace"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
               </div>
             </div>
           </article>
@@ -428,25 +569,29 @@
 
       <div class="tab-panel" id="panel-indumentaria" role="tabpanel" aria-labelledby="tab-indumentaria" hidden>
         <div class="products-grid">
-          <article class="card" id="producto-buzo-logo" data-producto="Buzo con Logo Cv" data-precio="$85.000" data-imagen="buzo-logo-blanco-1.png">
+          <article class="card" id="producto-buzo-logo" data-producto="Buzo con Logo Cv" data-precio="$85.000" data-imagen="buzo-logo-blanco-1.png" data-descripcion="Algodón 100% premium frizado, logo Cv estampado">
             <div class="card-img">
-              <img src="buzo-logo-blanco-1.png" alt="Buzo con Logo Cv" class="main-img" id="buzo-logo-main" width="600" height="400" loading="lazy">
+              <div class="main-img-container" id="container-buzo-logo-main">
+                <img src="buzo-logo-blanco-1.png" alt="Buzo con Logo Cv" class="main-img" id="buzo-logo-main" width="600" height="600" loading="lazy">
+                <div class="nav-arrow prev" onclick="cambiarFotoAnterior('buzo-logo-main')">‹</div>
+                <div class="nav-arrow next" onclick="cambiarFotoSiguiente('buzo-logo-main')">›</div>
+              </div>
               <div class="img-thumbs">
                 <img src="buzo-logo-blanco-1.png" alt="Vista 1" class="thumb active" onclick="cambiarImg('buzo-logo-main', this)" width="50" height="50" loading="lazy">
                 <img src="buzo-logo-blanco-2.png" alt="Vista 2" class="thumb" onclick="cambiarImg('buzo-logo-main', this)" width="50" height="50" loading="lazy">
                 <img src="buzo-logo-blanco-3.png" alt="Vista 3" class="thumb" onclick="cambiarImg('buzo-logo-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">LOGOS</span>
+              <span class="badge"></span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Buzo con Logo Cv</h3>
               <div class="price">$59.000</div>
               <ul class="benefits">
+                <li>Tu Logo estampado </li>
+                <li>frente/espalda/distintivo</li>
                 <li>Algodón 100% premium frizado</li>
-                <li>Tu LOGO Visible! </li>
-                <li>Cuello redondo reforzado</li>
-                <li>Elegì la zona del estampado </li>
-              </ul>
+                <li>Cuello, puños y Cintura reforzados</li>
+             </ul>
               <div class="sizes" role="group">
                 <button class="size-btn" aria-pressed="false">XS</button>
                 <button class="size-btn" aria-pressed="false">S</button>
@@ -456,22 +601,43 @@
                 <button class="size-btn" aria-pressed="false">XXL</button>
               </div>
               <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              
+              <div class="quantity-section">
+                <span class="quantity-label">Cantidad:</span>
+                <div class="quantity-control">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, -1)">−</button>
+                  <input type="number" class="quantity-input" value="1" min="1" max="99">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, 1)">+</button>
+                </div>
+              </div>
+              
+              <div class="shipping-calculator">
+                <button class="shipping-calculator-btn" onclick="toggleShippingCalc(this)">🚚 Calculá el costo del envío</button>
+                <div class="shipping-input-group">
+                  <input type="text" class="shipping-input" placeholder="Código postal" maxlength="5" pattern="[0-9]{4,5}">
+                  <button class="shipping-calc-btn" onclick="calcularEnvio(this)">Calcular</button>
+                </div>
+              </div>
+              
               <button class="add-cart" data-product="buzo-logo" data-pago="TU_CODIGO_AQUI">💳 Comprar ahora</button>
               
               <div class="share-buttons">
-                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'buzo-logo')" title="Compartir en WhatsApp">📱</button>
-                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'buzo-logo')" title="Compartir en Facebook">📘</button>
-                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'buzo-logo')" title="Compartir en Instagram">📸</button>
-                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'buzo-logo')" title="Compartir en TikTok">🎵</button>
-                <button class="share-btn copy" onclick="copiarLink('buzo-logo')" title="Copiar enlace">🔗</button>
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'buzo-logo')" title="Compartir en WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'buzo-logo')" title="Compartir en Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'buzo-logo')" title="Compartir en Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'buzo-logo')" title="Compartir en TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></button>
+                <button class="share-btn copy" onclick="copiarLink('buzo-logo')" title="Copiar enlace"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
               </div>
             </div>
           </article>
 
-          <article class="card" id="producto-buzo-hoodie" data-producto="Buzo Hoodie Negro" data-precio="$95.000" data-imagen="buzo-hoodie-negro-1.png">
+          <article class="card" id="producto-buzo-hoodie" data-producto="Buzo Hoodie Negro" data-precio="$95.000" data-imagen="buzo-hoodie-negro-1.png" data-descripcion="Algodón 100% peinado de 280gr, capucha con cordón ajustable">
             <div class="card-img">
-              <img src="buzo-hoodie-negro-1.png" alt="Buzo Hoodie Negro" class="main-img" id="buzo-hoodie-main" width="600" height="400" loading="lazy">
+              <div class="main-img-container" id="container-buzo-hoodie-main">
+                <img src="buzo-hoodie-negro-1.png" alt="Buzo Hoodie Negro" class="main-img" id="buzo-hoodie-main" width="600" height="600" loading="lazy">
+                <div class="nav-arrow prev" onclick="cambiarFotoAnterior('buzo-hoodie-main')">‹</div>
+                <div class="nav-arrow next" onclick="cambiarFotoSiguiente('buzo-hoodie-main')">›</div>
+              </div>
               <div class="img-thumbs">
                 <img src="buzo-hoodie-negro-1.png" alt="Vista 1" class="thumb active" onclick="cambiarImg('buzo-hoodie-main', this)" width="50" height="50" loading="lazy">
                 <img src="buzo-hoodie-negro-2.png" alt="Vista 2" class="thumb" onclick="cambiarImg('buzo-hoodie-main', this)" width="50" height="50" loading="lazy">
@@ -479,7 +645,7 @@
                 <img src="buzo-hoodie-negro-4.png" alt="Vista 4" class="thumb" onclick="cambiarImg('buzo-hoodie-main', this)" width="50" height="50" loading="lazy">
                 <img src="buzo-hoodie-negro-5.png" alt="Vista 5" class="thumb" onclick="cambiarImg('buzo-hoodie-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">Capucha</span>
+              <span class="badge"></span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Buzo Hoodie Negro</h3>
@@ -499,22 +665,43 @@
                 <button class="size-btn" aria-pressed="false">XXL</button>
               </div>
               <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              
+              <div class="quantity-section">
+                <span class="quantity-label">Cantidad:</span>
+                <div class="quantity-control">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, -1)">−</button>
+                  <input type="number" class="quantity-input" value="1" min="1" max="99">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, 1)">+</button>
+                </div>
+              </div>
+              
+              <div class="shipping-calculator">
+                <button class="shipping-calculator-btn" onclick="toggleShippingCalc(this)">🚚 Calculá el costo del envío</button>
+                <div class="shipping-input-group">
+                  <input type="text" class="shipping-input" placeholder="Código postal" maxlength="5" pattern="[0-9]{4,5}">
+                  <button class="shipping-calc-btn" onclick="calcularEnvio(this)">Calcular</button>
+                </div>
+              </div>
+              
               <button class="add-cart" data-product="buzo-hoodie" data-pago="TU_CODIGO_AQUI">💳 Comprar ahora</button>
               
               <div class="share-buttons">
-                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'buzo-hoodie')" title="Compartir en WhatsApp">📱</button>
-                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'buzo-hoodie')" title="Compartir en Facebook">📘</button>
-                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'buzo-hoodie')" title="Compartir en Instagram">📸</button>
-                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'buzo-hoodie')" title="Compartir en TikTok">🎵</button>
-                <button class="share-btn copy" onclick="copiarLink('buzo-hoodie')" title="Copiar enlace">🔗</button>
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'buzo-hoodie')" title="Compartir en WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'buzo-hoodie')" title="Compartir en Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'buzo-hoodie')" title="Compartir en Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'buzo-hoodie')" title="Compartir en TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></button>
+                <button class="share-btn copy" onclick="copiarLink('buzo-hoodie')" title="Copiar enlace"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
               </div>
             </div>
           </article>
 
-          <article class="card" id="producto-buzo-cr" data-producto="Buzo Cuello Redondo Blanco" data-precio="$80.000" data-imagen="buzo-cuello-redondo-blanco-1.png">
+          <article class="card" id="producto-buzo-cr" data-producto="Buzo Cuello Redondo Blanco" data-precio="$80.000" data-imagen="buzo-cuello-redondo-blanco-1.png" data-descripcion="Algodón 100% peinado de 280gr, ideal para personalizar">
             <div class="card-img">
-              <img src="buzo-cuello-redondo-blanco-1.png" alt="Buzo Cuello Redondo Blanco" class="main-img" id="buzo-cr-main" width="600" height="400" loading="lazy">
+              <div class="main-img-container" id="container-buzo-cr-main">
+                <img src="buzo-cuello-redondo-blanco-1.png" alt="Buzo Cuello Redondo Blanco" class="main-img" id="buzo-cr-main" width="600" height="600" loading="lazy">
+                <div class="nav-arrow prev" onclick="cambiarFotoAnterior('buzo-cr-main')">‹</div>
+                <div class="nav-arrow next" onclick="cambiarFotoSiguiente('buzo-cr-main')">›</div>
+              </div>
               <div class="img-thumbs">
                 <img src="buzo-cuello-redondo-blanco-1.png" alt="Vista 1" class="thumb active" onclick="cambiarImg('buzo-cr-main', this)" width="50" height="50" loading="lazy">
                 <img src="buzo-cuello-redondo-blanco-2.png" alt="Vista 2" class="thumb" onclick="cambiarImg('buzo-cr-main', this)" width="50" height="50" loading="lazy">
@@ -524,7 +711,7 @@
                 <img src="buzo-cuello-redondo-blanco-6.png" alt="Vista 6" class="thumb" onclick="cambiarImg('buzo-cr-main', this)" width="50" height="50" loading="lazy">
                 <img src="buzo-cuello-redondo-blanco-7.png" alt="Vista 7" class="thumb" onclick="cambiarImg('buzo-cr-main', this)" width="50" height="50" loading="lazy">
               </div>
-              <span class="badge">Clásico</span>
+              <span class="badge"></span>
             </div>
             <div class="card-body">
               <h3 class="card-title">Buzo Cuello Redondo Blanco</h3>
@@ -533,7 +720,7 @@
                 <li>Algodón 100% peinado de 280gr</li>
                 <li>Cuello redondo reforzado</li>
                 <li>Corte relajado y cómodo</li>
-                <li>Ideal para personalizar</li>
+                <li>Ideal y unisex</li>
               </ul>
               <div class="sizes" role="group">
                 <button class="size-btn" aria-pressed="false">XS</button>
@@ -544,22 +731,43 @@
                 <button class="size-btn" aria-pressed="false">XXL</button>
               </div>
               <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              
+              <div class="quantity-section">
+                <span class="quantity-label">Cantidad:</span>
+                <div class="quantity-control">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, -1)">−</button>
+                  <input type="number" class="quantity-input" value="1" min="1" max="99">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, 1)">+</button>
+                </div>
+              </div>
+              
+              <div class="shipping-calculator">
+                <button class="shipping-calculator-btn" onclick="toggleShippingCalc(this)">🚚 Calculá el costo del envío</button>
+                <div class="shipping-input-group">
+                  <input type="text" class="shipping-input" placeholder="Código postal" maxlength="5" pattern="[0-9]{4,5}">
+                  <button class="shipping-calc-btn" onclick="calcularEnvio(this)">Calcular</button>
+                </div>
+              </div>
+              
               <button class="add-cart" data-product="buzo-cr-blanco" data-pago="TU_CODIGO_AQUI">💳 Comprar ahora</button>
               
               <div class="share-buttons">
-                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'buzo-cr')" title="Compartir en WhatsApp">📱</button>
-                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'buzo-cr')" title="Compartir en Facebook">📘</button>
-                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'buzo-cr')" title="Compartir en Instagram">📸</button>
-                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'buzo-cr')" title="Compartir en TikTok">🎵</button>
-                <button class="share-btn copy" onclick="copiarLink('buzo-cr')" title="Copiar enlace">🔗</button>
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'buzo-cr')" title="Compartir en WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'buzo-cr')" title="Compartir en Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'buzo-cr')" title="Compartir en Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'buzo-cr')" title="Compartir en TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></button>
+                <button class="share-btn copy" onclick="copiarLink('buzo-cr')" title="Copiar enlace"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
               </div>
             </div>
           </article>
 
-          <article class="card" id="producto-remera" data-producto="Remera Básica Blanca" data-precio="$45.000" data-imagen="indumentaria/remera-blanca-1.jpg">
+          <article class="card" id="producto-remera" data-producto="Remera Básica Blanca" data-precio="$45.000" data-imagen="indumentaria/remera-blanca-1.jpg" data-descripcion="Algodón 100% premium, corte clásico unisex">
             <div class="card-img">
-              <img src="indumentaria/remera-blanca-1.jpg" alt="Remera Básica Blanca" class="main-img" id="remera-main" width="600" height="400" loading="lazy">
+              <div class="main-img-container" id="container-remera-main">
+                <img src="indumentaria/remera-blanca-1.jpg" alt="Remera Básica Blanca" class="main-img" id="remera-main" width="600" height="600" loading="lazy">
+                <div class="nav-arrow prev" onclick="cambiarFotoAnterior('remera-main')">‹</div>
+                <div class="nav-arrow next" onclick="cambiarFotoSiguiente('remera-main')">›</div>
+              </div>
             </div>
             <div class="card-body">
               <h3 class="card-title">Remera Básica Blanca</h3>
@@ -569,15 +777,32 @@
                 <button class="size-btn" aria-pressed="false">XS</button><button class="size-btn" aria-pressed="false">S</button><button class="size-btn" aria-pressed="false">M</button><button class="size-btn" aria-pressed="false">L</button>
               </div>
               <button class="size-guide-btn" data-type="indumentaria">📏 ¿No sabés tu talle?</button>
-              <div class="shipping">🚚 Envío gratis > $150.000</div>
+              
+              <div class="quantity-section">
+                <span class="quantity-label">Cantidad:</span>
+                <div class="quantity-control">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, -1)">−</button>
+                  <input type="number" class="quantity-input" value="1" min="1" max="99">
+                  <button class="quantity-btn" onclick="cambiarCantidad(this, 1)">+</button>
+                </div>
+              </div>
+              
+              <div class="shipping-calculator">
+                <button class="shipping-calculator-btn" onclick="toggleShippingCalc(this)">🚚 Calculá el costo del envío</button>
+                <div class="shipping-input-group">
+                  <input type="text" class="shipping-input" placeholder="Código postal" maxlength="5" pattern="[0-9]{4,5}">
+                  <button class="shipping-calc-btn" onclick="calcularEnvio(this)">Calcular</button>
+                </div>
+              </div>
+              
               <button class="add-cart" data-product="remera-blanca" data-pago="TU_CODIGO_AQUI">💳 Comprar ahora</button>
               
               <div class="share-buttons">
-                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'remera')" title="Compartir en WhatsApp">📱</button>
-                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'remera')" title="Compartir en Facebook">📘</button>
-                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'remera')" title="Compartir en Instagram">📸</button>
-                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'remera')" title="Compartir en TikTok">🎵</button>
-                <button class="share-btn copy" onclick="copiarLink('remera')" title="Copiar enlace">🔗</button>
+                <button class="share-btn whatsapp" onclick="compartirProducto('whatsapp', 'remera')" title="Compartir en WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
+                <button class="share-btn facebook" onclick="compartirProducto('facebook', 'remera')" title="Compartir en Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+                <button class="share-btn instagram" onclick="compartirProducto('instagram', 'remera')" title="Compartir en Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></button>
+                <button class="share-btn tiktok" onclick="compartirProducto('tiktok', 'remera')" title="Compartir en TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></button>
+                <button class="share-btn copy" onclick="copiarLink('remera')" title="Copiar enlace"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
               </div>
             </div>
           </article>
@@ -586,24 +811,9 @@
         <div class="reels-section">
           <h4>🎬 Reels de Indumentaria</h4>
           <div class="reels-category">
-            <div class="reel-card">
-              <video preload="metadata" poster="buzo-logo-blanco-1.png" muted playsinline loop>
-                <source src="reel-indumentaria.1.mp4" type="video/mp4">
-              </video>
-              <span class="reel-title">Estilo</span>
-            </div>
-            <div class="reel-card">
-              <video preload="metadata" poster="buzo-hoodie-negro-1.png" muted playsinline loop>
-                <source src="reel-indumentaria.2.mp4" type="video/mp4">
-              </video>
-              <span class="reel-title">Confort</span>
-            </div>
-            <div class="reel-card">
-              <video preload="metadata" poster="buzo-cuello-redondo-blanco-1.png" muted playsinline loop>
-                <source src="reel-indumentaria.3.mp4" type="video/mp4">
-              </video>
-              <span class="reel-title">Calidad</span>
-            </div>
+            <div class="reel-card"><video preload="metadata" poster="buzo-logo-blanco-1.png" muted playsinline loop><source src="reel-indumentaria.1.mp4" type="video/mp4"></video><span class="reel-title">Estilo</span></div>
+            <div class="reel-card"><video preload="metadata" poster="buzo-hoodie-negro-1.png" muted playsinline loop><source src="reel-indumentaria.2.mp4" type="video/mp4"></video><span class="reel-title">Confort</span></div>
+            <div class="reel-card"><video preload="metadata" poster="buzo-cuello-redondo-blanco-1.png" muted playsinline loop><source src="reel-indumentaria.3.mp4" type="video/mp4"></video><span class="reel-title">Calidad</span></div>
           </div>
         </div>
       </div>
@@ -867,6 +1077,11 @@
       <div class="footer-links">
         <a href="#productos">Productos</a><a href="#personalizar">Personalizar</a><a href="#nosotros">Nosotros</a><a href="#faq">Preguntas</a>
       </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/cvcalzadosyaccesorios/" target="_blank" rel="noopener" title="Instagram Cv"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.tiktok.com/@cvcalzadosyaccesorios" target="_blank" rel="noopener" title="TikTok Cv"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>
+        <a href="https://www.facebook.com/cvcalzadosyaccesorios" target="_blank" rel="noopener" title="Facebook Cv"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      </div>
       <p>© 2026 Cv. Moda contemporánea con intención.<br>Todos los derechos reservados.</p>
     </div>
   </footer>
@@ -874,7 +1089,7 @@
   <a href="https://wa.me/5491176235960?text=Hola!%20Vi%20Cv%20en%20la%20web%20y%20quiero%20consultar." class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat en WhatsApp">
     <div class="wa-btn">
       <span class="pulse"></span>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </div>
   </a>
 
@@ -945,53 +1160,84 @@
         thumb.classList.add('active'); 
       };
 
+      // Funciones de flechas de navegación
+      window.cambiarFotoAnterior = function(mainId) {
+        const card = document.getElementById(mainId).closest('.card');
+        const thumbs = Array.from(card.querySelectorAll('.thumb'));
+        const currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
+        if (currentIndex > 0) {
+          cambiarImg(mainId, thumbs[currentIndex - 1]);
+        } else {
+          // Si es la primera, ir a la última
+          cambiarImg(mainId, thumbs[thumbs.length - 1]);
+        }
+      };
+
+      window.cambiarFotoSiguiente = function(mainId) {
+        const card = document.getElementById(mainId).closest('.card');
+        const thumbs = Array.from(card.querySelectorAll('.thumb'));
+        const currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
+        if (currentIndex < thumbs.length - 1) {
+          cambiarImg(mainId, thumbs[currentIndex + 1]);
+        } else {
+          // Si es la última, ir a la primera
+          cambiarImg(mainId, thumbs[0]);
+        }
+      };
+
       // Función de deslizamiento mejorada para PC y móvil
-      document.querySelectorAll('.main-img').forEach(img => {
+      document.querySelectorAll('.main-img-container').forEach(container => {
         let isDragging = false;
         let startX = 0;
         let startY = 0;
+        let startTime = 0;
+        const mainImg = container.querySelector('.main-img');
         
         const startDrag = (e) => {
           isDragging = true;
+          startTime = Date.now();
           startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
           startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
-          img.style.cursor = 'grabbing';
+          container.style.cursor = 'grabbing';
         };
         
         const endDrag = (e) => {
           if (!isDragging) return;
           isDragging = false;
-          img.style.cursor = 'grab';
+          container.style.cursor = 'grab';
           
-          const endX = e.type.includes('mouse') ? e.clientX : e.changedTouches[0].clientX;
-          const endY = e.type.includes('mouse') ? e.clientY : e.changedTouches[0].clientY;
+          const endX = e.type.includes('mouse') ? e.clientX : (e.changedTouches ? e.changedTouches[0].clientX : startX);
+          const endY = e.type.includes('mouse') ? e.clientY : (e.changedTouches ? e.changedTouches[0].clientY : startY);
           const diffX = endX - startX;
           const diffY = endY - startY;
+          const timeDiff = Date.now() - startTime;
           
-          // Solo cambiar si el movimiento horizontal es mayor que el vertical y supera 50px
-          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-            const card = img.closest('.card');
-            const thumbs = Array.from(card.querySelectorAll('.thumb'));
-            const currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
-            
-            if (diffX > 0 && currentIndex > 0) {
-              // Deslizar derecha = foto anterior
-              cambiarImg(img.id, thumbs[currentIndex - 1]);
-            } else if (diffX < 0 && currentIndex < thumbs.length - 1) {
-              // Deslizar izquierda = foto siguiente
-              cambiarImg(img.id, thumbs[currentIndex + 1]);
+          // Solo cambiar si el movimiento horizontal es mayor que el vertical
+          // y supera 50px o es un swipe rápido
+          if (Math.abs(diffX) > Math.abs(diffY) && (Math.abs(diffX) > 50 || timeDiff < 300)) {
+            const mainId = mainImg.id;
+            if (diffX > 0) {
+              cambiarFotoAnterior(mainId);
+            } else if (diffX < 0) {
+              cambiarFotoSiguiente(mainId);
             }
           }
         };
         
         // Eventos para mouse (PC)
-        img.addEventListener('mousedown', startDrag);
-        img.addEventListener('mouseup', endDrag);
-        img.addEventListener('mouseleave', () => { isDragging = false; img.style.cursor = 'grab'; });
+        container.addEventListener('mousedown', startDrag);
+        container.addEventListener('mouseup', endDrag);
+        container.addEventListener('mouseleave', () => { 
+          isDragging = false; 
+          container.style.cursor = 'grab'; 
+        });
+        
+        // Prevenir selección de texto al arrastrar
+        container.addEventListener('dragstart', (e) => e.preventDefault());
         
         // Eventos para touch (móvil)
-        img.addEventListener('touchstart', startDrag, { passive: true });
-        img.addEventListener('touchend', endDrag);
+        container.addEventListener('touchstart', startDrag, { passive: true });
+        container.addEventListener('touchend', endDrag);
       });
 
       document.querySelectorAll('.reel-card').forEach(card => {
@@ -1005,6 +1251,10 @@
       document.querySelectorAll('.add-cart').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
+          const card = btn.closest('.card');
+          const cantidadInput = card.querySelector('.quantity-input');
+          const cantidad = cantidadInput ? parseInt(cantidadInput.value) || 1 : 1;
+          
           const linkPago = btn.getAttribute('data-pago') || 'https://wa.me/5491176235960?text=Hola!%20Quiero%20comprar%20este%20producto%20y%20necesito%20el%20link%20de%20pago.';
           btn.disabled = true; 
           btn.textContent = '🔗 Redirigiendo...';
@@ -1156,34 +1406,43 @@
         const nombre = producto.dataset.producto;
         const precio = producto.dataset.precio;
         const imagen = producto.dataset.imagen;
+        const descripcion = producto.dataset.descripcion || '';
         const url = `${window.location.origin}${window.location.pathname}#producto-${productoId}`;
-        const texto = `¡Mirá este producto de Cv! ${nombre} - ${precio}\n\n`;
+        
+        // Actualizar meta tags OG dinámicamente
+        document.querySelector('meta[property="og:title"]').setAttribute('content', `${nombre} - Cv`);
+        document.querySelector('meta[property="og:description"]').setAttribute('content', `${descripcion} - ${precio}`);
+        document.querySelector('meta[property="og:image"]').setAttribute('content', `${window.location.origin}/${imagen}`);
+        document.querySelector('meta[property="og:url"]').setAttribute('content', url);
         
         let shareUrl = '';
+        const texto = `¡Mirá ${nombre} de Cv! ${precio}\n\n${descripcion}\n\n`;
         
         switch(red) {
           case 'whatsapp':
             shareUrl = `https://wa.me/?text=${encodeURIComponent(texto + url)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
             break;
           case 'facebook':
-            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(texto)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
             break;
           case 'instagram':
-            // Instagram no permite compartir links directamente, copiamos al portapapeles
             navigator.clipboard.writeText(url).then(() => {
-              alert('✅ Link copiado! Ahora podés pegarlo en Instagram Stories o DM');
+              alert('✅ Link copiado! Abrí Instagram y pegalo en tu historia o mensaje directo.\n\nEl link incluye la imagen del producto.');
+              window.open('https://www.instagram.com/', '_blank');
+            }).catch(() => {
+              alert('No se pudo copiar el link. Copialo manualmente: ' + url);
             });
-            return;
+            break;
           case 'tiktok':
-            // TikTok tampoco permite compartir links directamente
             navigator.clipboard.writeText(url).then(() => {
-              alert('✅ Link copiado! Ahora podés pegarlo en TikTok');
+              alert('✅ Link copiado! Abrí TikTok y pegalo en tu video o mensaje.\n\nEl link incluye la imagen del producto.');
+              window.open('https://www.tiktok.com/', '_blank');
+            }).catch(() => {
+              alert('No se pudo copiar el link. Copialo manualmente: ' + url);
             });
-            return;
-        }
-        
-        if (shareUrl) {
-          window.open(shareUrl, '_blank', 'width=600,height=400');
+            break;
         }
       };
 
@@ -1192,7 +1451,6 @@
         navigator.clipboard.writeText(url).then(() => {
           alert('✅ Link copiado al portapapeles!');
         }).catch(() => {
-          // Fallback para navegadores antiguos
           const textArea = document.createElement('textarea');
           textArea.value = url;
           document.body.appendChild(textArea);
@@ -1203,6 +1461,42 @@
         });
       };
 
+      // Funciones de cantidad
+      window.cambiarCantidad = function(btn, cambio) {
+        const input = btn.parentElement.querySelector('.quantity-input');
+        let valor = parseInt(input.value) || 1;
+        valor += cambio;
+        if (valor < 1) valor = 1;
+        if (valor > 99) valor = 99;
+        input.value = valor;
+      };
+
+      // Funciones de cálculo de envío
+      window.toggleShippingCalc = function(btn) {
+        const inputGroup = btn.nextElementSibling;
+        inputGroup.classList.toggle('active');
+        if (inputGroup.classList.contains('active')) {
+          btn.textContent = '✕ Cerrar';
+        } else {
+          btn.textContent = '🚚 Calculá el costo del envío';
+        }
+      };
+
+      window.calcularEnvio = function(btn) {
+        const inputGroup = btn.parentElement;
+        const cpInput = inputGroup.querySelector('.shipping-input');
+        const cp = cpInput.value.trim();
+        
+        if (!cp || !/^\d{4,5}$/.test(cp)) {
+          alert('Por favor ingresá un código postal válido (4 o 5 dígitos)');
+          return;
+        }
+        
+        // Abrir WhatsApp con el código postal para consulta
+        const mensaje = `¡Hola Cv! 👋 Quiero calcular el costo de envío.\n\n📮 *Código Postal:* ${cp}\n\n¿Me podrían informar el costo y tiempo de entrega? ¡Gracias!`;
+        window.open(`https://wa.me/5491176235960?text=${encodeURIComponent(mensaje)}`, '_blank');
+      };
+
       // Navegación por hash (para links directos a productos)
       window.addEventListener('hashchange', () => {
         const hash = window.location.hash;
@@ -1210,7 +1504,6 @@
           const productoId = hash.replace('#producto-', '');
           const producto = document.getElementById(`producto-${productoId}`);
           if (producto) {
-            // Buscar en qué pestaña está el producto y activarla
             const tabPanel = producto.closest('.tab-panel');
             if (tabPanel) {
               const tabId = tabPanel.id.replace('panel-', 'tab-');
@@ -1231,7 +1524,6 @@
         }
       });
 
-      // Verificar hash al cargar la página
       if (window.location.hash) {
         window.dispatchEvent(new Event('hashchange'));
       }
