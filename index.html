@@ -1255,45 +1255,41 @@ const mensaje = `¡Hola Cv! 👋 Quiero hacer un pedido personalizado:\n\n👕 *
 window.open(`https://wa.me/5491176235960?text=${encodeURIComponent(mensaje)}`, '_blank');
 };
 window.compartirProducto = function(red, productoId) {
-const producto = document.getElementById(`producto-${productoId}`);
-if (!producto) return;
-const nombre = producto.dataset.producto;
-const precio = producto.dataset.precio;
-const imagen = producto.dataset.imagen;
-const descripcion = producto.dataset.descripcion || '';
-const url = `${window.location.origin}${window.location.pathname}#producto-${productoId}`;
-document.querySelector('meta[property="og:title"]').setAttribute('content', `${nombre} - Cv`);
-document.querySelector('meta[property="og:description"]').setAttribute('content', `${descripcion} - ${precio}`);
-document.querySelector('meta[property="og:image"]').setAttribute('content', `${window.location.origin}/${imagen}`);
-document.querySelector('meta[property="og:url"]').setAttribute('content', url);
-let shareUrl = '';
-const texto = `¡Mirá ${nombre} de Cv! ${precio}\n\n${descripcion}\n\n`;
-switch(red) {
-case 'whatsapp':
-shareUrl = `https://wa.me/?text=${encodeURIComponent(texto + url)}`;
-window.open(shareUrl, '_blank', 'width=600,height=400');
-break;
-case 'facebook':
-shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(texto)}`;
-window.open(shareUrl, '_blank', 'width=600,height=400');
-break;
-case 'instagram':
-navigator.clipboard.writeText(url).then(() => {
-alert('✅ Link copiado! Abrí Instagram y pegalo en tu historia o mensaje directo.\n\nEl link incluye la imagen del producto.');
-window.open('https://www.instagram.com/', '_blank');
-}).catch(() => {
-alert('No se pudo copiar el link. Copialo manualmente: ' + url);
-});
-break;
-case 'tiktok':
-navigator.clipboard.writeText(url).then(() => {
-alert('✅ Link copiado! Abrí TikTok y pegalo en tu video o mensaje.\n\nEl link incluye la imagen del producto.');
-window.open('https://www.tiktok.com/', '_blank');
-}).catch(() => {
-alert('No se pudo copiar el link. Copialo manualmente: ' + url);
-});
-break;
-}
+  const producto = document.getElementById(`producto-${productoId}`);
+  if (!producto) return;
+  
+  const nombre = producto.dataset.producto;
+  const precio = producto.dataset.precio;
+  const descripcion = producto.dataset.descripcion || '';
+  
+  // URL de la página individual del producto
+  const productoUrl = `${window.location.origin}/producto-${productoId}.html`;
+  const texto = `¡Mirá ${nombre} de Cv! ${precio}\n\n${descripcion}\n\n${productoUrl}`;
+  
+  switch(red) {
+    case 'whatsapp':
+      window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`, '_blank');
+      break;
+    case 'facebook':
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productoUrl)}`, '_blank', 'width=600,height=400');
+      break;
+    case 'instagram':
+      navigator.clipboard.writeText(productoUrl).then(() => {
+        alert('✅ Link copiado! Abrí Instagram y pegalo en tu historia o mensaje directo.');
+        window.open('https://www.instagram.com/', '_blank');
+      }).catch(() => {
+        alert('No se pudo copiar el link. Copialo manualmente: ' + productoUrl);
+      });
+      break;
+    case 'tiktok':
+      navigator.clipboard.writeText(productoUrl).then(() => {
+        alert('✅ Link copiado! Abrí TikTok y pegalo en tu video o mensaje.');
+        window.open('https://www.tiktok.com/', '_blank');
+      }).catch(() => {
+        alert('No se pudo copiar el link. Copialo manualmente: ' + productoUrl);
+      });
+      break;
+  }
 };
 window.copiarLink = function(productoId) {
 const url = `${window.location.origin}${window.location.pathname}#producto-${productoId}`;
